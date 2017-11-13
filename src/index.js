@@ -27,7 +27,7 @@ export default class Index extends React.Component {
 
                 <HashRouter>
                     <div style={{minHeight: '100%', height: '100%'}}>
-                        <Route exact path="/" component={Login}></Route>
+                        <Route exact path="/" component={GroupBuyList}></Route>
                         <Route exact path="/login" component={Login}></Route>
                         <Route exact path="/signup" component={Signup}></Route>
                         <Route exact path="/groupbuylist" component={GroupBuyList}></Route>
