@@ -10,7 +10,9 @@ import MyCard from '../components/MyCard'
 
 import Avatar1 from '../img/avatar-1.jpg';
 
-
+import Auth from '../components/Auth';
+import Config from '../Config';
+import axios from 'axios';
 
 //let width=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
@@ -31,44 +33,74 @@ const styles = theme =>  ({
 });
 
 class GroupBuyList extends Component {
-    state = {
-        open: false,
-    };
+
+    constructor(props){
+        super(props);
+        const config = new Config();
+
+        this.state = {
+            items: [],
+            empty: false,
+            showLoading: false,
+            baseUrl: config.baseUrl,
+            open: false
+        };
+
+        const auth = new Auth();
+        auth.checkAuth();
+    }
+
+    componentWillMount(){
+        this.setState({
+            showLoading: true
+        });
+
+        const token = window.localStorage.getItem('token');
+        axios.get(this.state.baseUrl + 'gift-card/rest/partner', {
+            params: {
+                token: token,
+                method: 'LIST'
+            }
+        })
+            .then(response => {
+                console.log(response);
+                this.setState({
+                    items: response.data,
+                    showLoading: false
+                });
+
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 
     render() {
-
-        return (
-            <div className={this.props.classes.root}>
-                <MyAppBar title="My Group Buy" />
-                <MyCard
-                    name="Starbucks"
-                    avatar={Avatar1}
-                    status="ongoing"
-                    giftcard="$100"
-                    sell="$80"
-                    groupbuyowner="jacky"
-                    href="#ingroupbuysuccessful"
-                />
-                <MyCard
-                    name="Starbucks"
-                    avatar={Avatar1}
-                    status="bought"
-                    giftcard="$100"
-                    sell="$30"
-                    groupbuyowner="yourself"
-                    href="#ingroupbuy"
-                />
-                <MyCard
-                    name="Starbucks"
-                    avatar={Avatar1}
-                    status="expired"
-                    giftcard="$100"
-                    sell="$30"
-                    groupbuyowner="Mike"
-                    href="#starbucks"
-                />
-            </div>
-        );
+        if (this.state.items.length > 0) {
+            return (
+                <div className={this.props.classes.root}>
+                    <MyAppBar title="My Group Buy"/>
+                    {this.state.items.map((item, key) =>
+                        <MyCard
+                            name={item.giftCardGroupBuy.giftCard.shopper.name}
+                            avatar={Avatar1}
+                            status="ongoing"
+                            giftcard={`$` + item.giftCardGroupBuy.giftCard.giftCardValue}
+                            sell={`$` + item.giftCardGroupBuy.giftCard.giftCardValue }
+                            groupbuyowner={item.giftCardGroupBuy.ownerConsumer.socialDataProfile.nickname}
+                            href="#ingroupbuysuccessful"
+                        />
+                    )}
+                </div>
+            );
+        } else {
+            return (
+                <div className={this.props.classes.root}>
+                    <MyAppBar title="My Group Buy"/>
+                    Load....
+                </div>
+            );
+        }
     }
 }
 
