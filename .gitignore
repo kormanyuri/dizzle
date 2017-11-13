@@ -21,3 +21,6 @@ yarn-debug.log*
 yarn-error.log*
 
 yarn.lock
+.idea/
+src/Config.js
+package-lock.json
