@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
     "jss": "latest",
     "jss-preset-default": "latest",
     "material-ui": "next",
