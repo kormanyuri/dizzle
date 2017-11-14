@@ -20,9 +20,7 @@ const styles = theme => ({
         borderRadius: 6,
         boxShadow: 'none',
         backgroundColor: '#877650',
-        marginLeft: 15,
-        marginRight: 15,
-        marginTop: 45,
+        marginBottom: 45,
         position: 'relative'
     },
     cardheader: {

@@ -30,7 +30,7 @@ const styles = theme => ({
         minHeight: 'inherit',
         paddingTop: 55,
         paddingBottom: 44,
-        height: (width>320)?scrollHeight:'100%'
+        height: (width>320)?'auto':'100%'
     },
     card: {
         borderRadius: 6,

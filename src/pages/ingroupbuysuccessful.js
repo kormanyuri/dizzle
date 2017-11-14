@@ -90,7 +90,7 @@ const styles = theme =>  ({
         backgroundColor: '#887650',
         backgroundImage: 'url(' + patternVert + ')',
         backgroundSize: '55px auto',
-        backgroundRepeat: 'no-repeat',
+        backgroundRepeatX: 'no-repeat',
         padding: '26px 18px 34px',
         textAlign: 'center',
         marginBottom: 30,

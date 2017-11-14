@@ -7,6 +7,7 @@ import {withStyles} from 'material-ui/styles';
 import withRoot from '../components/withRoot';
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
+import Snackbar from 'material-ui/Snackbar';
 
 import MyLinkStyled from '../components/MyLink';
 import HeaderLineStyled from '../components/HeaderLineStyled';
@@ -28,25 +29,25 @@ let h = Math.max(
 );
 
 
-const styles = theme => ({
-    root: {
-        minHeight: 'inherit',
-    },
-    wrapper: {
-        width: document.body.offsetWidth,
-        maxWidth: 414,
-        minHeight: '100%',
-        height: '100%',
-    },
-    wrap: {
-        minHeight: '100%',
-        minWidth: '100%',
-        backgroundColor: '#887650',
-        backgroundImage: 'url(' + Background + ')',
-        backgroundPosition: '50% -58px',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'auto 110%',
-        height: (w > 320) ? h : '100%',
+const styles = theme =>  ({
+  root: {
+    minHeight: 'inherit',
+  },
+  wrapper: {
+    width: document.body.offsetWidth,
+    maxWidth: 414,
+    minHeight: '100%',
+    height: '100%',
+  },
+  wrap: {
+    minHeight: '100%',
+    minWidth: '100%',
+    backgroundColor: '#887650',
+    backgroundImage: 'url(' + Background + ')',
+    backgroundPosition: '50% -58px',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'auto 110%',
+    height: (w>320)? h:'100%',
 
     },
     wrapcontent: {
@@ -160,7 +161,18 @@ const styles = theme => ({
         '&:after': {
             backgroundColor: '#d9d8d6',
         }
+    },
+  message: {
+
+    '& div': {
+      width: (w>320)?'414px':'auto'
     }
+  },
+  error: {
+   '& input': {
+     border: '2px solid red'
+   }
+  }
 });
 
 class Login extends Component {
@@ -170,12 +182,12 @@ class Login extends Component {
         const config = new Config();
 
         this.state = {
-            open: false,
+            alert: {
+                open: false,
+                message: <span id="message-id">Error</span>
+            },
             email: '',
             password: '',
-            showLoading: false,
-            showWarningEmail: false,
-            showWarningPassword: false,
             baseUrl: config.baseUrl
         };
     };
@@ -218,11 +230,6 @@ class Login extends Component {
             .then(response => {
                 console.log(response);
                 window.localStorage.setItem('token', response.data.token);
-                this.setState({
-                    showLoading: false,
-                    showWarningEmail: false,
-                    showWarningPassword: false
-                });
 
                 // const orderShopperId = window.localStorage.getItem('order_shopper_id');
                 const orderProcess = window.localStorage.getItem('order_process');
@@ -237,9 +244,10 @@ class Login extends Component {
             .catch(error => {
                 console.log(error);
                 this.setState({
-                    showLoading: false,
-                    showWarningEmail: true,
-                    showWarningPassword: true
+                    alert: {
+                        open: true,
+                        message: <span id="message-id">Login or password incorrect</span>
+                    }
                 });
             });
     }
@@ -251,7 +259,6 @@ class Login extends Component {
             <div className={this.props.classes.root}>
                 <div className={this.props.classes.wrapper}>
                     <div className={this.props.classes.wrap}>
-
                         <div className={this.props.classes.wrapcontent}>
                             <div className={this.props.classes.title}>DRIZZLE</div>
                             <div className={this.props.classes.subtitle}>Buy gift card with friends and saving</div>
@@ -309,9 +316,19 @@ class Login extends Component {
                         </div>
                     </div>
                 </div>
+                <Snackbar
+                    className={this.props.classes.message}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    open={this.state.alert.open}
+                    onRequestClose={this.handleRequestClose}
+                    SnackbarContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={this.state.alert.message}
+                />
             </div>
         );
-    }
+  }
 }
 
 Login.propTypes = {

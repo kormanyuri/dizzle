@@ -20,9 +20,7 @@ const styles = theme => ({
         borderRadius: 6,
         boxShadow: 'none',
         backgroundColor: '#877650',
-        marginLeft: 15,
-        marginRight: 15,
-        marginTop: 45,
+        marginBottom: 45,
         position: 'relative'
     },
     cardheader: {
@@ -144,11 +142,11 @@ const styles = theme => ({
 });
 
 function MyCard(props) {
-    const { classes, name, status, giftcard, sell, groupbuyowner, avatar, href } = props;
+    const { classes, name, status, giftcard, sell, groupbuyowner, avatar, href, ...other } = props;
 
     return (
         <div>
-            <Card className={classes.card}>
+            <Card className={classes.card} {...other}>
                 <div className={classes.cardheader}>
                     <Avatar
                         alt={name}

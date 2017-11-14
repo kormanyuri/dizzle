@@ -14,20 +14,25 @@ import Auth from '../components/Auth';
 import Config from '../Config';
 import axios from 'axios';
 
-//let width=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+let width=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-//let scrollHeight = Math.max(
-//    document.body.scrollHeight, document.documentElement.scrollHeight,
-//    document.body.offsetHeight, document.documentElement.offsetHeight,
-//    document.body.clientHeight, document.documentElement.clientHeight
-//);
+let scrollHeight = Math.max(
+    document.body.scrollHeight, document.documentElement.scrollHeight,
+    document.body.offsetHeight, document.documentElement.offsetHeight,
+    document.body.clientHeight, document.documentElement.clientHeight
+);
 
 const styles = theme =>  ({
     root: {
         minHeight: 'inherit',
-        paddingTop: 55,
-        paddingBottom: 44,
-        //height: (width>320)?scrollHeight:'100%'
+        //paddingTop: 55,
+        //paddingBottom: 44,
+        //height: (width>320)?'auto':'100%'
+        padding: '100px 15px 44px',
+        minHeight: scrollHeight,
+        '&>div:last-child div': {
+            marginBottom: 0
+        }
     },
 
 });
