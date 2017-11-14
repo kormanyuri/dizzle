@@ -26,7 +26,7 @@ let scrollHeight = Math.max(
 );
 
 
-const styles = theme =>  ({
+const styles = ({
     root: {
         minHeight: 'inherit',
         //paddingTop: 55,
