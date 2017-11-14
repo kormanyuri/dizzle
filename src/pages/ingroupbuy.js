@@ -1,6 +1,6 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';
@@ -17,6 +17,9 @@ import facebookIco from '../img/facebook.svg';
 import twitterIco from '../img/twitter.svg';
 import Avatar1 from '../img/avatar-1.jpg';
 import patternVert from '../img/pattern-v.png';
+import Auth from '../components/Auth';
+import Config from '../Config';
+import axios from 'axios';
 
 
 let diamAvatar = 80;
@@ -221,10 +224,93 @@ const styles = theme =>  ({
 
 });
 
-class InGroupBuy extends Component {
-    state = {
-        open: false,
-    };
+class InGroupBuy extends React.Component {
+
+    constructor(props) {
+        super(props);
+        console.log(props);
+        const config = new Config();
+        this.state = {
+            id: props.match.params.id,
+            shopper: '',
+            timeLeft: '',
+            showLoading: false,
+            baseUrl: config.baseUrl,
+            open: false
+        };
+
+        this.timer = this.timer.bind(this);
+    }
+
+    componentWillMount(){
+        this.setState({
+            showLoading: true
+        });
+
+        axios.get(this.state.baseUrl + 'gift-card/rest/group-buy/' + this.state.id)
+            .then(response => {
+
+                const bought = response.data.bought ? response.data.bought : 0;
+
+                this.setState({
+                    shopper:        response.data.giftCard.shopper.name,
+                    giftCardValue:  response.data.giftCard.giftCardValue,
+                    owner:          response.data.ownerConsumer.socialDataProfile.nickname,
+                    totalUsers:     response.data.countPartners,
+                    sell:           response.data.giftCard.giftCardValue,
+                    countDownDate:  new Date(response.data.dateExpired.date).getTime(),
+                    percentOfGoal:  (bought/(response.data.giftCard.giftCardValue/100))/100,
+                    bought:         bought,
+                    showLoading:    false
+                });
+
+            })
+            .catch(error => {
+
+            });
+
+
+    }
+
+    componentDidMount(){
+        // Update the count down every 1 second
+        this.interval = setInterval(this.timer, 1000);
+    }
+
+    componentWillUnmount() {
+        console.log('unmount')
+        clearInterval(this.interval);
+    }
+
+    timer(){
+
+        // Get todays date and time
+        let now = new Date().getTime();
+
+        // Find the distance between now an the count down date
+        let distance = this.state.countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        let days    = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        if (!isNaN(days)) {
+            this.setState({
+                timeLeft: days + " days " + hours + ":" + minutes + ":" + seconds
+            });
+        }
+        // console.log(this.state.timeLeft);
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(this.interval);
+            this.setState({
+                timeLeft: "EXPIRED"
+            });
+        }
+    }
 
     render() {
 
@@ -239,30 +325,30 @@ class InGroupBuy extends Component {
                         />
                         <div className={this.props.classes.container}>
                             <div className={this.props.classes.wraptitle}>
-                                <p className={this.props.classes.title}>Starbucks</p>
-                                <p className={this.props.classes.subtitle}>50 USD gift card</p>
+                                <p className={this.props.classes.title}>{this.state.shopper}</p>
+                                <p className={this.props.classes.subtitle}>{this.state.giftCardValue} USD gift card</p>
                             </div>
                         </div>
                         <div className={this.props.classes.wrapabs}>
                             <div className={this.props.classes.card}>
-                                <p className={this.props.classes.name}>Elizabeth Thordis</p>
+                                <p className={this.props.classes.name}>{this.state.owner}</p>
                                 <p className={this.props.classes.subname}>group Buy Owner</p>
                                 <Grid container>
                                     <Grid item xs={6} className={classNames(this.props.classes.griditem, this.props.classes.vertd)} >
-                                        <p className={this.props.classes.bigfs}>$80</p>
+                                        <p className={this.props.classes.bigfs}>${this.state.sell}</p>
                                         <p className={this.props.classes.subname}>sell</p>
                                     </Grid>
                                     <Grid item xs={6} className={this.props.classes.griditem}>
-                                        <p className={this.props.classes.bigfs}>3</p>
+                                        <p className={this.props.classes.bigfs}>{this.state.totalUsers}</p>
                                         <p className={this.props.classes.subname}>totalusers</p>
                                     </Grid>
                                 </Grid>
-                                <div className={this.props.classes.time}>14:27:43</div>
+                                <div className={this.props.classes.time}>{this.state.timeLeft}</div>
                                 <div className={this.props.classes.progressbar}>
                                     <div className={this.props.classes.indicator}></div>
                                 </div>
-                                <div className={classNames(this.props.classes.subname, this.props.classes.horizd)}>50% of $80 goal</div>
-                                <div className={this.props.classes.subname}>$40 bought by 3 users</div>
+                                <div className={classNames(this.props.classes.subname, this.props.classes.horizd)}>{this.state.percentOfGoal}% of ${this.state.giftCardValue} goal</div>
+                                <div className={this.props.classes.subname}>${this.state.bought/100} bought by {this.state.totalUsers} users</div>
                             </div>
                         </div>
 
@@ -283,8 +369,8 @@ class InGroupBuy extends Component {
     }
 }
 
-InGroupBuy.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
+// InGroupBuy.propTypes = {
+//     classes: PropTypes.object.isRequired,
+// };
 
 export default withRoot(withStyles(styles)(InGroupBuy));

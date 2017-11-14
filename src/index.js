@@ -31,8 +31,8 @@ export default class Index extends React.Component {
                         <Route exact path="/login" component={Login}></Route>
                         <Route exact path="/signup" component={Signup}></Route>
                         <Route exact path="/groupbuylist" component={GroupBuyList}></Route>
-                        <Route exact path="/ingroupbuy" component={InGroupBuy}></Route>
-                        <Route exact path="/ingroupbuysuccessful" component={InGroupBuySuccessful}></Route>
+                        <Route exact path="/ingroupbuy/:id" component={InGroupBuy}></Route>
+                        <Route exact path="/ingroupbuysuccessful/:id" component={InGroupBuySuccessful}></Route>
                         <Route exact path="/balancelist" component={BalanceList}></Route>
                         <Route exact path="/starbucks" component={Starbucks}></Route>
                         <Route exact path="/myaccount" component={MyAccount}></Route>

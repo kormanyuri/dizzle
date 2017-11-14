@@ -48,7 +48,8 @@ class GroupBuyList extends Component {
             empty: false,
             showLoading: false,
             baseUrl: config.baseUrl,
-            open: false
+            open: false,
+            message: ''
         };
 
         const auth = new Auth();
@@ -61,6 +62,10 @@ class GroupBuyList extends Component {
         });
 
         const token = window.localStorage.getItem('token');
+        this.setState({
+            message: 'Load...'
+        });
+
         axios.get(this.state.baseUrl + 'gift-card/rest/partner', {
             params: {
                 token: token,
@@ -69,10 +74,16 @@ class GroupBuyList extends Component {
         })
             .then(response => {
                 console.log(response);
-                this.setState({
-                    items: response.data,
-                    showLoading: false
-                });
+
+                if (typeof response.data.message == 'undefined') {
+                    this.setState({
+                        items: response.data
+                    });
+                } else {
+                    this.setState({
+                        message: 'List empty'
+                    });
+                }
 
             })
             .catch(error => {
@@ -87,13 +98,14 @@ class GroupBuyList extends Component {
                     <MyAppBar title="My Group Buy"/>
                     {this.state.items.map((item, key) =>
                         <MyCard
+                            key={key}
                             name={item.giftCardGroupBuy.giftCard.shopper.name}
                             avatar={Avatar1}
                             status="ongoing"
                             giftcard={`$` + item.giftCardGroupBuy.giftCard.giftCardValue}
                             sell={`$` + item.giftCardGroupBuy.giftCard.giftCardValue }
                             groupbuyowner={item.giftCardGroupBuy.ownerConsumer.socialDataProfile.nickname}
-                            href="#ingroupbuysuccessful"
+                            href={`/#/ingroupbuy/${item.giftCardGroupBuy.id}`}
                         />
                     )}
                 </div>
@@ -102,7 +114,7 @@ class GroupBuyList extends Component {
             return (
                 <div className={this.props.classes.root}>
                     <MyAppBar title="My Group Buy"/>
-                    Load....
+                    {this.state.message}
                 </div>
             );
         }

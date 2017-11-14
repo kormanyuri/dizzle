@@ -48,6 +48,11 @@ const context = createContext();
 
 function withRoot(BaseComponent) {
   class WithRoot extends Component {
+    constructor(props){
+      super(props);
+      console.log(props);
+    }
+
     componentDidMount() {
       // Remove the server-side injected CSS.
       const jssStyles = document.querySelector('#jss-server-side');
@@ -61,7 +66,7 @@ function withRoot(BaseComponent) {
           <JssProvider SheetsRegistry={context.sheetsRegistry} Jss={context.jss}>
             <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
               <AppWrapper>
-                <BaseComponent />
+                <BaseComponent match={this.props.match}/>
               </AppWrapper>
             </MuiThemeProvider>
           </JssProvider>
