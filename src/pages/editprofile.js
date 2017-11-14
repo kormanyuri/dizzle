@@ -10,6 +10,10 @@ import Button from 'material-ui/Button';
 import Avatar from 'material-ui/Avatar';
 import UploadAva from '../img/upload-ava.png';
 
+import Auth from '../components/Auth';
+import Config from '../Config';
+import axios from 'axios';
+
 
 let paddStatus = 5;
 let fontSizeStatus = 7;
@@ -163,151 +167,206 @@ const styles = theme => ({
 });
 
 class EditProfile extends Component {
-    state = {
-        open: false,
-    };
+
+
+    constructor(props){
+        super(props);
+        const config = new Config();
+
+        this.state = {
+            userId:         0,
+            firstName:      '',
+            lastName:       '',
+            email:          '',
+            showLoading:    true,
+            baseUrl:        config.baseUrl,
+            open: false,
+            message: ''
+        }
+    }
+
+    componentWillMount(){
+        const token = window.localStorage.getItem('token');
+
+        if (token) {
+            this.state.message = 'Load...';
+
+            axios.get(this.state.baseUrl + 'gift-card/rest/consumer', {
+                params: {
+                    token: token
+                }
+            })
+                .then(response => {
+                    console.log(response);
+
+                    this.setState({
+                        userId: response.data.id,
+                        nickname:  response.data.socialDataProfile.nickname,
+                        email:     response.data.email,
+                        showLoading: false
+                    });
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
+    }
 
     render() {
 
-        return (
-            <div className={this.props.classes.root}>
-                <MyAppBar title="Edit profile" />
-                <Card className={this.props.classes.card}>
-                    <CardContent className={this.props.classes.cardcontent}>
-                        <div className={this.props.classes.wrapupload}>
-                            <Avatar
-                                src={UploadAva}
-                                className={this.props.classes.avatar}
-                            />
-                            <input type="file" className={this.props.classes.uploadInput} />
-                        </div>
-                        <div className={this.props.classes.rightcol}>
-                            <div className={this.props.classes.row}>
-                                <TextField
-                                    label="Name"
-                                    defaultValue="Jerry Jiang"
-                                    fullWidth={true}
-                                    InputProps={{
-                                      disableUnderline: true,
-                                      classes: {
-                                        root: this.props.classes.textFieldRoot,
-                                        input: this.props.classes.textFieldInput,
-                                      },
-                                    }}
-                                    InputLabelProps={{
-                                      shrink: true,
-                                      className: this.props.classes.textFieldFormLabel,
-                                    }}
+        if (this.state.userId != 0) {
+            console.log(this.state);
+
+            return (
+                <div className={this.props.classes.root}>
+                    <MyAppBar title="Edit profile"/>
+                    <Card className={this.props.classes.card}>
+                        <CardContent className={this.props.classes.cardcontent}>
+                            <div className={this.props.classes.wrapupload}>
+                                <Avatar
+                                    src={UploadAva}
+                                    className={this.props.classes.avatar}
                                 />
+                                <input type="file" className={this.props.classes.uploadInput}/>
                             </div>
-                            <div className={this.props.classes.row}>
-                                <TextField
-                                    id="date"
-                                    label="date of birth"
-                                    type="date"
-                                    defaultValue="1960-11-10"
-                                    fullWidth={true}
-                                    InputProps={{
-                                      disableUnderline: true,
-                                      classes: {
-                                        root: this.props.classes.textFieldRoot,
-                                        input: this.props.classes.textFieldInput,
-                                      },
-                                    }}
-                                    InputLabelProps={{
-                                      shrink: true,
-                                      className: this.props.classes.textFieldFormLabel,
-                                    }}
-                                />
-                            </div>
-                            <div className={this.props.classes.row}>
-                                <TextField
-                                    disabled
-                                    label="email address"
-                                    defaultValue="eisenbergtech@gmail.com"
-                                    fullWidth={true}
-                                    InputProps={{
-                                      disableUnderline: true,
-                                      classes: {
-                                        root: this.props.classes.textFieldRoot,
-                                        input: classNames(this.props.classes.textFieldInput, this.props.classes.textFieldInputDisabled),
-                                      },
-                                    }}
-                                    InputLabelProps={{
-                                      shrink: true,
-                                      className: this.props.classes.textFieldFormLabel,
-                                    }}
-                                />
-                            </div>
-                            <div className={this.props.classes.row} style={{position: 'relative'}}>
-                                <TextField
-                                    label="facebook account"
-                                    defaultValue="Jerry Jiang"
-                                    fullWidth={true}
-                                    InputProps={{
-                                      disableUnderline: true,
-                                      classes: {
-                                        root: this.props.classes.textFieldRoot,
-                                        input: this.props.classes.textFieldInput,
-                                      },
-                                    }}
-                                    InputLabelProps={{
-                                      shrink: true,
-                                      className: this.props.classes.textFieldFormLabel,
-                                    }}
-                                />
-                                <div className={classNames(this.props.classes.status,this.props.classes.connectedStatus)}>connected</div>
-                            </div>
-                            <div className={this.props.classes.row}>
+                            <div className={this.props.classes.rightcol}>
                                 <div className={this.props.classes.row}>
                                     <TextField
-                                        type="password"
-                                        label="change password"
-                                        defaultValue="Jerry Jiang"
+                                        label="Name"
+                                        value={this.state.nickname}
                                         fullWidth={true}
                                         InputProps={{
-                                      disableUnderline: true,
-                                      classes: {
-                                        root: this.props.classes.textFieldRoot,
-                                        input: this.props.classes.textFieldInput,
-                                      },
-                                    }}
+                                            disableUnderline: true,
+                                            classes: {
+                                                root: this.props.classes.textFieldRoot,
+                                                input: this.props.classes.textFieldInput,
+                                            },
+                                        }}
                                         InputLabelProps={{
-                                      shrink: true,
-                                      className: this.props.classes.textFieldFormLabel,
-                                    }}
+                                            shrink: true,
+                                            className: this.props.classes.textFieldFormLabel,
+                                        }}
                                     />
                                 </div>
-                            </div>
-                            <div className={this.props.classes.row}>
+                                <div className={this.props.classes.row}>
+                                    <TextField
+                                        id="date"
+                                        label="date of birth"
+                                        type="date"
+                                        defaultValue="1960-11-10"
+                                        fullWidth={true}
+                                        InputProps={{
+                                            disableUnderline: true,
+                                            classes: {
+                                                root: this.props.classes.textFieldRoot,
+                                                input: this.props.classes.textFieldInput,
+                                            },
+                                        }}
+                                        InputLabelProps={{
+                                            shrink: true,
+                                            className: this.props.classes.textFieldFormLabel,
+                                        }}
+                                    />
+                                </div>
                                 <div className={this.props.classes.row}>
                                     <TextField
                                         disabled
-                                        label="your redeem code"
-                                        defaultValue="#3552222511112"
+                                        label="email address"
+                                        defaultValue={this.state.email}
                                         fullWidth={true}
                                         InputProps={{
-                                      disableUnderline: true,
-                                      classes: {
-                                        root: this.props.classes.textFieldRoot,
-                                        input: classNames(this.props.classes.textFieldInput, this.props.classes.textFieldInputDisabled),
-                                      },
-                                    }}
+                                            disableUnderline: true,
+                                            classes: {
+                                                root: this.props.classes.textFieldRoot,
+                                                input: classNames(this.props.classes.textFieldInput, this.props.classes.textFieldInputDisabled),
+                                            },
+                                        }}
                                         InputLabelProps={{
-                                      shrink: true,
-                                      className: this.props.classes.textFieldFormLabel,
-                                    }}
+                                            shrink: true,
+                                            className: this.props.classes.textFieldFormLabel,
+                                        }}
                                     />
                                 </div>
+                                <div className={this.props.classes.row} style={{position: 'relative'}}>
+                                    <TextField
+                                        label="facebook account"
+                                        defaultValue={this.state.nickname}
+                                        fullWidth={true}
+                                        InputProps={{
+                                            disableUnderline: true,
+                                            classes: {
+                                                root: this.props.classes.textFieldRoot,
+                                                input: this.props.classes.textFieldInput,
+                                            },
+                                        }}
+                                        InputLabelProps={{
+                                            shrink: true,
+                                            className: this.props.classes.textFieldFormLabel,
+                                        }}
+                                    />
+                                    <div
+                                        className={classNames(this.props.classes.status, this.props.classes.connectedStatus)}>
+                                        connected
+                                    </div>
+                                </div>
+                                <div className={this.props.classes.row}>
+                                    <div className={this.props.classes.row}>
+                                        <TextField
+                                            type="password"
+                                            label="change password"
+                                            defaultValue="Jerry Jiang"
+                                            fullWidth={true}
+                                            InputProps={{
+                                                disableUnderline: true,
+                                                classes: {
+                                                    root: this.props.classes.textFieldRoot,
+                                                    input: this.props.classes.textFieldInput,
+                                                },
+                                            }}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                                className: this.props.classes.textFieldFormLabel,
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                                <div className={this.props.classes.row}>
+                                    <div className={this.props.classes.row}>
+                                        <TextField
+                                            disabled
+                                            label="your redeem code"
+                                            defaultValue={`#` + this.state.userId}
+                                            fullWidth={true}
+                                            InputProps={{
+                                                disableUnderline: true,
+                                                classes: {
+                                                    root: this.props.classes.textFieldRoot,
+                                                    input: classNames(this.props.classes.textFieldInput, this.props.classes.textFieldInputDisabled),
+                                                },
+                                            }}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                                className: this.props.classes.textFieldFormLabel,
+                                            }}
+                                        />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div style={{textAlign: 'right'}}>
-                            <Button className={this.props.classes.button} href="#myaccount">save changes</Button>
-                        </div>
-                    </CardContent>
-                </Card>
-            </div>
-        );
+                            <div style={{textAlign: 'right'}}>
+                                <Button className={this.props.classes.button} href="#myaccount">save changes</Button>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+            );
+        } else {
+            return (
+                <div className={this.props.classes.root}>
+                    <MyAppBar title="Edit profile"/>
+                    {this.state.message}
+                </div>
+            );
+        }
     }
 }
 

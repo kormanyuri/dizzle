@@ -7,6 +7,10 @@ import MyAppBar from '../components/MyAppBar';
 import Card, { CardContent } from 'material-ui/Card';
 import QR from '../img/qr.png';
 
+import Auth from '../components/Auth';
+import Config from '../Config';
+import axios from 'axios';
+
 
 let width=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
@@ -69,9 +73,47 @@ const styles = theme => ({
 });
 
 class QRqode extends Component {
-    state = {
-        open: false,
-    };
+    constructor(props) {
+        super(props);
+        const config = new Config();
+
+        this.state = {
+            userId:         '',
+            firstName:      '',
+            lastName:       '',
+            email:          '',
+            token:          window.localStorage.getItem('token'),
+            showLoading:    true,
+            baseUrl:        config.baseUrl,
+            open: false
+        }
+    }
+
+    componentWillMount(){
+        const token = window.localStorage.getItem('token');
+
+        if (token) {
+            axios.get(this.state.baseUrl + 'gift-card/rest/consumer', {
+                params: {
+                    token: token
+                }
+            })
+                .then(response => {
+                    console.log(response);
+
+                    this.setState({
+                        userId: response.data.id,
+                        nickname:  response.data.socialDataProfile.nickname,
+                        email:     response.data.email,
+                        showLoading: false
+                    });
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+        }
+    }
 
     render() {
 
@@ -83,11 +125,11 @@ class QRqode extends Component {
                 <Card className={this.props.classes.card}>
                     <CardContent className={this.props.classes.cardcontent}>
                         <div className={this.props.classes.qrwrap}>
-                            <div className={this.props.classes.qrcode}><img src={QR} alt=""/></div>
+                            <div className={this.props.classes.qrcode}><img src={this.state.baseUrl + `gift-card/consumer-qr-generate?token=${this.state.token}`} alt=""/></div>
                         </div>
                         <p className={classNames(this.props.classes.text)} style={{marginBottom: 25}}>Your redeem QR code</p>
                         <p className={classNames(this.props.classes.text)}>Your member ID</p>
-                        <p className={classNames(this.props.classes.number)}>#3552222511112</p>
+                        <p className={classNames(this.props.classes.number)}>#{this.state.userId}</p>
                     </CardContent>
                 </Card>
             </div>

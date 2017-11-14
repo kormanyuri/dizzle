@@ -9,6 +9,10 @@ import Button from 'material-ui/Button';
 import Avatar from 'material-ui/Avatar';
 import Avatar4 from '../img/avatar-4.png';
 
+import Auth from '../components/Auth';
+import Config from '../Config';
+import axios from 'axios';
+
 let paddStatus = 5;
 let fontSizeStatus = 7;
 
@@ -114,9 +118,46 @@ const styles = theme => ({
 });
 
 class MyAccount extends Component {
-    state = {
-        open: false,
-    };
+
+    constructor(props) {
+        super(props);
+        const config = new Config();
+
+        this.state = {
+            userId: 0,
+            firstName:      '',
+            lastName:       '',
+            email:          '',
+            showLoading:    true,
+            baseUrl:        config.baseUrl,
+            open: false
+        }
+    }
+
+    componentWillMount(){
+        const token = window.localStorage.getItem('token');
+
+        if (token) {
+            axios.get(this.state.baseUrl + 'gift-card/rest/consumer', {
+                params: {
+                    token: token
+                }
+            })
+                .then(response => {
+                    console.log(response);
+
+                    this.setState({
+                        userId: response.data.id,
+                        nickname:  response.data.socialDataProfile.nickname,
+                        email:     response.data.email,
+                        showLoading: false
+                    });
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
+    }
 
     render() {
 
@@ -132,11 +173,11 @@ class MyAccount extends Component {
                         <div className={this.props.classes.rightcol}>
                             <div className={this.props.classes.row}>
                                 <div className={this.props.classes.param}>Name</div>
-                                <div className={this.props.classes.value}>Jerry Jiang</div>
+                                <div className={this.props.classes.value}>{this.state.nickname}</div>
                             </div>
                             <div className={this.props.classes.row}>
                                 <div className={this.props.classes.param}>email</div>
-                                <div className={this.props.classes.value}>eisenbergtech@gmail.com</div>
+                                <div className={this.props.classes.value}>{this.state.email}</div>
                             </div>
                             <div className={this.props.classes.row}>
                                 <div className={this.props.classes.param}>date of birth</div>
@@ -152,7 +193,7 @@ class MyAccount extends Component {
                             </div>
                             <div className={this.props.classes.row}>
                                 <div className={this.props.classes.param}>your redeem code</div>
-                                <div className={this.props.classes.value} style={{letterSpacing: 2}}><a href="#qr">#3552222511112</a></div>
+                                <div className={this.props.classes.value} style={{letterSpacing: 2}}><a href="#qr">#{this.state.userId}</a></div>
                             </div>
                         </div>
                         <div style={{textAlign: 'right'}}>
