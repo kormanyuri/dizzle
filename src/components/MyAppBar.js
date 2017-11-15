@@ -9,10 +9,7 @@ import IconButton from 'material-ui/IconButton';
 //import twitterIco from '../img/menu.svg';
 
 const styles = theme => ({
-    root: {
-        marginTop: theme.spacing.unit * 3,
-        width: '100%',
-    },
+
     flex: {
         flex: 1,
         color: '#000',

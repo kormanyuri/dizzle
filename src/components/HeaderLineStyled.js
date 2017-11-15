@@ -39,17 +39,10 @@ const styles = theme => ({
 
 
 function HeaderLineStyled(props) {
-    const { children, classes, className, ...other } = props;
+    const { children, classes, className} = props;
 
     return (
-        <div
-            className={classNames(
-        classes.root,
-        className,
-
-      )}
-            {...other}
-        >
+        <div className={classNames( classes.root, className)}>
             {children}
         </div>
     );

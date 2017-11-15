@@ -161,9 +161,14 @@ const styles = theme => ({
 });
 
 class Starbucks extends Component {
-    state = {
-        open: false,
-    };
+
+    constructor(props){
+        super(props);
+
+        this.state = {
+            open: false,
+        };
+    }
 
     render() {
 

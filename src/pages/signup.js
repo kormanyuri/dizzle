@@ -299,13 +299,13 @@ class Signup extends Component {
         });
     }
 
-    handleRequestClose = () => {
+    handleRequestClose() {
         this.setState({
             open: false,
         });
     };
 
-    handleClick = () => {
+    handleClick() {
         this.setState({
             open: true,
         });

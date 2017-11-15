@@ -216,9 +216,14 @@ const styles = theme =>  ({
 });
 
 class InGroupBuy extends Component {
-    state = {
-        open: false,
-    };
+
+
+    constructor(props){
+        super(props);
+        this.state = {
+            open: false,
+        };
+    }
 
     render() {
 

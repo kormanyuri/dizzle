@@ -142,11 +142,11 @@ const styles = theme => ({
 });
 
 function MyCard(props) {
-    const { classes, name, status, giftcard, sell, groupbuyowner, avatar, href, ...other } = props;
+    const { classes, name, status, giftcard, sell, groupbuyowner, avatar, href } = props;
 
     return (
         <div>
-            <Card className={classes.card} {...other}>
+            <Card className={classes.card}>
                 <div className={classes.cardheader}>
                     <Avatar
                         alt={name}
