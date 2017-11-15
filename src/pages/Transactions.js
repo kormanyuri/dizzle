@@ -11,6 +11,10 @@ import Avatar1 from '../img/avatar-1.jpg';
 
 import bgCard from '../img/bg-card.png'
 
+import Auth from '../components/Auth';
+import Config from '../Config';
+import axios from 'axios';
+
 let cardHeadHeight = 38;
 let inButtDiam = 47;
 let inButtDiam1 = (inButtDiam*57.4468085106383)/100;
@@ -160,71 +164,99 @@ const styles = theme => ({
 
 });
 
-class Starbucks extends Component {
+class Transactions extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
+        const config = new Config();
         this.state = {
+            shopperId: props.match.params.shopperId,
+            baseUrl: config.baseUrl,
+            items: [],
+            showLoading: false,
             open: false,
+            message: ''
         };
+    }
+
+    componentWillMount(){
+        this.setState({
+            showLoading: true,
+            message: 'Load...'
+        });
+        axios.get(this.state.baseUrl + 'gift-card/rest/transaction/0', {
+            params: {
+                shopperId: this.state.shopperId,
+                method: 'LIST'
+            }
+        })
+            .then(response => {
+                console.log(response);
+
+                if (typeof response.data.message == 'undefined') {
+                    this.setState({
+                        items: response.data
+                    });
+                } else {
+                    this.setState({
+                        message: 'Balance is empty'
+                    });
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({
+                    showLoading: false
+                });
+            });
     }
 
     render() {
 
-        return (
-            <div className={this.props.classes.root}>
-                <MyAppBar
-                    title="Starbucks"
-                />
-                <Card className={this.props.classes.card}>
-                    <div className={this.props.classes.cardheader}>
-                        <Avatar
-                            src={Avatar1}
-                            className={this.props.classes.avatar}
-                        />
-                    </div>
-                    <CardContent className={this.props.classes.cardcontent}>
-                        <div className={this.props.classes.title}>
-                            Starbucks
+        if (this.state.items.length > 0 ) {
+            return (
+                <div className={this.props.classes.root}>
+                    <MyAppBar
+                        title="Starbucks"
+                    />
+                    <Card className={this.props.classes.card}>
+                        <div className={this.props.classes.cardheader}>
+                            <Avatar
+                                src={Avatar1}
+                                className={this.props.classes.avatar}
+                            />
                         </div>
-                        <TextGroup groupName="Group buy bought 40 USD gift card">
-                            <TextGroupItem param="date" value="2017.10.11" />
-                            <TextGroupItem param="time" value="05:53 pm" />
-                            <TextGroupItem param="paid" value="36.00 usd" />
-                            <TextGroupItem param="type" value="group buy" />
-                            <TextGroupItem param="previous balance" value="2.30 usd" />
-                            <TextGroupItem param="new balance" value="42.30 usd" />
-                        </TextGroup>
-
-                        <TextGroup groupName="Spent in store">
-                            <TextGroupItem param="date" value="2017.10.10" />
-                            <TextGroupItem param="time" value="09:12 pm" />
-                            <TextGroupItem param="spend" value="47.70 usd" />
-                            <TextGroupItem param="type" value="spend in store" />
-                            <TextGroupItem param="previous balance" value="50.00 usd" />
-                            <TextGroupItem param="new balance" value="2.30 usd" />
-                        </TextGroup>
-
-                        <TextGroup groupName="Bought 50 USD gift card">
-                            <TextGroupItem param="date" value="2017.10.04" />
-                            <TextGroupItem param="time" value="1:36 am" />
-                            <TextGroupItem param="paid" value="50.00 usd" />
-                            <TextGroupItem param="type" value="direct buy" />
-                            <TextGroupItem param="previous balance" value="00.00 usd" />
-                            <TextGroupItem param="new balance" value="50.00 usd" />
-                        </TextGroup>
-
-                    </CardContent>
-                </Card>
-            </div>
-        );
+                        <CardContent className={this.props.classes.cardcontent}>
+                            <div className={this.props.classes.title}>
+                                Starbucks
+                            </div>
+                            {this.state.items.map((item, i) =>
+                                <TextGroup key={i} groupName={item[0].transactionRoute == 1 ? 'Refill' : 'Reduce' }>
+                                    <TextGroupItem param="date" value={item[1]}/>
+                                    <TextGroupItem param="time" value={item[2]}/>
+                                    <TextGroupItem param="paid" value={ item[0].transactionValue / 100 + ` usd` }/>
+                                    <TextGroupItem param="type"
+                                                   value={item[0].transactionRoute == 1 ? 'Refill' : 'Reduce' }/>
+                                    <TextGroupItem param="previous balance" value={item[0].prevBalance / 100 + ` usd`}/>
+                                    <TextGroupItem param="new balance" value={item[0].newBalance / 100 + ` usd`}/>
+                                </TextGroup>
+                            )}
+                        </CardContent>
+                    </Card>
+                </div>
+            );
+        } else {
+            return (
+                <div>{this.state.message}</div>
+            );
+        }
     }
 }
 
-Starbucks.propTypes = {
+Transactions.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(Starbucks));
+export default withRoot(withStyles(styles)(Transactions));
 

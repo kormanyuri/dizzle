@@ -99,7 +99,7 @@ class BalanceList extends Component {
                                 avatar={Avatar1}
                                 giftcard={`$` + item.balance / 100}
                                 groupbuyowner="jacky"
-                                href={`/#/balance-list/${item.shopper.id}`}
+                                href={`/#/transactions/${item.shopper.id}`}
                             />
                         )
                     }

@@ -8,7 +8,7 @@ import GroupBuyList from './pages/groupbuylist';
 import InGroupBuy from './pages/ingroupbuy';
 import InGroupBuySuccessful from './pages/ingroupbuysuccessful';
 import BalanceList from './pages/balancelist';
-import Starbucks from './pages/starbucks';
+import Transactions from './pages/Transactions';
 import MyAccount from './pages/myaccount';
 import EditProfile from './pages/editprofile';
 import QRqode from './pages/qr';
@@ -24,7 +24,6 @@ export default class Index extends React.Component {
         return (
             <div style={{minHeight: '100%', height: '100%'}}>
 
-
                 <HashRouter>
                     <div style={{minHeight: '100%', height: '100%'}}>
                         <Route exact path="/" component={GroupBuyList}></Route>
@@ -34,7 +33,7 @@ export default class Index extends React.Component {
                         <Route exact path="/ingroupbuy/:id" component={InGroupBuy}></Route>
                         <Route exact path="/ingroupbuysuccessful/:id" component={InGroupBuySuccessful}></Route>
                         <Route exact path="/balancelist" component={BalanceList}></Route>
-                        <Route exact path="/starbucks" component={Starbucks}></Route>
+                        <Route exact path="/transactions/:id" component={Transactions}></Route>
                         <Route exact path="/myaccount" component={MyAccount}></Route>
                         <Route exact path="/editprofile" component={EditProfile}></Route>
                         <Route exact path="/qr" component={QRqode}></Route>
