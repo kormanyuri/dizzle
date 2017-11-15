@@ -14,10 +14,17 @@ const styles = theme => ({
 });
 
 function MyLink(props) {
-    const { children, classes} = props;
+
+    const { children, classes, className, variant, ...other } = props;
 
     return (
-        <a className={classes.root}>
+        <a
+            className={classNames(
+        classes.root,
+        className,
+      )}
+            {...other}
+        >
             {children}
         </a>
     );
