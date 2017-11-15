@@ -14,7 +14,6 @@ const styles = theme => ({
 });
 
 function MyLink(props) {
-
     const { children, classes, className, variant, ...other } = props;
 
     return (
