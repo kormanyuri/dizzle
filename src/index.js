@@ -12,8 +12,8 @@ import Transactions from './pages/Transactions';
 import MyAccount from './pages/MyAccount';
 import EditProfile from './pages/EditProfile';
 import QRqode from './pages/Qr';
-import TestPageA from './pages/TestPageA';
-import TestPageB from './pages/TestPageB';
+// import TestPageA from './pages/TestPageA';
+// import TestPageB from './pages/TestPageB';
 
 import { HashRouter,Route} from 'react-router-dom';
 
@@ -39,8 +39,7 @@ export default class Index extends React.Component {
                         <Route exact path="/myaccount" component={MyAccount}/>
                         <Route exact path="/editprofile" component={EditProfile}/>
                         <Route exact path="/qr" component={QRqode}/>
-                        <Route exact path="/test-page-a" component={TestPageA}/>
-                        <Route exact path="/test-page-b" component={TestPageB}/>
+
                     </div>
                 </HashRouter>
 
