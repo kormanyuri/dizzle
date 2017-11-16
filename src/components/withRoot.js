@@ -50,7 +50,6 @@ function withRoot(BaseComponent) {
   class WithRoot extends Component {
     constructor(props){
       super(props);
-      console.log(props);
     }
 
     componentDidMount() {
@@ -74,9 +73,13 @@ function withRoot(BaseComponent) {
     }
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
-  }
+  // console.log(process.env.NODE_ENV);
+  //
+  // if (process.env.NODE_ENV !== 'production') {
+  //   WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
+  // }
+
+  WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
 
   return WithRoot;
 }

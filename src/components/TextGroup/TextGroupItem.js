@@ -54,17 +54,24 @@ const styles = theme => ({
     }
 });
 
-function TextGroupItem(props) {
-    const { classes, param, value } = props;
+class TextGroupItem extends React.Component {
+    constructor(props){
+        super(props);
+    }
 
-    return (
-        <li className={classes.list__item}>
-            <div className={classNames(classes.param, classes.param__align)}>
-                <span className={classes.param__value}>{value}</span>
-                <span className={classes.param__prop}>{param}</span>
-            </div>
-        </li>
-    );
+    render() {
+
+        const { classes, param, value } = this.props;
+
+        return (
+            <li className={classes.list__item}>
+                <div className={classNames(classes.param, classes.param__align)}>
+                    <span className={classes.param__value}>{value}</span>
+                    <span className={classes.param__prop}>{param}</span>
+                </div>
+            </li>
+        );
+    }
 }
 
 TextGroupItem.propTypes = {

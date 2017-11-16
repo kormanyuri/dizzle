@@ -119,9 +119,8 @@ class QRqode extends Component {
 
         return (
             <div className={this.props.classes.root}>
-                <MyAppBar
-                    title="Edit profile"
-                />
+                <MyAppBar title="Edit profile" />
+
                 <Card className={this.props.classes.card}>
                     <CardContent className={this.props.classes.cardcontent}>
                         <div className={this.props.classes.qrwrap}>

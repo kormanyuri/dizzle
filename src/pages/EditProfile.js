@@ -43,7 +43,7 @@ const styles = theme => ({
         position: 'relative',
 
     },
-    cardcontent: {
+    cardContent: {
         padding: '18px 18px 10px',
         '&:after': {
             content: "''",
@@ -63,7 +63,7 @@ const styles = theme => ({
         height: 49,
         backgroundColor: '#fff',
     },
-    rightcol: {
+    rightCol: {
         marginLeft: 80,
         marginTop: -68,
         padding: '24px 0 24px',
@@ -148,7 +148,7 @@ const styles = theme => ({
         lineHeight: 1,
         marginBottom: 20,
     },
-    wrapupload: {
+    wrapUpload: {
         position: 'relative',
         width: 49,
     },
@@ -220,16 +220,17 @@ class EditProfile extends Component {
             return (
                 <div className={this.props.classes.root}>
                     <MyAppBar title="Edit profile"/>
+
                     <Card className={this.props.classes.card}>
-                        <CardContent className={this.props.classes.cardcontent}>
-                            <div className={this.props.classes.wrapupload}>
+                        <CardContent className={this.props.classes.cardContent}>
+                            <div className={this.props.classes.wrapUpload}>
                                 <Avatar
                                     src={UploadAva}
                                     className={this.props.classes.avatar}
                                 />
                                 <input type="file" className={this.props.classes.uploadInput}/>
                             </div>
-                            <div className={this.props.classes.rightcol}>
+                            <div className={this.props.classes.rightCol}>
                                 <div className={this.props.classes.row}>
                                     <TextField
                                         label="Name"

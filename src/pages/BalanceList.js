@@ -6,9 +6,12 @@ import { withStyles } from 'material-ui/styles';
 import withRoot from '../components/withRoot';
 import MyAppBar from '../components/MyAppBar';
 
-import MyCard from '../components/MyCard'
+
+import MyCardBalance from '../components/MyCardBalance'
 
 import Avatar1 from '../img/avatar-1.jpg';
+import Avatar2 from '../img/avatar-2.jpg';
+import Avatar3 from '../img/avatar-3.jpg';
 
 import Auth from '../components/Auth';
 import Config from '../Config';
@@ -22,53 +25,42 @@ let scrollHeight = Math.max(
     document.body.clientHeight, document.documentElement.clientHeight
 );
 
-const styles = theme =>  ({
+
+const styles = ({
     root: {
-        minHeight: 'inherit',
-        //paddingTop: 55,
-        //paddingBottom: 44,
-        //height: (width>320)?'auto':'100%'
         padding: '100px 15px 44px',
         minHeight: scrollHeight,
         '&>div:last-child div': {
             marginBottom: 0
         }
     },
-
 });
 
-class GroupBuyList extends Component {
+class BalanceList extends Component {
 
     constructor(props){
         super(props);
+
         const config = new Config();
 
         this.state = {
             items: [],
-            empty: false,
-            showLoading: false,
             baseUrl: config.baseUrl,
-            open: false,
-            message: ''
+            message: '',
+            open: false
         };
-
-        const auth = new Auth();
-        auth.checkAuth();
     }
 
     componentWillMount(){
-        this.setState({
-            showLoading: true
-        });
-
         const token = window.localStorage.getItem('token');
+
         this.setState({
             message: 'Load...'
         });
 
-        axios.get(this.state.baseUrl + 'gift-card/rest/partner', {
+        axios.get(this.state.baseUrl + 'gift-card/rest/shopper-balance/0', {
             params: {
-                token: token,
+                token: window.localStorage.getItem('token'),
                 method: 'LIST'
             }
         })
@@ -84,7 +76,6 @@ class GroupBuyList extends Component {
                         message: 'List empty'
                     });
                 }
-
             })
             .catch(error => {
                 console.log(error);
@@ -92,28 +83,29 @@ class GroupBuyList extends Component {
     }
 
     render() {
+
         if (this.state.items.length > 0) {
             return (
                 <div className={this.props.classes.root}>
-                    <MyAppBar title="My Group Buy"/>
-                    {this.state.items.map((item, key) =>
-                        <MyCard
-                            key={key}
-                            name={item.giftCardGroupBuy.giftCard.shopper.name}
-                            avatar={Avatar1}
-                            status="ongoing"
-                            giftcard={`$` + item.giftCardGroupBuy.giftCard.giftCardValue}
-                            sell={`$` + item.giftCardGroupBuy.giftCard.giftCardValue }
-                            groupbuyowner={item.giftCardGroupBuy.ownerConsumer.socialDataProfile.nickname}
-                            href={`/#/ingroupbuy/${item.giftCardGroupBuy.id}`}
-                        />
-                    )}
+                    <MyAppBar classes={{}} title="Balanse"/>
+                    {
+                        this.state.items.map((item, key) =>
+                            <MyCardBalance
+                                key={key}
+                                name={item.shopper.name}
+                                avatar={Avatar1}
+                                giftCard={`$` + item.balance / 100}
+                                groupBuyOwner="jacky"
+                                href={`/#/transactions/${item.shopper.id}`}
+                            />
+                        )
+                    }
                 </div>
             );
         } else {
             return (
                 <div className={this.props.classes.root}>
-                    <MyAppBar title="My Group Buy"/>
+                    <MyAppBar title="Balance"/>
                     {this.state.message}
                 </div>
             );
@@ -121,8 +113,8 @@ class GroupBuyList extends Component {
     }
 }
 
-GroupBuyList.propTypes = {
+BalanceList.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(GroupBuyList));
+export default withRoot(withStyles(styles)(BalanceList));

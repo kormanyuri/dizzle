@@ -13,20 +13,27 @@ const styles = theme => ({
 
 });
 
-function MyLink(props) {
-    const { children, classes, className, variant, ...other } = props;
+class MyLink extends React.Component {
 
-    return (
-        <a
-            className={classNames(
-        classes.root,
-        className,
-      )}
-            {...other}
-        >
-            {children}
-        </a>
-    );
+    constructor(props){
+        super(props);
+    }
+
+    render() {
+        const { children, classes, className, ...other } = this.props;
+
+        return (
+            <a
+                className={classNames(
+                    classes.root,
+                    className,
+                )}
+                {...other}
+            >
+                {children}
+            </a>
+        );
+    }
 }
 
 MyLink.propTypes = {

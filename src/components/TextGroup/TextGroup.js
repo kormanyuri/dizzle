@@ -15,7 +15,7 @@ const styles = theme => ({
         fontSize: 11,
         fontWeight: 500,
     },
-    groupname: {
+    groupName: {
         left: 15,
         top: -19,
         padding: 9,
@@ -35,23 +35,30 @@ const styles = theme => ({
 
 });
 
-function TextGroup(props) {
-    const { groupName, children, classes, className } = props;
+class TextGroup extends React.Component {
 
-    return (
-        <div
-            className={classNames(
-        classes.root,
-        className,
-      )}
-        >
-            <div className={classes.groupname}>{groupName}</div>
-            <ul className={classes.list}>
-                {children}
-            </ul>
+    constructor(props){
+        super(props);
+    }
 
-        </div>
-    );
+    render() {
+        const { groupName, children, classes, className } = this.props;
+
+        return (
+            <div
+                className={classNames(
+                    classes.root,
+                    className,
+                )}
+            >
+                <div className={classes.groupName}>{groupName}</div>
+                <ul className={classes.list}>
+                    {children}
+                </ul>
+
+            </div>
+        );
+    }
 }
 
 TextGroup.propTypes = {

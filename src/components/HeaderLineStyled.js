@@ -38,21 +38,28 @@ const styles = theme => ({
 
 
 
-function HeaderLineStyled(props) {
-    const { children, classes, className, ...other } = props;
+class HeaderLineStyled extends React.Component {
 
-    return (
-        <div
-            className={classNames(
-        classes.root,
-        className,
+    constructor(props){
+        super(props);
 
-      )}
-            {...other}
-        >
-            {children}
-        </div>
-    );
+    }
+
+    render() {
+        const { children, classes, className, ...other } = this.props;
+
+        return (
+            <div
+                className={classNames(
+                    classes.root,
+                    className,
+                )}
+                {...other}
+            >
+                {children}
+            </div>
+        );
+    }
 }
 
 HeaderLineStyled.propTypes = {

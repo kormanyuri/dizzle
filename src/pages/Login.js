@@ -50,7 +50,7 @@ const styles = theme =>  ({
     height: (w>320)? h:'100%',
 
     },
-    wrapcontent: {
+    wrapContent: {
         minHeight: 'inherit',
         padding: '105px 32px 32px'
     },
@@ -112,7 +112,7 @@ const styles = theme =>  ({
         fontSize: 11,
         color: '#fff',
     },
-    btnfacebook: {
+    btnFacebook: {
         color: '#fff',
         backgroundColor: '#3b5998',
         width: '100%',
@@ -124,7 +124,7 @@ const styles = theme =>  ({
             backgroundColor: 'rgba(59,89,152,0.8)',
         },
     },
-    btntwitter: {
+    btnTwitter: {
         color: '#fff',
         backgroundColor: '#598dca',
         width: '100%',
@@ -136,10 +136,10 @@ const styles = theme =>  ({
             backgroundColor: 'rgba(89,141,202,0.8)',
         },
     },
-    griditem: {
+    gridItem: {
         padding: '5px 10px',
     },
-    facebookico: {
+    facebookIco: {
         display: 'inline-block',
         width: 22,
         height: 20,
@@ -151,7 +151,7 @@ const styles = theme =>  ({
         height: 22,
         background: 'url(' + twitterIco + ')',
     },
-    hordivid: {
+    horDivId: {
         color: '#fff',
         fontSize: 11,
         marginBottom: 30,
@@ -259,7 +259,7 @@ class Login extends Component {
             <div className={this.props.classes.root}>
                 <div className={this.props.classes.wrapper}>
                     <div className={this.props.classes.wrap}>
-                        <div className={this.props.classes.wrapcontent}>
+                        <div className={this.props.classes.wrapContent}>
                             <div className={this.props.classes.title}>DRIZZLE</div>
                             <div className={this.props.classes.subtitle}>Buy gift card with friends and saving</div>
                             <TextField
@@ -300,15 +300,15 @@ class Login extends Component {
                                     </MyLinkStyled>
                                 </Grid>
                             </Grid>
-                            <HeaderLineStyled className={this.props.classes.hordivid}>or Login with</HeaderLineStyled>
+                            <HeaderLineStyled className={this.props.classes.horDivId}>or Login with</HeaderLineStyled>
                             <Grid container spacing={0} style={{fontSize: 11}}>
-                                <Grid item xs={12} sm={6} className={this.props.classes.griditem}>
-                                    <Button className={this.props.classes.btnfacebook}>
-                                        <span className={this.props.classes.facebookico}></span>facebook
+                                <Grid item xs={12} sm={6} className={this.props.classes.gridItem}>
+                                    <Button className={this.props.classes.btnFacebook}>
+                                        <span className={this.props.classes.facebookIco}></span>facebook
                                     </Button>
                                 </Grid>
-                                <Grid item xs={12} sm={6} className={this.props.classes.griditem}>
-                                    <Button className={this.props.classes.btntwitter}>
+                                <Grid item xs={12} sm={6} className={this.props.classes.gridItem}>
+                                    <Button className={this.props.classes.btnTwitter}>
                                         <span className={this.props.classes.twitter}></span>twitter
                                     </Button>
                                 </Grid>

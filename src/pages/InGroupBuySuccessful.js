@@ -27,14 +27,14 @@ const styles = theme =>  ({
         paddingTop: 57,
         paddingBottom: 44,
     },
-    bgimg: {
+    bgImg: {
         backgroundImage: 'url(' + Background + ')',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: '0 50%',
         height: 386,
         backgroundSize: 'auto 100%'
     },
-    wrapcard: {
+    wrapCard: {
         position: 'relative',
     },
     avatar: {
@@ -56,7 +56,7 @@ const styles = theme =>  ({
         zIndex: '2',
         textAlign: 'center'
     },
-    wraptitle: {
+    wrapTitle: {
         display: 'inline-block',
         padding: '25px 32px 12px',
         fontWeight: 'bold',
@@ -70,13 +70,13 @@ const styles = theme =>  ({
         lineHeight: 1,
         margin: '0'
     },
-    subtitle: {
+    subTitle: {
         fontSize: 11,
         color: '#a3a3a3',
         lineHeight: 1,
         margin: '3px 0 0 0'
     },
-    wrapabs: {
+    wrapAbs: {
         position: 'absolute',
         top: 148,
         zIndex: 1,
@@ -101,7 +101,7 @@ const styles = theme =>  ({
         color: '#fff',
         marginBottom: 3
     },
-    subname: {
+    subName: {
         fontSize: 11,
         fontWeight: 500,
         color: '#fff',
@@ -109,19 +109,19 @@ const styles = theme =>  ({
         textTransform: 'uppercase',
         margin: 0
     },
-    griditem: {
+    gridItem: {
         color: '#fff',
         fontWeight: 'bold',
         textAlign: 'center',
         marginBottom: 30
     },
-    bigfs: {
+    bigFs: {
         fontSize: 30,
         fontWeight: 'bold',
         color: '#fff',
         marginBottom: 0,
     },
-    vertd: {
+    verTd: {
         position: 'relative',
         '&:after': {
             content: "''",
@@ -176,7 +176,7 @@ const styles = theme =>  ({
             backgroundColor: '#e2e2e2',
         }
     },
-    btnfacebook: {
+    btnFacebook: {
         color: '#fff',
         backgroundColor: '#3b5998',
         width: '100%',
@@ -185,7 +185,7 @@ const styles = theme =>  ({
         fontSize: 11,
         fontWeight: 'bold'
     },
-    btntwitter: {
+    btnTwitter: {
         color: '#fff',
         backgroundColor: '#598dca',
         width: '100%',
@@ -194,10 +194,10 @@ const styles = theme =>  ({
         fontSize: 11,
         fontWeight: 'bold'
     },
-    socgriditem: {
+    socGridItem: {
         padding: '5px 40px',
     },
-    facebookico: {
+    facebookIco: {
         display: 'inline-block',
         width: 22,
         height: 20,
@@ -209,13 +209,13 @@ const styles = theme =>  ({
         height: 22,
         background: 'url(' + twitterIco + ')',
     },
-    compicon: {
+    compIcon: {
         marginBottom: 15
     }
 
 });
 
-class InGroupBuy extends Component {
+class InGroupBuySuccessful extends Component {
 
 
     constructor(props){
@@ -230,38 +230,38 @@ class InGroupBuy extends Component {
         return (
             <div className={this.props.classes.root}>
                 <MyAppBar title="My Group Buy"/>
-                <div className={this.props.classes.bgimg}>
-                    <div className={this.props.classes.wrapcard}>
+                <div className={this.props.classes.bgImg}>
+                    <div className={this.props.classes.wrapCard}>
                         <Avatar
                             src={Avatar1}
                             className={this.props.classes.avatar}
                         />
                         <div className={this.props.classes.container}>
-                            <div className={this.props.classes.wraptitle}>
+                            <div className={this.props.classes.wrapTitle}>
                                 <p className={this.props.classes.title}>Starbucks</p>
                                 <p className={this.props.classes.subtitle}>50 USD gift card</p>
                             </div>
                         </div>
-                        <div className={this.props.classes.wrapabs}>
+                        <div className={this.props.classes.wrapAbs}>
                             <div className={this.props.classes.card}>
                                 <p className={this.props.classes.name}>Elizabeth Thordis</p>
-                                <p className={this.props.classes.subname}>group Buy Owner</p>
+                                <p className={this.props.classes.subName}>group Buy Owner</p>
                                 <Grid container>
-                                    <Grid item xs={4} className={this.props.classes.griditem} >
-                                        <p className={this.props.classes.bigfs}>$80</p>
-                                        <p className={this.props.classes.subname}>sell</p>
+                                    <Grid item xs={4} className={this.props.classes.gridItem} >
+                                        <p className={this.props.classes.bigFs}>$80</p>
+                                        <p className={this.props.classes.subName}>sell</p>
                                     </Grid>
-                                    <Grid item xs={4} className={this.props.classes.griditem}>
-                                        <p className={this.props.classes.bigfs}>$40</p>
-                                        <p className={this.props.classes.subname}>you<br/>paiD</p>
+                                    <Grid item xs={4} className={this.props.classes.gridItem}>
+                                        <p className={this.props.classes.bigFs}>$40</p>
+                                        <p className={this.props.classes.subName}>you<br/>paiD</p>
                                     </Grid>
-                                    <Grid item xs={4} className={this.props.classes.griditem}>
-                                        <p className={this.props.classes.bigfs}>3</p>
-                                        <p className={this.props.classes.subname}>total<br/>users</p>
+                                    <Grid item xs={4} className={this.props.classes.gridItem}>
+                                        <p className={this.props.classes.bigFs}>3</p>
+                                        <p className={this.props.classes.subName}>total<br/>users</p>
                                     </Grid>
                                 </Grid>
-                                <CompleteIcon className={this.props.classes.compicon} />
-                                <div className={this.props.classes.subname} style={{opacity: 1}}>successful group buy deal</div>
+                                <CompleteIcon className={this.props.classes.compIcon} />
+                                <div className={this.props.classes.subName} style={{opacity: 1}}>successful group buy deal</div>
                             </div>
                         </div>
 
@@ -270,11 +270,15 @@ class InGroupBuy extends Component {
                 </div>
                 <HeaderLineStyled className={this.props.classes.divider} >invite your friend to buy together</HeaderLineStyled>
                 <Grid container spacing={0} style={{fontSize: 11}}>
-                    <Grid item xs={12} sm={6} className={this.props.classes.socgriditem}>
-                        <Button className={this.props.classes.btnfacebook}><span className={this.props.classes.facebookico}></span>facebook</Button>
+                    <Grid item xs={12} sm={6} className={this.props.classes.socGridItem}>
+                        <Button className={this.props.classes.btnFacebook}>
+                            <span className={this.props.classes.facebookIco}></span>facebook
+                        </Button>
                     </Grid>
-                    <Grid item xs={12} sm={6} className={this.props.classes.socgriditem}>
-                        <Button className={this.props.classes.btntwitter}><span className={this.props.classes.twitter}></span>twitter</Button>
+                    <Grid item xs={12} sm={6} className={this.props.classes.socGridItem}>
+                        <Button className={this.props.classes.btnTwitter}>
+                            <span className={this.props.classes.twitter}></span>twitter
+                        </Button>
                     </Grid>
                 </Grid>
             </div>
@@ -282,8 +286,8 @@ class InGroupBuy extends Component {
     }
 }
 
-InGroupBuy.propTypes = {
+InGroupBuySuccessful.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(InGroupBuy));
+export default withRoot(withStyles(styles)(InGroupBuySuccessful));

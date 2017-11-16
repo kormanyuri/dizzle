@@ -6,12 +6,9 @@ import { withStyles } from 'material-ui/styles';
 import withRoot from '../components/withRoot';
 import MyAppBar from '../components/MyAppBar';
 
-
-import MyCardBalance from '../components/MyCardBalance'
+import MyCard from '../components/MyCard'
 
 import Avatar1 from '../img/avatar-1.jpg';
-import Avatar2 from '../img/avatar-2.jpg';
-import Avatar3 from '../img/avatar-3.jpg';
 
 import Auth from '../components/Auth';
 import Config from '../Config';
@@ -25,22 +22,18 @@ let scrollHeight = Math.max(
     document.body.clientHeight, document.documentElement.clientHeight
 );
 
-
-const styles = ({
+const styles = theme =>  ({
     root: {
-        minHeight: 'inherit',
-        //paddingTop: 55,
-        //paddingBottom: 44,
-        //height: (width>320)?scrollHeight:'100%',
         padding: '100px 15px 44px',
         minHeight: scrollHeight,
         '&>div:last-child div': {
             marginBottom: 0
         }
     },
+
 });
 
-class BalanceList extends Component {
+class GroupBuyList extends Component {
 
     constructor(props){
         super(props);
@@ -48,22 +41,30 @@ class BalanceList extends Component {
 
         this.state = {
             items: [],
+            empty: false,
+            showLoading: false,
             baseUrl: config.baseUrl,
-            message: '',
-            open: false
+            open: false,
+            message: ''
         };
+
+        const auth = new Auth();
+        auth.checkAuth();
     }
 
     componentWillMount(){
-        const token = window.localStorage.getItem('token');
+        this.setState({
+            showLoading: true
+        });
 
+        const token = window.localStorage.getItem('token');
         this.setState({
             message: 'Load...'
         });
 
-        axios.get(this.state.baseUrl + 'gift-card/rest/shopper-balance/0', {
+        axios.get(this.state.baseUrl + 'gift-card/rest/partner', {
             params: {
-                token: window.localStorage.getItem('token'),
+                token: token,
                 method: 'LIST'
             }
         })
@@ -79,6 +80,7 @@ class BalanceList extends Component {
                         message: 'List empty'
                     });
                 }
+
             })
             .catch(error => {
                 console.log(error);
@@ -86,29 +88,28 @@ class BalanceList extends Component {
     }
 
     render() {
-
         if (this.state.items.length > 0) {
             return (
                 <div className={this.props.classes.root}>
-                    <MyAppBar title="Balanse"/>
-                    {
-                        this.state.items.map((item, key) =>
-                            <MyCardBalance
-                                key={key}
-                                name={item.shopper.name}
-                                avatar={Avatar1}
-                                giftcard={`$` + item.balance / 100}
-                                groupbuyowner="jacky"
-                                href={`/#/transactions/${item.shopper.id}`}
-                            />
-                        )
-                    }
+                    <MyAppBar title="My Group Buy"/>
+                    {this.state.items.map((item, key) =>
+                        <MyCard
+                            key={key}
+                            name={item.giftCardGroupBuy.giftCard.shopper.name}
+                            avatar={Avatar1}
+                            status="ongoing"
+                            giftCard={`$` + item.giftCardGroupBuy.giftCard.giftCardValue}
+                            sell={`$` + item.giftCardGroupBuy.giftCard.giftCardValue }
+                            groupBuyOwner={item.giftCardGroupBuy.ownerConsumer.socialDataProfile.nickname}
+                            href={`/#/ingroupbuy/${item.giftCardGroupBuy.id}`}
+                        />
+                    )}
                 </div>
             );
         } else {
             return (
                 <div className={this.props.classes.root}>
-                    <MyAppBar title="Balance"/>
+                    <MyAppBar title="My Group Buy"/>
                     {this.state.message}
                 </div>
             );
@@ -116,8 +117,8 @@ class BalanceList extends Component {
     }
 }
 
-BalanceList.propTypes = {
+GroupBuyList.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(BalanceList));
+export default withRoot(withStyles(styles)(GroupBuyList));

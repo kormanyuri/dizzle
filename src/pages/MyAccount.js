@@ -39,7 +39,7 @@ const styles = theme => ({
         position: 'relative',
 
     },
-    cardcontent: {
+    cardContent: {
         padding: '18px 18px 10px',
         '&:after': {
             content: "''",
@@ -58,7 +58,7 @@ const styles = theme => ({
         width: 49,
         height: 49
     },
-    rightcol: {
+    rightCol: {
         marginLeft: 80,
         marginTop: -68,
         padding: '24px 18px 24px 0',
@@ -165,12 +165,12 @@ class MyAccount extends Component {
             <div className={this.props.classes.root}>
                 <MyAppBar title="My account" />
                 <Card className={this.props.classes.card}>
-                    <CardContent className={this.props.classes.cardcontent}>
+                    <CardContent className={this.props.classes.cardContent}>
                         <Avatar
                             src={Avatar4}
                             className={this.props.classes.avatar}
                         />
-                        <div className={this.props.classes.rightcol}>
+                        <div className={this.props.classes.rightCol}>
                             <div className={this.props.classes.row}>
                                 <div className={this.props.classes.param}>Name</div>
                                 <div className={this.props.classes.value}>{this.state.nickname}</div>
