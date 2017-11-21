@@ -4,23 +4,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../components/withRoot';
-import MyAppBar from '../components/MyAppBar';
+import withRoot from '../../components/consumer/withRoot';
+import MyAppBar from '../../components/consumer/MyAppBar';
 import Grid from 'material-ui/Grid';
 import Avatar from 'material-ui/Avatar';
 import classNames from 'classnames';
 
-import HeaderLineStyled from '../components/HeaderLineStyled';
+import HeaderLineStyled from '../../components/consumer/HeaderLineStyled';
 
-import Background from '../img/bg-ingroupbuy.jpg';
-import facebookIco from '../img/facebook.svg';
-import twitterIco from '../img/twitter.svg';
-import Avatar1 from '../img/avatar-1.jpg';
-import patternVert from '../img/pattern-v.png';
-import Auth from '../components/Auth';
-import Config from '../Config';
+import Background from '../../img/consumer/bg-ingroupbuy.jpg';
+import facebookIco from '../../img/consumer/facebook.svg';
+import twitterIco from '../../img/consumer/twitter.svg';
+import Avatar1 from '../../img/consumer/avatar-1.jpg';
+import patternVert from '../../img/consumer/pattern-v.png';
+
+import Auth from '../../components/Auth';
+import Config from '../../Config';
 import axios from 'axios';
-
 
 
 const styles = (theme) =>  {

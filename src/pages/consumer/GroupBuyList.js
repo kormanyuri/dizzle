@@ -3,15 +3,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../components/withRoot';
-import MyAppBar from '../components/MyAppBar';
+import withRoot from '../../components/consumer/withRoot';
+import MyAppBar from '../../components/consumer/MyAppBar';
 
-import MyCard from '../components/MyCard'
+import MyCard from '../../components/consumer/MyCard'
 
-import Avatar1 from '../img/avatar-1.jpg';
+import Avatar1 from '../../img/consumer/avatar-1.jpg';
 
-import Auth from '../components/Auth';
-import Config from '../Config';
+import Auth from '../../components/Auth';
+import Config from '../../Config';
 import axios from 'axios';
 
 let width=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;

@@ -4,20 +4,20 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import {withStyles} from 'material-ui/styles';
-import withRoot from '../components/withRoot';
+import withRoot from '../../components/consumer/withRoot';
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
 import Snackbar from 'material-ui/Snackbar';
 
-import MyLinkStyled from '../components/MyLink';
-import HeaderLineStyled from '../components/HeaderLineStyled';
+import MyLinkStyled from '../../components/consumer/MyLink';
+import HeaderLineStyled from '../../components/consumer/HeaderLineStyled';
 
-import Background from '../img/bg-women.png';
-import facebookIco from '../img/facebook.svg';
-import twitterIco from '../img/twitter.svg';
+import Background from '../../img/consumer/bg-women.png';
+import facebookIco from '../../img/consumer/facebook.svg';
+import twitterIco from '../../img/consumer/twitter.svg';
 
 import axios from 'axios';
-import Config from '../Config';
+import Config from '../../Config';
 
 
 let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;

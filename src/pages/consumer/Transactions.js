@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../components/withRoot';
-import MyAppBar from '../components/MyAppBar';
-import TextGroup from '../components/TextGroup/TextGroup';
-import TextGroupItem from '../components/TextGroup/TextGroupItem';
+import withRoot from '../../components/consumer/withRoot';
+import MyAppBar from '../../components/consumer/MyAppBar';
+import TextGroup from '../../components/consumer/TextGroup/TextGroup';
+import TextGroupItem from '../../components/consumer/TextGroup/TextGroupItem';
 import Card, { CardContent } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
-import Avatar1 from '../img/avatar-1.jpg';
+import Avatar1 from '../../img/consumer/avatar-1.jpg';
 
-import bgCard from '../img/bg-card.png'
+import bgCard from '../../img/consumer/bg-card.png'
 
-import Auth from '../components/Auth';
-import Config from '../Config';
+import Auth from '../../components/Auth';
+import Config from '../../Config';
 import axios from 'axios';
 
 let cardHeadHeight = 38;

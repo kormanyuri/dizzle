@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../components/withRoot';
-import MyAppBar from '../components/MyAppBar';
+import withRoot from '../../components/consumer/withRoot';
+import MyAppBar from '../../components/consumer/MyAppBar';
 import TextField from 'material-ui/TextField';
 import classNames from 'classnames';
 import Card, { CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Avatar from 'material-ui/Avatar';
-import UploadAva from '../img/upload-ava.png';
+import UploadAva from '../../img/consumer/upload-ava.png';
 
-import Auth from '../components/Auth';
-import Config from '../Config';
+import Auth from '../../components/Auth';
+import Config from '../../Config';
 import axios from 'axios';
 
 

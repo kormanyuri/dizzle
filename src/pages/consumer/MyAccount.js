@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../components/withRoot';
-import MyAppBar from '../components/MyAppBar';
+import withRoot from '../../components/consumer/withRoot';
+import MyAppBar from '../../components/consumer/MyAppBar';
 import classNames from 'classnames';
 import Card, { CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Avatar from 'material-ui/Avatar';
-import Avatar4 from '../img/avatar-4.png';
+import Avatar4 from '../../img/consumer/avatar-4.png';
 
-import Auth from '../components/Auth';
-import Config from '../Config';
+import Auth from '../../components/Auth';
+import Config from '../../Config';
 import axios from 'axios';
 
 let paddStatus = 5;
