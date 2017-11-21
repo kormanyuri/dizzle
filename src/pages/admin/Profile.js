@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { FormControl} from 'material-ui/Form';
-import withRoot from '../components/withRoot';
-import MyPaper from '../components/MyPaper';
-import MyAppBar from '../components/MyAppBar';
+import withRoot from '../../components/admin/withRoot';
+import MyPaper from '../../components/admin/MyPaper';
+import MyAppBar from '../../components/admin/MyAppBar';
 import Button from 'material-ui/Button';
 import Avatar from 'material-ui/Avatar';
 import Input from 'material-ui/Input';
 
-import Avatar1 from '../img/avatar-1.jpg';
-import UploadAva from '../img/upload-ava.png';
+import Avatar1 from '../../img/admin/avatar-1.jpg';
+import UploadAva from '../../img/admin/upload-ava.png';
 
-import styles from '../theme/pages/Profile';
+import styles from '../../theme/admin/pages/Profile';
 
 
 class Profile extends React.Component {

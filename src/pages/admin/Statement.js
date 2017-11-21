@@ -3,20 +3,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../components/withRoot';
-import MyPaper from '../components/MyPaper';
-import MyAppBar from '../components/MyAppBar';
+import withRoot from '../../components/admin/withRoot';
+import MyPaper from '../../components/admin/MyPaper';
+import MyAppBar from '../../components/admin/MyAppBar';
 import Grid from 'material-ui/Grid';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
-import CircleButton from '../components/CircleButton';
-import ModalDialog from '../components/ModalDialog';
+import CircleButton from '../../components/admin/CircleButton';
+import ModalDialog from '../../components/admin/ModalDialog';
 
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 
-import Avatar1 from '../img/avatar-1.jpg';
+import Avatar1 from '../../img/admin/avatar-1.jpg';
 
-import styles from '../theme/pages/Statement';
+import styles from '../../theme/admin/pages/Statement';
 
 
 class Statement extends React.Component {

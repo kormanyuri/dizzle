@@ -6,7 +6,7 @@ import Dialog, {
     DialogTitle,
 } from 'material-ui/Dialog';
 
-import styles from '../theme/components/ModalMessage'
+import styles from '../../theme/admin/components/ModalMessage'
 
 
 class ModalMessage extends React.Component {

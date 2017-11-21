@@ -1,4 +1,4 @@
-import bgCard from '../../img/bg-card.png'
+import bgCard from '../../../img/admin/bg-card.png'
 
 const styles = theme => ({
     root: {

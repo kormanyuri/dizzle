@@ -3,21 +3,27 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 
-import styles from '../../theme/components/TextGroup/TextGroupItem';
+import styles from '../../../theme/admin/components/TextGroup/TextGroupItem';
 
 
-function TextGroupItem(props) {
+class TextGroupItem extends React.Component {
 
-    const { classes, param, value } = props;
+    constructor(props) {
+        super(props);
+    }
 
-    return (
-        <li className={classes.listItem}>
-            <div className={classNames(classes.param, classes.paramAlign)}>
-                <span className={classes.paramValue}>{value}</span>
-                <span className={classes.paramProp}>{param}</span>
-            </div>
-        </li>
-    );
+    render() {
+        const { classes, param, value } = this.props;
+
+        return (
+            <li className={classes.listItem}>
+                <div className={classNames(classes.param, classes.paramAlign)}>
+                    <span className={classes.paramValue}>{value}</span>
+                    <span className={classes.paramProp}>{param}</span>
+                </div>
+            </li>
+        );
+    }
 }
 
 TextGroupItem.propTypes = {

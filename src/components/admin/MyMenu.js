@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 
-import styles from '../theme/components/MyMenu';
+import styles from '../../theme/admin/components/MyMenu';
 
 
 class MyMenu extends React.Component {

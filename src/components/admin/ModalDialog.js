@@ -8,7 +8,7 @@ import Dialog, {
 import Grid from 'material-ui/Grid';
 import IconButton from 'material-ui/IconButton';
 
-import styles from '../theme/components/ModalDialog'
+import styles from '../../theme/admin/components/ModalDialog'
 
 class ModalDialog extends React.Component {
 

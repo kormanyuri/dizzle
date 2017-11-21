@@ -1,4 +1,4 @@
-import bgHeadPaper from '../../img/bg-paper.png';
+import bgHeadPaper from '../../../img/admin/bg-paper.png';
 
 const pdgTop = 70;
 const pdgBottom = 22;

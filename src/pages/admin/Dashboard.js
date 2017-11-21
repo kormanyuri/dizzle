@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../components/withRoot';
-import MyPaper from '../components/MyPaper';
-import MyAppBar from '../components/MyAppBar';
-import MyCard from '../components/MyCard';
+import withRoot from '../../components/admin/withRoot';
+import MyPaper from '../../components/admin/MyPaper';
+import MyAppBar from '../../components/admin/MyAppBar';
+import MyCard from '../../components/admin/MyCard';
 
-import Avatar1 from '../img/avatar-1.jpg';
+import Avatar1 from '../../img/admin/avatar-1.jpg';
 
-import styles from '../theme/pages/Dashboard';
+import styles from '../../theme/admin/pages/Dashboard';
 
 
 class Dashboard extends React.Component {

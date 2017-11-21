@@ -1,4 +1,4 @@
-import Background from '../../img/login-bg.jpg';
+import Background from '../../../img/admin/login-bg.jpg';
 
 const bodyW = 414;
 let windowH = window.innerHeight;

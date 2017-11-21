@@ -3,23 +3,29 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 
-import styles from '../theme/components/MyCardDefault';
+import styles from '../../theme/admin/components/MyCardDefault';
 
 
-function MyCardDefault(props) {
-    const { children, classes, className, ...other } = props;
+class MyCardDefault extends React.Component {
 
-    return (
-        <div
-            className={classNames(
-                classes.root,
-                className,
-            )}
-            {...other}
-        >
-            {children}
-        </div>
-    );
+    constructor(props){
+        super(props);
+    }
+
+    render() {
+        const { children, classes, className, ...other } = this.props;
+        return (
+            <div
+                className={classNames(
+                    classes.root,
+                    className,
+                )}
+                {...other}
+            >
+                {children}
+            </div>
+        );
+    }
 }
 
 MyCardDefault.propTypes = {

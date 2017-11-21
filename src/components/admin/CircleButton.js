@@ -3,27 +3,38 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 
-import styles from '../theme/components/CircleButton';
+import styles from '../../theme/admin/components/CircleButton';
+
+import Auth from '../../components/Auth';
+import Config from '../../Config';
+import axios from 'axios';
 
 
-function CircleButton(props) {
+class CircleButton extends React.Component {
 
-    const { children, classes, className,  ...other } = props;
+    constructor(props){
+        super(props);
+    }
 
-    return (
-        <div
-            className={classNames(
-                classes.root,
-                className,
-            )}
-            {...other}
+
+    render() {
+        const { children, classes, className,  ...other } = this.props;
+
+        return (
+            <div
+                className={classNames(
+                    classes.root,
+                    className,
+                )}
+                {...other}
             >
                 <div className={classes.bgButton}>
                     {children}
                 </div>
-        </div>
+            </div>
 
-    );
+        );
+    }
 }
 
 CircleButton.propTypes = {

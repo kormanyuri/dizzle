@@ -4,14 +4,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../components/withRoot';
+import withRoot from '../../components/admin/withRoot';
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
 import Snackbar from 'material-ui/Snackbar';
 
-import MyLinkStyled from '../components/MyLink';
+import MyLinkStyled from '../../components/admin/MyLink';
 
-import styles from '../theme/pages/Login'
+import styles from '../../theme/admin/pages/Login'
 
 
 class Login extends Component {

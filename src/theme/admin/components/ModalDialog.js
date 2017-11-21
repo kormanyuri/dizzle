@@ -1,4 +1,4 @@
-import bgCard from '../../img/bg-card.png'
+import bgCard from '../../../img/admin/bg-card.png'
 
 let inButtDiam = 26;
 let inButtDiam1 = (inButtDiam*65)/100;

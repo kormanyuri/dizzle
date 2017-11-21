@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
-import CircleButton from '../components/CircleButton';
+import CircleButton from './CircleButton';
 
-import styles from '../theme/components/MyCard';
+import styles from '../../theme/admin/components/MyCard';
 
 
 class MyCard extends React.Component {

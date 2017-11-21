@@ -25,6 +25,26 @@ import InfGroup from './pages/plugin/InfGroup';
 import PaymentBuyNow from './pages/plugin/PaymentBuyNow';
 import PaymentBuyTogether from './pages/plugin/PaymentBuyTogether';
 
+
+import withRoot from './components/admin/withRoot';
+import LoginAdmin from './pages/admin/Login';
+import SignUpAdmin from './pages/admin/SignUp';
+import Dashboard from './pages/admin/Dashboard';
+import Redeem from './pages/admin/Redeem';
+import RedeemStep1 from './pages/admin/RedeemStep1';
+import Profile from './pages/admin/Profile';
+import ChangePassword from './pages/admin/ChangePassword';
+import StoreAddress from './pages/admin/StoreAddress';
+import DisplayCurrency from './pages/admin/DisplayCurrency';
+import SetupStoreCreditIncentive from './pages/admin/SetupStoreCreditIncentive';
+import PluginSetup from './pages/admin/PluginSetup';
+import SmsInfo from './pages/admin/SmsInfo';
+import Statement from './pages/admin/Statement';
+import StoreCreditList from './pages/admin/StoreCreditList';
+
+import styles from './theme/admin/pages/Index';
+
+
 import { HashRouter,Route} from 'react-router-dom';
 
 
@@ -63,6 +83,21 @@ export default class Index extends React.Component {
                         <Route exact path="/plugin/order-accepted" component={OrderAccepted}/>
                         <Route exact path="/plugin/order-accepted-invite-friends" component={OrderAcceptedInviteFriends}/>
 
+
+                        <Route exact path="/admin" component={LoginAdmin}></Route>
+                        <Route exact path="/admin/sign-up" component={SignUpAdmin}></Route>
+                        <Route exact path="/admin/dashboard" component={Dashboard}></Route>
+                        <Route exact path="/admin/redeem" component={Redeem}></Route>
+                        <Route exact path="/admin/redeem-step-1" component={RedeemStep1}></Route>
+                        <Route exact path="/admin/profile" component={Profile}></Route>
+                        <Route exact path="/admin/change-password" component={ChangePassword}></Route>
+                        <Route exact path="/admin/store-address" component={StoreAddress}></Route>
+                        <Route exact path="/admin/display-currency" component={DisplayCurrency}></Route>
+                        <Route exact path="/admin/store-credit-incentive" component={SetupStoreCreditIncentive}></Route>
+                        <Route exact path="/admin/plugin-setup" component={PluginSetup}></Route>
+                        <Route exact path="/admin/sms-info" component={SmsInfo}></Route>
+                        <Route exact path="/admin/statement" component={Statement}></Route>
+                        <Route exact path="/admin/store-credit-list" component={StoreCreditList}></Route>
                     </div>
                 </HashRouter>
 

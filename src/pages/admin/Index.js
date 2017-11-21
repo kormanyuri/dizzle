@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter,Route} from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../components/withRoot';
+import withRoot from '../../components/admin/withRoot';
 import Login from './Login';
 import SignUp from './SignUp';
 import Dashboard from './Dashboard';
@@ -17,7 +17,7 @@ import SmsInfo from './SmsInfo';
 import Statement from './Statement';
 import StoreCreditList from './StoreCreditList';
 
-import styles from '../theme/pages/Index';
+import styles from '../../theme/admin/pages/Index';
 
 
 class Index extends React.Component {

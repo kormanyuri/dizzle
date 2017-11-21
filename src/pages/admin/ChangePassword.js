@@ -4,13 +4,13 @@ import { withStyles } from 'material-ui/styles';
 import { FormControl} from 'material-ui/Form';
 import Button from 'material-ui/Button';
 import Input from 'material-ui/Input';
-import withRoot from '../components/withRoot';
-import MyPaper from '../components/MyPaper';
-import MyAppBar from '../components/MyAppBar';
+import withRoot from '../../components/admin/withRoot';
+import MyPaper from '../../components/admin/MyPaper';
+import MyAppBar from '../../components/admin/MyAppBar';
 
-import Avatar1 from '../img/avatar-1.jpg';
+import Avatar1 from '../../img/admin/avatar-1.jpg';
 
-import styles from '../theme/pages/ChangePassword';
+import styles from '../../theme/admin/pages/ChangePassword';
 
 
 class ChangePassword extends React.Component {
