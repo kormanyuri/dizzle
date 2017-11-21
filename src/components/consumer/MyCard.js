@@ -7,13 +7,17 @@ import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 
-import bgCard from '../img/bg-card.png'
+import bgCard from '../../img/consumer/bg-card.png'
 
-let cardHeadHeight = 90;
-let inButtDiam = 47;
-let inButtDiam1 = (inButtDiam*57.4468085106383)/100;
-let paddStatus = 5;
-let fontSizeStatus = 7;
+import Auth from '../../components/Auth';
+import Config from '../../Config';
+import axios from 'axios';
+
+let cardHeadHeight  = 90;
+let inButtDiam      = 47;
+let inButtDiam1     = (inButtDiam*57.4468085106383)/100;
+let paddStatus      = 5;
+let fontSizeStatus  = 7;
 
 const styles = theme => ({
     root: {},

@@ -7,7 +7,7 @@ import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 
-import bgCard from '../img/bg-card.png'
+import bgCard from '../../img/consumer/bg-card.png'
 
 let cardHeadHeight = 90;
 let inButtDiam = 47;
