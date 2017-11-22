@@ -15,18 +15,24 @@ import Avatar1 from '../../img/admin/avatar-1.jpg';
 
 import styles from '../../theme/admin/pages/RedeemStep1';
 
+import Auth from '../../components/Auth';
+import Config from '../../Config';
+import axios from 'axios';
+
 
 class RedeemStep1 extends React.Component {
 
-    state = {
-        spent: '',
-    };
-
-    constructor(props) {
+    constructor(props){
         super(props);
+        const config = new Config();
+
         this.state = {
+            baseUrl: config.baseUrl,
+            spent: '',
+            shopper: JSON.parse(window.localStorage.getItem('shopper')),
             open: typeof props.open !== 'undefined' ? props.open : false,
         };
+
         this.closeMessage = this.closeMessage.bind(this);
     }
 
@@ -52,7 +58,7 @@ class RedeemStep1 extends React.Component {
                 <MyAppBar
                     title="redeem"
                 />
-                <MyPaper title="Namaste, Starbucks" avatar={Avatar1}>
+                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
                     <MyCardDefault>
                         <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: '#fff'}}>
                             <TextGroupItem param="Customer name" value="Jack Hidinks" />

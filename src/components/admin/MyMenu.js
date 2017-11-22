@@ -40,11 +40,11 @@ class MyMenu extends React.Component {
                     <span className={this.props.classes.title}>{this.state.welcome}</span>
                 </div>
                 <ul className={this.props.classes.menuList}>
-                    <li><a href="#dashboard">dashboard</a></li>
-                    <li><a href="#redeem">redeem</a></li>
-                    <li><a href="#statement">statement</a></li>
-                    <li><a href="#store-credit-list">member store <br/>credit list</a></li>
-                    <li><a href="#profile">profile</a></li>
+                    <li><a href="/#/admin/dashboard">dashboard</a></li>
+                    <li><a href="/#/admin/redeem">redeem</a></li>
+                    <li><a href="/#/admin/statement">statement</a></li>
+                    <li><a href="/#/admin/store-credit-list">member store <br/>credit list</a></li>
+                    <li><a href="/#/admin/profile">profile</a></li>
                 </ul>
             </div>
         );

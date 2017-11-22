@@ -9,8 +9,21 @@ import Avatar1 from '../../img/admin/avatar-1.jpg';
 
 import styles from '../../theme/admin/pages/PluginSetup';
 
+import Auth from '../../components/Auth';
+import Config from '../../Config';
+import axios from 'axios';
 
 class PluginSetup extends React.Component {
+
+    constructor(props){
+        super(props);
+        const config = new Config();
+
+        this.state = {
+            baseUrl: config.baseUrl,
+            shopper: JSON.parse(window.localStorage.getItem('shopper'))
+        }
+    }
 
     render(){
         return(
@@ -18,7 +31,7 @@ class PluginSetup extends React.Component {
                 <MyAppBar
                     title="plugin setup"
                 />
-                <MyPaper title="Namaste, Starbucks" avatar={Avatar1}>
+                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
                     <div className={this.props.classes.titleForm}>How to setup Plugin</div>
                     <div className={this.props.classes.rowStep}>
                         <span className={this.props.classes.numberStep}>1</span>

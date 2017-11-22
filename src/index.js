@@ -54,7 +54,12 @@ export default class Index extends React.Component {
 
     render(){
         return (
-            <div style={{minHeight: '100%', height: '100%'}}>
+            <div style={{
+                maxWidth: 414,
+                margin: '0 auto',
+                minHeight: '100vh',
+                backgroundColor: '#f2f2f2'
+            }}>
 
                 <HashRouter>
                     <div style={{minHeight: '100%', height: '100%'}}>
@@ -85,6 +90,7 @@ export default class Index extends React.Component {
 
 
                         <Route exact path="/admin" component={LoginAdmin}></Route>
+                        <Route exact path="/admin/login" component={LoginAdmin}></Route>
                         <Route exact path="/admin/sign-up" component={SignUpAdmin}></Route>
                         <Route exact path="/admin/dashboard" component={Dashboard}></Route>
                         <Route exact path="/admin/redeem" component={Redeem}></Route>

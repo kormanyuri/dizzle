@@ -12,13 +12,19 @@ import styles from '../../theme/admin/pages/Redeem';
 
 
 class Redeem extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            shopper: JSON.parse(window.localStorage.getItem('shopper'))
+        }
+    }
     render(){
         return(
             <div>
                 <MyAppBar
                     title="redeem"
                 />
-                <MyPaper title="Namaste, Starbucks" avatar={Avatar1}>
+                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
                     <div className={this.props.classes.scanArea}></div>
                     <div className={this.props.classes.text}>
                         tap SCAN to start scanning <br/>your QR code

@@ -12,13 +12,20 @@ import styles from '../../theme/admin/pages/SmsInfo';
 
 class SmsInfo extends React.Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            shopper: JSON.parse(window.localStorage.getItem('shopper'))
+        }
+    }
+
     render(){
         return(
             <div>
                 <MyAppBar
                     title="sms info"
                 />
-                <MyPaper title="Namaste, Starbucks" avatar={Avatar1}>
+                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
                     <div className={this.props.classes.titleForm}>How it works with SMS</div>
                     <div className={this.props.classes.rowStep}>
                         <span className={this.props.classes.numberStep}>1</span>

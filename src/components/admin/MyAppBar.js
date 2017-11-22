@@ -37,7 +37,7 @@ class MyAppBar extends React.Component {
                         <Typography className={this.props.classes.flex}>
                             {this.state.title}
                         </Typography>
-                        <IconButton className={this.props.classes.close} aria-label="Menu" onClick={() => this.openMenu()}>
+                        <IconButton className={this.props.classes.close} aria-label="Menu" onClick={this.openMenu.bind(this)}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 12.6973" height="12.6973" width="17"><title>Menu</title><path id="path4139" d="M1.34 0C.566 0 0 .565 0 1.27v.21c0 .706.565 1.342 1.34 1.342h14.25c.775 0 1.34-.636 1.41-1.27v-.21C17 .564 16.365 0 15.66 0H1.34zm0 4.938c-.775 0-1.34.635-1.34 1.27v.21c0 .706.565 1.34 1.34 1.34h14.25c.775 0 1.34-.634 1.41-1.27v-.21c0-.776-.635-1.34-1.34-1.34H1.34zm0 4.867c-.775 0-1.34.636-1.34 1.34v.212c0 .776.635 1.34 1.34 1.34h14.25c.775 0 1.34-.564 1.41-1.34v-.21c0-.777-.635-1.342-1.34-1.342H1.34z" fill="#bababa"/></svg>
                         </IconButton>
                     </Toolbar>

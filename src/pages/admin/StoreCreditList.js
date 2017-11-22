@@ -12,16 +12,24 @@ import Avatar1 from '../../img/admin/avatar-1.jpg';
 
 import styles from '../../theme/admin/pages/StoreCreditList';
 
+import Auth from '../../components/Auth';
+import Config from '../../Config';
+import axios from 'axios';
 
 class StoreCreditList extends React.Component {
 
+
     constructor(props) {
         super(props);
+        const config = new Config();
+
         this.state = {
             open: typeof props.open !== 'undefined' ? props.open : false,
             id: typeof props.id !== 'undefined' ? props.id : 0,
             member: typeof props.member !== 'undefined' ? props.member : '',
             balance: typeof props.balance !== 'undefined' ? props.balance : '',
+            baseUrl: config.baseUrl,
+            shopper: JSON.parse(window.localStorage.getItem('shopper'))
         };
         const data = [
             this.createData('Jack k.', '$85'),
@@ -61,7 +69,7 @@ class StoreCreditList extends React.Component {
                 <MyAppBar
                     title="store credit list"
                 />
-                <MyPaper title="Namaste, Starbucks" avatar={Avatar1}>
+                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
                     <div className={this.props.classes.wrapFilter} style={{position: 'relative'}}>
 
                         <Table className={this.props.classes.table}>

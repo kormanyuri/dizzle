@@ -10,28 +10,52 @@ import Avatar1 from '../../img/admin/avatar-1.jpg';
 
 import styles from '../../theme/admin/pages/Dashboard';
 
+import Auth from '../../components/Auth';
+import Config from '../../Config';
+import axios from 'axios';
+
 
 class Dashboard extends React.Component {
+
+    constructor(props){
+        super(props);
+
+        const config = new Config();
+
+        this.state = {
+            baseUrl: config.baseUrl,
+            shopper: JSON.parse(window.localStorage.getItem('shopper'))
+        }
+    }
+
+    componentWillMount(){
+        axios.get(this.state.baseUrl + '')
+            .then(response => {
+
+            })
+            .catch(error => {
+
+            });
+    }
+
     render(){
         return(
             <div>
-                <MyAppBar
-                    title="dashboard"
-                />
-                <MyPaper title="Namaste, Starbucks" avatar={Avatar1}>
-                    <MyCard id="mycard-1" paramName="total members" paramValue="1.202" indicatorValue="30%">
+                <MyAppBar title="dashboard" />
+                <MyPaper title={`Namaste, ` + this.state.shopper.name } avatar={Avatar1}>
+                    <MyCard id="mycard-1" paramName="total members" paramValue="0" indicatorValue="30%">
                         short description appears when user taps\clicks on (i) information icon. White border expands smoothly. Description text is about this window - total members
                     </MyCard>
-                    <MyCard id="mycard-2" paramName="total Store Credit sold" paramValue="$999.00" indicatorValue="70%">
+                    <MyCard id="mycard-2" paramName="total Store Credit sold" paramValue="$0" indicatorValue="70%">
                         short description appears when user taps\clicks on (i) information icon. White border expands smoothly. Description text is about this window - total members
                     </MyCard>
-                    <MyCard id="mycard-3" paramName="total Revenue" paramValue="$805.00" indicatorValue="60%">
+                    <MyCard id="mycard-3" paramName="total Revenue" paramValue="$0" indicatorValue="60%">
                         short description appears when user taps\clicks on (i) information icon. White border expands smoothly. Description text is about this window - total members
                     </MyCard>
-                    <MyCard id="mycard-4" paramName="today Store Credit sold" paramValue="$103.00" indicatorValue="20%">
+                    <MyCard id="mycard-4" paramName="today Store Credit sold" paramValue="$0" indicatorValue="20%">
                         short description appears when user taps\clicks on (i) information icon. White border expands smoothly. Description text is about this window - total members
                     </MyCard>
-                    <MyCard id="mycard-5" paramName="today Revenue" paramValue="$91.00" indicatorValue="10%">
+                    <MyCard id="mycard-5" paramName="today Revenue" paramValue="$0" indicatorValue="10%">
                         short description appears when user taps\clicks on (i) information icon. White border expands smoothly. Description text is about this window - total members
                     </MyCard>
                 </MyPaper>

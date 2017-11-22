@@ -13,40 +13,57 @@ import Avatar1 from '../../img/admin/avatar-1.jpg';
 
 import styles from '../../theme/admin/pages/DisplayCurrency';
 
+import Auth from '../../components/Auth';
+import Config from '../../Config';
+import axios from 'axios';
 
 class DisplayCurrency extends React.Component {
 
-    state = {
-        currency: '',
+    constructor(props){
+        super(props);
+        const config = new Config();
+
+        this.state ={
+            currency: '',
+            baseUrl: config.baseUrl,
+            shopper: JSON.parse(window.localStorage.getItem('shopper'))
+        }
+
+        this.changeCurrency = this.changeCurrency.bind(this);
+    }
+
+
+    changeCurrency(e) {
+        this.setState({
+            currency: e.target.value
+        });
     };
 
-    handleChange = name => event => {
-        this.setState({ [name]: event.target.value });
-    };
+    save(){
+
+        //redirect to /#/admin/profile
+    }
 
     render(){
         return(
             <div>
-                <MyAppBar
-                    title="display currency"
-                />
-                <MyPaper title="Namaste, Starbucks" avatar={Avatar1}>
+                <MyAppBar title="display currency" />
+                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
                     <div className={this.props.classes.titleForm}>Display currency</div>
                     <FormControl className={this.props.classes.formControl}>
 
                         <Select
                             value={this.state.currency}
-                            onChange={this.handleChange('currency')}
+                            onChange={e => this.changeCurrency(e)}
                             displayEmpty
                             className={this.props.classes.capitalize}
                             disableUnderline="true"
                         >
-                            <MenuItem value="">$ United states dollar</MenuItem>
-                            <MenuItem value={'RUB'}>₽   Russian Ruble</MenuItem>
+                            <MenuItem value="USD">$ United states dollar</MenuItem>
                         </Select>
                     </FormControl>
 
-                    <Button color="primary" className={this.props.classes.fullWidth} href="#profile">Save</Button>
+                    <Button color="primary" className={this.props.classes.fullWidth} onClick={this.save.bind(this)}>Save</Button>
                 </MyPaper>
             </div>
         );
