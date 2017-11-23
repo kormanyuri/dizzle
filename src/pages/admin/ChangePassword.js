@@ -7,6 +7,7 @@ import Input from 'material-ui/Input';
 import withRoot from '../../components/admin/withRoot';
 import MyPaper from '../../components/admin/MyPaper';
 import MyAppBar from '../../components/admin/MyAppBar';
+import Snackbar from 'material-ui/Snackbar';
 
 import Avatar1 from '../../img/admin/avatar-1.jpg';
 
@@ -25,6 +26,10 @@ class ChangePassword extends React.Component {
         this.state = {
             password: null,
             retryPassword: null,
+            alert: {
+                open: false,
+                message: <span id="message-id">Error</span>
+            },
             baseUrl: config.baseUrl,
             shopper: JSON.parse(window.localStorage.getItem('shopper'))
         };
@@ -42,16 +47,50 @@ class ChangePassword extends React.Component {
     }
 
     save(){
-        axios.post(this.state.baseUrl + '', {
-            password: this.state.password,
-            retryPassword: this.state.retryPassword
-        })
-            .then(response => {
-                //redirect to /#/admin/profile
-            })
-            .catch(error => {
-
+        if (this.state.password == '' || !this.state.password) {
+            this.setState({
+                alert: {
+                    open: true,
+                    message: 'Please fill fields'
+                }
             });
+
+        } else {
+
+            if (this.state.password == this.state.retryPassword) {
+
+                axios.post(this.state.baseUrl + 'gift-card/rest/shopper/' + this.state.shopper.id, {
+                    password: this.state.password,
+                    retryPassword: this.state.retryPassword
+                })
+                    .then(response => {
+                        //redirect to /#/admin/profile
+                        window.location = '/#/admin/profile';
+                    })
+                    .catch(error => {
+
+                    });
+
+            } else {
+                this.setState({
+                    alert: {
+                        open: true,
+                        message: 'Password and Retry Password not equals'
+                    }
+                });
+
+            }
+        }
+
+        if (this.state.alert.open) {
+            setTimeout(() => {
+                this.setState({
+                    alert: {
+                        open: false
+                    }
+                });
+            }, 3000);
+        }
     }
 
     render(){
@@ -79,6 +118,16 @@ class ChangePassword extends React.Component {
                         />
                     </FormControl>
                     <Button color="primary" className={this.props.classes.fullWidth} onClick={this.save.bind(this)}>Save</Button>
+                    <Snackbar
+                        className={this.props.classes.message}
+                        anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+                        open={this.state.alert.open}
+                        onRequestClose={this.handleRequestClose}
+                        SnackbarContentProps={{
+                            'aria-describedby': 'message-id',
+                        }}
+                        message={<span id="message-id">{this.state.alert.message}</span>}
+                    />
                 </MyPaper>
             </div>
         );

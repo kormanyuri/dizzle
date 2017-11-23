@@ -36,40 +36,157 @@ class SetupStoreCreditIncentive extends React.Component {
         this.loadGiftCards = this.loadGiftCards.bind(this);
     }
 
-    handleChange = name => event => {
-        this.setState({ [name]: event.target.value });
-    };
+    componentWillMount(){
+        this.loadGiftCards();
+    }
 
-    loadGiftCards(){
-        const giftCards = [
-            {id: 1, value: 100, discount: 10},
-            {id: 2, value: 300, discount: 15},
-        ];
+    changeValue(e, id) {
+        let giftCards = this.state.giftCards;
+
+        giftCards.map((item, key) => {
+            if (item.id == id) {
+                giftCards[key].giftCardValue = e.target.value;
+                giftCards[key].changed = true;
+            }
+        });
 
         this.setState({
             giftCards: giftCards
         });
     }
 
+    changeDiscount(e, id) {
+        let giftCards = this.state.giftCards;
+
+        giftCards.map((item, key) => {
+            if (item.id == id) {
+                giftCards[key].giftCardDiscount = e.target.value;
+                giftCards[key].changed = true;
+            }
+        });
+
+        this.setState({
+            giftCards: giftCards
+        });
+    }
+
+    loadGiftCards(){
+        axios.get(this.state.baseUrl + 'gift-card/rest/gift-card', {
+            params: {
+                method: 'LIST',
+                shopperId: this.state.shopper.id
+            }
+        })
+            .then(response => {
+                console.log(response);
+
+
+                const giftCards = [];
+
+                response.data.map((item, key) => {
+                    if (item.status == 1) {
+                        giftCards.push(item);
+                    }
+                });
+                this.setState({
+                    giftCards: giftCards
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    addItem(){
+
+        let giftCards = this.state.giftCards;
+
+        giftCards.push(
+            {id: 0, giftCardValue: 100, giftCardDiscount: 0, changed: true}
+        );
+
+        this.setState({
+            giftCards: giftCards
+        });
+
+    }
+
+    del(item) {
+        axios.post(this.state.baseUrl + 'gift-card/rest/gift-card', {
+            id: item.id,
+            giftCardValue:      item.giftCardValue,
+            giftCardDiscount:   item.giftCardDiscount,
+            shopperId: this.state.shopper.id,
+            status: 0
+        })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    deleteItem(id){
+
+        let giftCards = this.state.giftCards;
+
+        giftCards.map((item, key) => {
+            if (item.id == id) {
+                giftCards.splice(key, 1);
+                this.del(item);
+            }
+        });
+
+        this.setState({
+            giftCards: giftCards
+        });
+    }
+
+    save(){
+        //redirect to /#/admin/profile
+        let giftCards = this.state.giftCards;
+
+        giftCards.map((item, key) => {
+
+            axios.post(this.state.baseUrl + 'gift-card/rest/gift-card', {
+                id:                 item.id,
+                shopperId:          this.state.shopper.id,
+                giftCardValue:      item.giftCardValue,
+                giftCardDiscount:   item.giftCardDiscount
+            })
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+        });
+    }
+
     render(){
         let items = [];
 
-        this.state.giftCards.map(item => {
+        this.state.giftCards.map((item, key) => {
             items.push(
-                <div className={this.props.classes.inputRow}>
+                <div key={key} className={this.props.classes.inputRow}>
                     <div style={{ marginRight: 33}}>
                         <Grid container spacing={8}>
                             <Grid item xs={6}>
                                 <FormControl className={this.props.classes.formControl}>
                                     <Select
-                                        value={this.state.startValue}
-                                        onChange={this.handleChange('startValue')}
+                                        value={item.giftCardValue}
+                                        onChange={((e, id) => this.changeValue(e, item.id)).bind(this)}
                                         displayEmpty
                                         className={this.props.classes.selectEmpty}
                                         disableUnderline="true"
                                     >
-                                        <MenuItem value="">100 USD</MenuItem>
-                                        <MenuItem value={'200'}>200 USD</MenuItem>
+                                        <MenuItem value={100}>100 USD</MenuItem>
+                                        <MenuItem value={200}>200 USD</MenuItem>
+                                        <MenuItem value={300}>300 USD</MenuItem>
+                                        <MenuItem value={400}>400 USD</MenuItem>
+                                        <MenuItem value={500}>500 USD</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Grid>
@@ -80,20 +197,21 @@ class SetupStoreCreditIncentive extends React.Component {
                                         id="spent"
                                         className={this.props.classes.labelInputInline}
                                         disableUnderline="true"
-                                        value={this.state.spent}
-                                        onChange={this.handleChange('spent')}
+                                        value={item.giftCardDiscount}
+                                        onChange={((e, id) => this.changeDiscount(e, item.id)).bind(this)}
                                         startAdornment={<InputAdornment position="start">%</InputAdornment>}
                                     />
                                 </FormControl>
                             </Grid>
                         </Grid>
                     </div>
-                    <div className={this.props.classes.deleteRowBtn}>
+                    <div className={this.props.classes.deleteRowBtn} onClick={(id => this.deleteItem(item.id)).bind(this)}>
                         <span>-</span>
                     </div>
                 </div>
             );
         });
+
 
         return(
             <div>
@@ -103,8 +221,8 @@ class SetupStoreCreditIncentive extends React.Component {
                         <div>
                             {items}
                         </div>
-                    <Button color="primary" className={this.props.classes.fullWidth} style={{marginBottom: 40,}}>Add line</Button>
-                    <Button color="primary" className={this.props.classes.fullWidth} href="#profile">Save</Button>
+                    <Button color="primary" className={this.props.classes.fullWidth} style={{marginBottom: 40,}} onClick={this.addItem.bind(this)}>Add line</Button>
+                    <Button color="primary" className={this.props.classes.fullWidth} onClick={this.save.bind(this)}>Save</Button>
                 </MyPaper>
             </div>
         );

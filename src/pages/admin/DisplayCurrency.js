@@ -24,14 +24,27 @@ class DisplayCurrency extends React.Component {
         const config = new Config();
 
         this.state ={
-            currency: '',
+            currency: 'USD',
             baseUrl: config.baseUrl,
             shopper: JSON.parse(window.localStorage.getItem('shopper'))
-        }
+        };
 
         this.changeCurrency = this.changeCurrency.bind(this);
     }
 
+    componentWillMount(){
+
+        axios.get(this.state.baseUrl + 'gift-card/rest/shopper/' + this.state.shopper.id)
+            .then(response => {
+                //console.log(response.data.socialDataProfile.country);
+                this.setState({
+                    currency: typeof response.data.socialDataProfile.currency != 'undefined' ? response.data.socialDataProfile.currency : ''
+                });
+            })
+            .catch(error => {
+
+            });
+    }
 
     changeCurrency(e) {
         this.setState({
@@ -40,7 +53,15 @@ class DisplayCurrency extends React.Component {
     };
 
     save(){
+        axios.post(this.state.baseUrl + 'gift-card/rest/shopper/' + this.state.shopper.id, {
+            currency:    this.state.currency,
+        })
+            .then(response => {
+                window.location = '/#/admin/profile'
+            })
+            .catch(error => {
 
+            });
         //redirect to /#/admin/profile
     }
 
@@ -59,7 +80,8 @@ class DisplayCurrency extends React.Component {
                             className={this.props.classes.capitalize}
                             disableUnderline="true"
                         >
-                            <MenuItem value="USD">$ United states dollar</MenuItem>
+                            <MenuItem value={`USD`}>$ United states dollar</MenuItem>
+                            <MenuItem value={`CAD`}>$ Canadian dollar</MenuItem>
                         </Select>
                     </FormControl>
 

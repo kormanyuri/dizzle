@@ -51,11 +51,11 @@ class StoreAdress extends React.Component {
             .then(response => {
                 console.log(response.data.socialDataProfile.country);
                 this.setState({
-                    country: typeof response.data.socialDataProfile.country != 'undefined' ? response.data.socialDataProfile.country : '',
-                    province: typeof response.data.socialDataProfile.state != 'undefined' ? response.data.socialDataProfile.state : '',
-                    city: typeof response.data.socialDataProfile.city != 'undefined' ? response.data.socialDataProfile.city : '',
-                    address1: response.data.address,
-                    address2: typeof response.data.socialDataProfile.address2 != 'undefined' ? response.data.socialDataProfile.address2 : '',
+                    country:    typeof response.data.socialDataProfile.country != 'undefined' ? response.data.socialDataProfile.country : '',
+                    province:   typeof response.data.socialDataProfile.state != 'undefined' ? response.data.socialDataProfile.state : '',
+                    city:       typeof response.data.socialDataProfile.city != 'undefined' ? response.data.socialDataProfile.city : '',
+                    address1:   typeof response.data.address != 'undefined' ? response.data.address : '',
+                    address2:   typeof response.data.socialDataProfile.address2 != 'undefined' ? response.data.socialDataProfile.address2 : '',
                     postalCode: typeof response.data.socialDataProfile.postalCode != 'undefined' ? response.data.socialDataProfile.postalCode : '',
                 });
                 console.log(this.state);
@@ -147,7 +147,7 @@ class StoreAdress extends React.Component {
                             id="province"
                             disableUnderline="true"
                             placeholder="State / Province"
-                            value={this.state.state}
+                            value={this.state.province}
                             onChange={e => this.changeProvince(e)}
                         />
                     </FormControl>

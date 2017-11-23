@@ -14,13 +14,20 @@ import UploadAva from '../../img/admin/upload-ava.png';
 
 import styles from '../../theme/admin/pages/Profile';
 
+import Auth from '../../components/Auth';
+import Config from '../../Config';
+import axios from 'axios';
+
 
 class Profile extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {
 
+        const config = new Config();
+
+        this.state = {
+            baseUrl: config.baseUrl,
             shopper: JSON.parse(window.localStorage.getItem('shopper'))
         }
     }
@@ -34,6 +41,29 @@ class Profile extends React.Component {
         })
     }
 
+    uploadImage(e) {
+        // console.log(e.target.files[0]);
+        let fileObject = e.target.files[0];
+        let formData = new FormData();
+        formData.append('image', fileObject);
+        console.log(formData);
+
+        axios.post(this.state.baseUrl + 'image/upload/logo', formData, {
+            headers: { 'content-type': 'multipart/form-data' }
+        })
+            .then(response => {
+                let shopper = this.state.shopper;
+                shopper.logo = response.data[0];
+                this.setState({
+                    shopper: shopper
+                });
+                window.localStorage.setItem('shopper', JSON.stringify(this.state.shopper));
+            })
+            .catch(error => {
+
+            });
+    }
+
     render(){
         return(
             <div>
@@ -42,10 +72,10 @@ class Profile extends React.Component {
                     <div className={this.props.classes.headContent}>
                         <div className={this.props.classes.wrapUpload}>
                             <Avatar
-                                src={UploadAva}
+                                src={`/backend/uploads/logos/` + this.state.shopper.logo}
                                 className={this.props.classes.avatar}
                             />
-                            <input type="file" className={this.props.classes.uploadInput} />
+                            <input type="file" className={this.props.classes.uploadInput} onChange={e => this.uploadImage(e)}/>
                         </div>
                         <span className={this.props.classes.instruction}>tap on profile image to upload photo or remove it</span>
                     </div>

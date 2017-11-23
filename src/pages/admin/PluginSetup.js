@@ -25,6 +25,10 @@ class PluginSetup extends React.Component {
         }
     }
 
+    goToPlugin(){
+        window.open(window.location.origin + '/#/plugin/gift-cards-list/' + this.state.shopper.id, '_blank');
+    }
+
     render(){
         return(
             <div>
@@ -40,7 +44,7 @@ class PluginSetup extends React.Component {
                     <div className={this.props.classes.rowStep}>
                         <span className={this.props.classes.numberStep}>2</span>
                         <span className={this.props.classes.textStep}>Your website will display this button</span>
-                        <span className={this.props.classes.wrapFakeBtn}>
+                        <span className={this.props.classes.wrapFakeBtn} style={{cursor: 'pointer'}} onClick={this.goToPlugin.bind(this)}>
                             <span className={this.props.classes.fakeBtn}>Gift Card Group Buy</span>
                         </span>
                     </div>

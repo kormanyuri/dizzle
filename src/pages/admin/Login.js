@@ -76,9 +76,12 @@ class Login extends Component {
         })
             .then(response => {
                 console.log(response);
+
                 window.localStorage.setItem('token', response.data.token);
                 window.localStorage.setItem('shopper', JSON.stringify({
-                    name: response.data.name
+                    id:     response.data.id,
+                    name:   response.data.name,
+                    logo:   response.data.logo
                 }));
                 window.location = '/#/admin/dashboard';
                 // const orderShopperId = window.localStorage.getItem('order_shopper_id');
