@@ -129,6 +129,7 @@ class MyAccount extends Component {
             lastName:       '',
             email:          '',
             showLoading:    true,
+            image: Avatar4,
             baseUrl:        config.baseUrl,
             open: false
         }
@@ -168,7 +169,7 @@ class MyAccount extends Component {
                 <Card className={this.props.classes.card}>
                     <CardContent className={this.props.classes.cardContent}>
                         <Avatar
-                            src={Avatar4}
+                            src={this.state.image}
                             className={this.props.classes.avatar}
                         />
                         <div className={this.props.classes.rightCol}>
