@@ -229,7 +229,7 @@ MyCard.propTypes = {
     classes: PropTypes.object.isRequired,
     name: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
-    status: PropTypes.string.isRequired,
+    status: PropTypes.number.isRequired,
     giftCard: PropTypes.string.isRequired,
     sell: PropTypes.string.isRequired,
     groupBuyOwner: PropTypes.string.isRequired,

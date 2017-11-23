@@ -70,7 +70,7 @@ export default class Index extends React.Component {
                         <Route exact path="/ingroupbuy/:id" component={InGroupBuy}/>
                         <Route exact path="/ingroupbuysuccessful/:id" component={InGroupBuySuccessful}/>
                         <Route exact path="/balancelist" component={BalanceList}/>
-                        <Route exact path="/transactions/:id" component={Transactions}/>
+                        <Route exact path="/transactions/:shopperId" component={Transactions}/>
                         <Route exact path="/myaccount" component={MyAccount}/>
                         <Route exact path="/editprofile" component={EditProfile}/>
                         <Route exact path="/qr" component={QRqode}/>

@@ -81,7 +81,7 @@ const styles = theme =>  ({
     },
     wrapAbs: {
         position: 'absolute',
-        top: 148,
+        top: 168,
         zIndex: 1,
         width: '100%',
         paddingLeft: 15,
@@ -223,9 +223,54 @@ class InGroupBuySuccessful extends Component {
 
     constructor(props){
         super(props);
+
+        const config = new Config();
         this.state = {
-            open: false,
+            id:             props.match.params.id,
+            shopper:        '',
+            timeLeft:       '',
+            showLoading:    false,
+            baseUrl:        config.baseUrl,
+            open:           false
         };
+    }
+
+    componentWillMount(){
+        console.log(this.props.classes);
+        console.log(styles());
+
+        this.setState({
+            showLoading: true
+        });
+
+        axios.get(this.state.baseUrl + 'gift-card/rest/group-buy/' + this.state.id)
+            .then(response => {
+
+                const bought = response.data.bought ? response.data.bought : 0;
+
+                this.setState({
+                    shopper:        response.data.giftCard.shopper.name,
+                    giftCardValue:  response.data.giftCard.giftCardValue,
+                    owner:          response.data.ownerConsumer.socialDataProfile.nickname,
+                    totalUsers:     response.data.countPartners,
+                    sell:           response.data.giftCard.giftCardValue,
+                    countDownDate:  new Date(response.data.dateExpired.date).getTime(),
+                    percentOfGoal:  (bought/(response.data.giftCard.giftCardValue/100))/100,
+                    bought:         bought,
+                    showLoading:    false
+                });
+
+            })
+            .catch(error => {
+
+            });
+
+
+    }
+
+    componentDidMount(){
+        // Update the count down every 1 second
+        this.interval = setInterval(this.timer, 1000);
     }
 
     render() {
@@ -241,17 +286,17 @@ class InGroupBuySuccessful extends Component {
                         />
                         <div className={this.props.classes.container}>
                             <div className={this.props.classes.wrapTitle}>
-                                <p className={this.props.classes.title}>Starbucks</p>
-                                <p className={this.props.classes.subtitle}>50 USD gift card</p>
+                                <p className={this.props.classes.title}>{this.state.shopper}</p>
+                                <p className={this.props.classes.subtitle}>{this.state.giftCardValue} USD gift card</p>
                             </div>
                         </div>
                         <div className={this.props.classes.wrapAbs}>
                             <div className={this.props.classes.card}>
-                                <p className={this.props.classes.name}>Elizabeth Thordis</p>
+                                <p className={this.props.classes.name}>{this.state.owner}</p>
                                 <p className={this.props.classes.subName}>group Buy Owner</p>
                                 <Grid container>
                                     <Grid item xs={4} className={this.props.classes.gridItem} >
-                                        <p className={this.props.classes.bigFs}>$80</p>
+                                        <p className={this.props.classes.bigFs}>${this.state.sell}</p>
                                         <p className={this.props.classes.subName}>sell</p>
                                     </Grid>
                                     <Grid item xs={4} className={this.props.classes.gridItem}>
@@ -259,7 +304,7 @@ class InGroupBuySuccessful extends Component {
                                         <p className={this.props.classes.subName}>you<br/>paiD</p>
                                     </Grid>
                                     <Grid item xs={4} className={this.props.classes.gridItem}>
-                                        <p className={this.props.classes.bigFs}>3</p>
+                                        <p className={this.props.classes.bigFs}>{this.state.totalUsers}</p>
                                         <p className={this.props.classes.subName}>total<br/>users</p>
                                     </Grid>
                                 </Grid>

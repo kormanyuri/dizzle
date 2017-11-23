@@ -92,17 +92,24 @@ class GroupBuyList extends Component {
             return (
                 <div className={this.props.classes.root}>
                     <MyAppBar title="My Group Buy"/>
-                    {this.state.items.map((item, key) =>
-                        <MyCard
-                            key={key}
-                            name={item.giftCardGroupBuy.giftCard.shopper.name}
-                            avatar={Avatar1}
-                            status={item.giftCardGroupBuy.status}
-                            giftCard={`$` + item.giftCardGroupBuy.giftCard.giftCardValue}
-                            sell={`$` + item.giftCardGroupBuy.giftCard.giftCardValue }
-                            groupBuyOwner={item.giftCardGroupBuy.ownerConsumer.socialDataProfile.nickname}
-                            href={`/#/ingroupbuy/${item.giftCardGroupBuy.id}`}
-                        />
+                    {this.state.items.map((item, key) => {
+                            let url =  '/#/ingroupbuy/' + item.giftCardGroupBuy.id;
+
+                            if (item.giftCardGroupBuy.status == 2) {
+                                url = '/#/ingroupbuysuccessful/' + item.giftCardGroupBuy.id;
+                            }
+
+                            return <MyCard
+                                        key={key}
+                                        name={item.giftCardGroupBuy.giftCard.shopper.name}
+                                        avatar={Avatar1}
+                                        status={item.giftCardGroupBuy.status}
+                                        giftCard={`$` + item.giftCardGroupBuy.giftCard.giftCardValue}
+                                        sell={`$` + item.giftCardGroupBuy.giftCard.giftCardValue }
+                                        groupBuyOwner={item.giftCardGroupBuy.ownerConsumer.socialDataProfile.nickname}
+                                        href={url}
+                                    />
+                        }
                     )}
                 </div>
             );

@@ -72,13 +72,16 @@ class Transactions extends Component {
 
         const config = new Config();
         this.state = {
-            shopperId: props.match.params.shopperId,
-            baseUrl: config.baseUrl,
-            items: [],
-            showLoading: false,
-            open: false,
-            message: ''
+            shopperId:      props.match.params.shopperId,
+            shopper:        null,
+            baseUrl:        config.baseUrl,
+            items:          [],
+            showLoading:    false,
+            open:           false,
+            message:        ''
         };
+
+        this.loadShopper = this.loadShopper.bind(this);
     }
 
     componentWillMount(){
@@ -86,6 +89,7 @@ class Transactions extends Component {
             showLoading: true,
             message: 'Load...'
         });
+
         axios.get(this.state.baseUrl + 'gift-card/rest/transaction/0', {
             params: {
                 shopperId: this.state.shopperId,
@@ -99,6 +103,8 @@ class Transactions extends Component {
                     this.setState({
                         items: response.data
                     });
+                    this.loadShopper();
+
                 } else {
                     this.setState({
                         message: 'Balance is empty'
@@ -113,12 +119,36 @@ class Transactions extends Component {
             });
     }
 
+    loadShopper(){
+        console.log(this.state);
+
+        axios.get(this.state.baseUrl + 'gift-card/rest/shopper/' + this.state.shopperId, {
+            params: {
+                shopperId: this.state.shopperId
+            }
+        })
+            .then(response => {
+                console.log(response);
+
+                this.setState({
+                    shopper: response.data
+                });
+
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({
+                    showLoading: false
+                });
+            });
+    }
+
     render() {
 
         if (this.state.items.length > 0 ) {
             return (
                 <div className={this.props.classes.root}>
-                    <MyAppBar title="Starbucks" />
+                    <MyAppBar title={this.state.shopper ? this.state.shopper.name : ''} />
 
                     <Card className={this.props.classes.card}>
                         <div className={this.props.classes.cardHeader}>
@@ -129,7 +159,7 @@ class Transactions extends Component {
                         </div>
                         <CardContent className={this.props.classes.cardContent}>
                             <div className={this.props.classes.title}>
-                                Starbucks
+                                {this.state.shopper ? this.state.shopper.name : ''}
                             </div>
                             {this.state.items.map((item, i) =>
                                 <TextGroup key={i} groupName={item[0].transactionRoute == 1 ? 'Refill' : 'Reduce' }>
