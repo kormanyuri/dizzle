@@ -242,8 +242,8 @@ class Login extends Component {
                     window.localStorage.setItem('token', response.data.token);
                     window.localStorage.setItem('', JSON.stringify({
                         id: response.data.id,
-                        name: typeof response.data.socialDataProfile.nickname != 'undefined' ? response.data.socialDataProfile.nickname : '',
-                        image: typeof response.data.socialDataProfile.image != 'undefined' ? response.data.socialDataProfile.image : UploadAva
+                        name: typeof response.data.user.name != 'undefined' ? response.data.user.name : '',
+                        image: typeof response.data.user.image != 'undefined' && response.data.user.image != '' ? response.data.user.image : UploadAva
                     }));
                     // const orderShopperId = window.localStorage.getItem('order_shopper_id');
                     // const orderProcess = window.localStorage.getItem('order_process');
