@@ -190,6 +190,8 @@ class Login extends Component {
             password: '',
             baseUrl: config.baseUrl
         };
+
+        this.handleRequestClose = this.handleRequestClose.bind(this);
     };
 
     handleRequestClose() {
@@ -222,36 +224,43 @@ class Login extends Component {
             showLoading: true
         });
 
-
-        axios.post(this.state.baseUrl + 'gift-card/rest/consumer/login', {
-            email: this.state.email,
-            password: this.state.password
-        })
-            .then(response => {
-                console.log(response);
-                window.localStorage.setItem('token', response.data.token);
-
-                // const orderShopperId = window.localStorage.getItem('order_shopper_id');
-                const orderProcess = window.localStorage.getItem('order_process');
-
-                if (!orderProcess) {
-                    window.location = '/#/';
-                } else {
-                    window.location = '/payment.php';
+        if (this.state.email == '' || this.state.password == '') {
+            this.setState({
+                alert: {
+                    open: true,
+                    message: <span id="message-id">Please fill fields</span>
                 }
-
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({
-                    alert: {
-                        open: true,
-                        message: <span id="message-id">Login or password incorrect</span>
-                    }
-                });
             });
-    }
+        } else {
+            axios.post(this.state.baseUrl + 'gift-card/rest/consumer/login', {
+                email: this.state.email,
+                password: this.state.password
+            })
+                .then(response => {
+                    console.log(response);
+                    window.localStorage.setItem('token', response.data.token);
 
+                    // const orderShopperId = window.localStorage.getItem('order_shopper_id');
+                    const orderProcess = window.localStorage.getItem('order_process');
+
+                    if (!orderProcess) {
+                        window.location = '/#/';
+                    } else {
+                        window.location = '/payment.php';
+                    }
+
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.setState({
+                        alert: {
+                            open: true,
+                            message: <span id="message-id">Login or password incorrect</span>
+                        }
+                    });
+                });
+        }
+    }
 
     render() {
 
