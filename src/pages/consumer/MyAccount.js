@@ -150,7 +150,8 @@ class MyAccount extends Component {
                         userId: response.data.id,
                         nickname:  response.data.socialDataProfile.nickname,
                         email:     response.data.email,
-                        showLoading: false
+                        showLoading: false,
+                        image: typeof response.data.socialDataProfile.image != 'undefined' ? response.data.socialDataProfile.image : Avatar4
                     });
                 })
                 .catch(error => {

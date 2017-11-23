@@ -201,7 +201,7 @@ class EditProfile extends Component {
                 }
             })
                 .then(response => {
-                    console.log(response);
+                    // console.log(response);
                     const name = response.data.socialDataProfile.nickname.split(' ');
                     this.setState({
                         userId:         response.data.id,
@@ -210,10 +210,11 @@ class EditProfile extends Component {
                         lastName:       typeof name[1] != 'undefined' ? name[1] : '',
                         email:          response.data.email,
                         dateOfBirth:    typeof response.data.socialDataProfile.dateOfBirth != 'undefined' ? response.data.socialDataProfile.dateOfBirth : '',
-                        showLoading:    false
+                        showLoading:    false,
+                        image:          typeof response.data.socialDataProfile.image != 'undefined' ? response.data.socialDataProfile.image : UploadAva
                     });
 
-                    console.log(this.state);
+                    //console.log(this.state);
                 })
                 .catch(error => {
                     console.log(error);

@@ -18,6 +18,7 @@ import twitterIco from '../../img/consumer/twitter.svg';
 
 import axios from 'axios';
 import Config from '../../Config';
+import UploadAva from '../../img/admin/upload-ava.png';
 
 
 let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -237,9 +238,13 @@ class Login extends Component {
                 password: this.state.password
             })
                 .then(response => {
-                    console.log(response);
+                    //console.log(response);
                     window.localStorage.setItem('token', response.data.token);
-
+                    window.localStorage.setItem('', JSON.stringify({
+                        id: response.data.id,
+                        name: response.data.socialDataProfile.nickname,
+                        image: typeof response.data.socialDataProfile.image != 'undefined' ? response.data.socialDataProfile.image : UploadAva
+                    }));
                     // const orderShopperId = window.localStorage.getItem('order_shopper_id');
                     // const orderProcess = window.localStorage.getItem('order_process');
                     window.location = '/#/';
