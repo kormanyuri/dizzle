@@ -92,7 +92,7 @@ const styles = (theme) =>  {
         },
         wrapAbs: {
             position: 'absolute',
-            top: 148,
+            top: 168,
             zIndex: 1,
             width: '100%',
             paddingLeft: 15,
