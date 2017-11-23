@@ -46,6 +46,25 @@ class StoreAdress extends React.Component {
         this.changePostalCode = this.changePostalCode.bind(this);
     }
 
+    componentWillMount(){
+        axios.get(this.state.baseUrl + 'gift-card/rest/shopper/' + this.state.shopper.id)
+            .then(response => {
+                console.log(response.data.socialDataProfile.country);
+                this.setState({
+                    country: typeof response.data.socialDataProfile.country != 'undefined' ? response.data.socialDataProfile.country : '',
+                    province: typeof response.data.socialDataProfile.state != 'undefined' ? response.data.socialDataProfile.state : '',
+                    city: typeof response.data.socialDataProfile.city != 'undefined' ? response.data.socialDataProfile.city : '',
+                    address1: response.data.address,
+                    address2: typeof response.data.socialDataProfile.address2 != 'undefined' ? response.data.socialDataProfile.address2 : '',
+                    postalCode: typeof response.data.socialDataProfile.postalCode != 'undefined' ? response.data.socialDataProfile.postalCode : '',
+                });
+                console.log(this.state);
+            })
+            .catch(error => {
+
+            });
+    }
+
     changeCountry(e) {
         this.setState({
             country: e.target.value
@@ -85,6 +104,20 @@ class StoreAdress extends React.Component {
     save(){
         console.log(this.state);
         //redirect to /#/admin/profile
+        axios.post(this.state.baseUrl + 'gift-card/rest/shopper/' + this.state.shopper.id, {
+            country:    this.state.country,
+            state:      this.state.province,
+            city:       this.state.city,
+            address:    this.state.address1,
+            address2:   this.state.address2,
+            postalCode: this.state.postalCode
+        })
+            .then(response => {
+
+            })
+            .catch(error => {
+
+            });
     }
 
     render(){
@@ -114,6 +147,7 @@ class StoreAdress extends React.Component {
                             id="province"
                             disableUnderline="true"
                             placeholder="State / Province"
+                            value={this.state.state}
                             onChange={e => this.changeProvince(e)}
                         />
                     </FormControl>
@@ -122,6 +156,7 @@ class StoreAdress extends React.Component {
                             id="City"
                             disableUnderline="true"
                             placeholder="City"
+                            value={this.state.city}
                             onChange={e => this.changeCity(e)}
                         />
                     </FormControl>
@@ -130,6 +165,7 @@ class StoreAdress extends React.Component {
                             id="Address1"
                             disableUnderline="true"
                             placeholder="Address 1"
+                            value={this.state.address1}
                             onChange={e => this.changeAddress1(e)}
                         />
                     </FormControl>
@@ -138,6 +174,7 @@ class StoreAdress extends React.Component {
                             id="Address2"
                             disableUnderline="true"
                             placeholder="Address 2"
+                            value={this.state.address2}
                             onChange={e => this.changeAddress2(e)}
                         />
                     </FormControl>
@@ -146,6 +183,7 @@ class StoreAdress extends React.Component {
                             id="PostalCode"
                             disableUnderline="true"
                             placeholder="Postal code"
+                            value={this.state.postalCode}
                             onChange={e => this.changePostalCode(e)}
                         />
                     </FormControl>
