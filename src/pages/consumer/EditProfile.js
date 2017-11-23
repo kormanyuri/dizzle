@@ -178,10 +178,14 @@ class EditProfile extends Component {
             firstName:      '',
             lastName:       '',
             email:          '',
+            password:       '',
+            dateOfBirth:    '',
+            image:          UploadAva,
             showLoading:    true,
             baseUrl:        config.baseUrl,
-            open: false,
-            message: ''
+            open:           false,
+            message:        '',
+            token:          window.localStorage.getItem('token')
         }
     }
 
@@ -198,18 +202,94 @@ class EditProfile extends Component {
             })
                 .then(response => {
                     console.log(response);
-
+                    const name = response.data.socialDataProfile.nickname.split(' ');
                     this.setState({
-                        userId: response.data.id,
-                        nickname:  response.data.socialDataProfile.nickname,
-                        email:     response.data.email,
-                        showLoading: false
+                        userId:         response.data.id,
+                        nickname:       response.data.socialDataProfile.nickname,
+                        firstName:      typeof name[0] != 'undefined' ? name[0] : '',
+                        lastName:       typeof name[1] != 'undefined' ? name[1] : '',
+                        email:          response.data.email,
+                        dateOfBirth:    typeof response.data.socialDataProfile.dateOfBirth != 'undefined' ? response.data.socialDataProfile.dateOfBirth : '',
+                        showLoading:    false
                     });
+
+                    console.log(this.state);
                 })
                 .catch(error => {
                     console.log(error);
                 })
         }
+    }
+
+    changeName(e){
+        const name = e.target.value.split(' ');
+
+        this.setState({
+            firstName: typeof name[0] != 'undefined' ? name[0] : '',
+            lastName:  typeof name[1] != 'undefined' ? name[1] : ''
+        });
+    }
+
+    changeDateOfBirth(e){
+        this.setState({
+            dateOfBirth: e.target.value
+        });
+    }
+
+    changePassword(e){
+        this.setState({
+            password: e.target.value
+        });
+    }
+
+    save(){
+        axios.post(this.state.baseUrl + 'gift-card/rest/consumer/0', {
+            token:       this.state.token,
+            firstName:   this.state.firstName,
+            lastName:    this.state.lastName,
+            password:    this.state.password,
+            dateOfBirth: this.state.dateOfBirth,
+            image:       this.state.image
+        })
+            .then(response => {
+                //redirect to profile
+            })
+            .catch(error => {
+                console.log(error.response.data.message);
+                this.setState({
+                    showLoading: false,
+                    showWarningEmail: true,
+                    showWarningToast: true,
+                    warningToastMessage: error.response.data.message
+                });
+
+                setTimeout(() => {
+                    this.setState({
+                        showWarningToast: false
+                    });
+                }, 3000);
+            });
+    }
+
+    uploadImage(e) {
+        // console.log(e.target.files[0]);
+        let fileObject = e.target.files[0];
+        let formData = new FormData();
+        formData.append('image', fileObject);
+        console.log(formData);
+
+        axios.post(this.state.baseUrl + 'image/upload/image', formData, {
+            headers: { 'content-type': 'multipart/form-data' }
+        })
+            .then(response => {
+
+                this.setState({
+                    image: '/backend/uploads/images/' + response.data[0]
+                });
+            })
+            .catch(error => {
+
+            });
     }
 
     render() {
@@ -225,16 +305,16 @@ class EditProfile extends Component {
                         <CardContent className={this.props.classes.cardContent}>
                             <div className={this.props.classes.wrapUpload}>
                                 <Avatar
-                                    src={UploadAva}
+                                    src={this.state.image}
                                     className={this.props.classes.avatar}
                                 />
-                                <input type="file" className={this.props.classes.uploadInput}/>
+                                <input type="file" className={this.props.classes.uploadInput} onChange={e => this.uploadImage(e)}/>
                             </div>
                             <div className={this.props.classes.rightCol}>
                                 <div className={this.props.classes.row}>
                                     <TextField
                                         label="Name"
-                                        value={this.state.nickname}
+                                        defaultValue={this.state.nickname}
                                         fullWidth={true}
                                         InputProps={{
                                             disableUnderline: true,
@@ -247,6 +327,7 @@ class EditProfile extends Component {
                                             shrink: true,
                                             className: this.props.classes.textFieldFormLabel,
                                         }}
+                                        onChange={e => this.changeName(e)}
                                     />
                                 </div>
                                 <div className={this.props.classes.row}>
@@ -254,7 +335,7 @@ class EditProfile extends Component {
                                         id="date"
                                         label="date of birth"
                                         type="date"
-                                        defaultValue="1960-11-10"
+                                        defaultValue={this.state.dateOfBirth}
                                         fullWidth={true}
                                         InputProps={{
                                             disableUnderline: true,
@@ -267,6 +348,7 @@ class EditProfile extends Component {
                                             shrink: true,
                                             className: this.props.classes.textFieldFormLabel,
                                         }}
+                                        onChange={e => this.changeDateOfBirth(e)}
                                     />
                                 </div>
                                 <div className={this.props.classes.row}>
@@ -315,7 +397,7 @@ class EditProfile extends Component {
                                         <TextField
                                             type="password"
                                             label="change password"
-                                            defaultValue="Jerry Jiang"
+                                            defaultValue=""
                                             fullWidth={true}
                                             InputProps={{
                                                 disableUnderline: true,
@@ -328,6 +410,7 @@ class EditProfile extends Component {
                                                 shrink: true,
                                                 className: this.props.classes.textFieldFormLabel,
                                             }}
+                                            onChange={e => this.changePassword(e)}
                                         />
                                     </div>
                                 </div>
@@ -354,7 +437,7 @@ class EditProfile extends Component {
                                 </div>
                             </div>
                             <div style={{textAlign: 'right'}}>
-                                <Button className={this.props.classes.button} href="#myaccount">save changes</Button>
+                                <Button className={this.props.classes.button} onClick={this.save.bind(this)}>save changes</Button>
                             </div>
                         </CardContent>
                     </Card>

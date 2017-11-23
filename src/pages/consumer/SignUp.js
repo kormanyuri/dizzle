@@ -7,6 +7,7 @@ import {withStyles} from 'material-ui/styles';
 import withRoot from '../../components/consumer/withRoot';
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
+import Snackbar from 'material-ui/Snackbar';
 
 import MyLinkStyled from '../../components/consumer/MyLink';
 import HeaderLineStyled from '../../components/consumer/HeaderLineStyled';
@@ -181,8 +182,14 @@ class SignUp extends Component {
             baseUrl: config.baseUrl,
             showWarningToast: false,
             warningToastMessage: '',
-            open: false
+            open: false,
+            alert: {
+                open: false,
+                message: <span id="message-id">Error</span>
+            }
         };
+
+        this.handleRequestClose = this.handleRequestClose.bind(this);
     }
 
     showLoading() {
@@ -204,6 +211,12 @@ class SignUp extends Component {
                 showWarningFirstName: true
             });
             allowSave = false;
+            this.setState({
+                alert: {
+                    open: true,
+                    message: 'First Name is empty'
+                }
+            });
         } else {
             this.setState({
                 showWarningFirstName: false
@@ -215,6 +228,12 @@ class SignUp extends Component {
                 showWarningLastName: true
             });
             allowSave = false;
+            this.setState({
+                alert: {
+                    open: true,
+                    message: 'Last Name is empty'
+                }
+            });
         } else {
             this.setState({
                 showWarningLastName: false
@@ -226,6 +245,12 @@ class SignUp extends Component {
                 showWarningEmail: true
             });
             allowSave = false;
+            this.setState({
+                alert: {
+                    open: true,
+                    message: 'Email is empty'
+                }
+            });
         } else {
             this.setState({
                 showWarningEmail: false
@@ -237,6 +262,12 @@ class SignUp extends Component {
                 showWarningPassword: true
             });
             allowSave = false;
+            this.setState({
+                alert: {
+                    open: true,
+                    message: 'Password is empty'
+                }
+            });
         } else {
             this.setState({
                 showWarningPassword: false
@@ -384,6 +415,16 @@ class SignUp extends Component {
                         </div>
                     </div>
                 </div>
+                <Snackbar
+                    className={this.props.classes.message}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    open={this.state.alert.open}
+                    onRequestClose={this.handleRequestClose}
+                    SnackbarContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={this.state.alert.message}
+                />
             </div>
         );
     }
