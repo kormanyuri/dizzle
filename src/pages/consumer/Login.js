@@ -241,13 +241,11 @@ class Login extends Component {
                     window.localStorage.setItem('token', response.data.token);
 
                     // const orderShopperId = window.localStorage.getItem('order_shopper_id');
-                    const orderProcess = window.localStorage.getItem('order_process');
-
-                    if (!orderProcess) {
-                        window.location = '/#/';
-                    } else {
-                        window.location = '/payment.php';
-                    }
+                    // const orderProcess = window.localStorage.getItem('order_process');
+                    window.location = '/#/';
+                    // if (!orderProcess) {
+                    //     window.location = '/#/';
+                    // }
 
                 })
                 .catch(error => {
