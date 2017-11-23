@@ -97,7 +97,7 @@ class GroupBuyList extends Component {
                             key={key}
                             name={item.giftCardGroupBuy.giftCard.shopper.name}
                             avatar={Avatar1}
-                            status="ongoing"
+                            status={item.giftCardGroupBuy.status}
                             giftCard={`$` + item.giftCardGroupBuy.giftCard.giftCardValue}
                             sell={`$` + item.giftCardGroupBuy.giftCard.giftCardValue }
                             groupBuyOwner={item.giftCardGroupBuy.ownerConsumer.socialDataProfile.nickname}

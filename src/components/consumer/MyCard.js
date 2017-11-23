@@ -155,6 +155,20 @@ class MyCard extends React.Component {
     render() {
         const { classes, name, status, giftCard, sell, groupBuyOwner, avatar, href, ...other } = this.props;
 
+        let statusWord = 'ongoing';
+
+        switch (status) {
+            case 0:
+                    statusWord = 'expired';
+                break;
+            case 1:
+                    statusWord = 'ongoing';
+                break;
+            case 2:
+                    statusWord = 'bought';
+                break;
+        }
+
         return (
             <div>
                 <Card className={classes.card} {...other}>
@@ -169,11 +183,11 @@ class MyCard extends React.Component {
                             <span
                                 className={classNames(classes.status,
                                     {
-                                        [classes.ongoingStatus]: status === 'ongoing',
-                                        [classes.boughtStatus]: status === 'bought',
-                                        [classes.expiredStatus]: status === 'expired',
+                                        [classes.ongoingStatus]: status === 1,
+                                        [classes.boughtStatus]: status === 2,
+                                        [classes.expiredStatus]: status === 0,
                                     }
-                                )}>{status}</span>
+                                )}>{statusWord}</span>
                         </Typography>
                     </div>
                     <CardContent className={classes.cardContent}>
