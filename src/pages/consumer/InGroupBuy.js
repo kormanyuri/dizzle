@@ -62,7 +62,8 @@ class InGroupBuy extends React.Component {
                     countDownDate:  new Date(response.data.dateExpired.date).getTime(),
                     percentOfGoal:  (bought/(response.data.giftCard.giftCardValue/100))/100,
                     bought:         bought,
-                    showLoading:    false
+                    showLoading:    false,
+                    logo:           response.data.giftCard.shopper.logo
                 });
 
             })
@@ -115,15 +116,20 @@ class InGroupBuy extends React.Component {
 
     render() {
 
+        let avatar = Avatar1;
+
+
+        if (this.state.logo) {
+            avatar = '/backend/uploads/logos/' + this.state.logo;
+        }
+
         return (
             <div className={this.props.classes.root}>
                 <MyAppBar title="My Group Buy"/>
                 <div className={this.props.classes.bgImg}>
                     <div className={this.props.classes.wrapCard}>
-                        <Avatar
-                            src={Avatar1}
-                            className={this.props.classes.avatar}
-                        />
+                        <Avatar src={avatar} className={this.props.classes.avatar}/>
+
                         <div className={this.props.classes.container}>
                             <div className={this.props.classes.wrapTitle}>
                                 <p className={this.props.classes.title}>{this.state.shopper}</p>

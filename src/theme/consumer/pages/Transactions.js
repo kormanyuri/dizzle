@@ -1,3 +1,5 @@
+import bgCard from '../../../img/consumer/bg-card.png'
+
 let cardHeadHeight = 38;
 
 let width=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;

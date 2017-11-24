@@ -9,8 +9,6 @@ import Card, { CardContent } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import Avatar1 from '../../img/consumer/avatar-1.jpg';
 
-import bgCard from '../../img/consumer/bg-card.png'
-
 import styles from '../../theme/consumer/pages/Transactions';
 
 import Auth from '../../components/Auth';
@@ -98,6 +96,13 @@ class Transactions extends Component {
     render() {
 
         if (this.state.items.length > 0 ) {
+
+            let avatar = Avatar1;
+
+            if (this.state.shopper && this.state.shopper.logo) {
+                avatar = '/backend/uploads/logos/' + this.state.shopper.logo
+            }
+
             return (
                 <div className={this.props.classes.root}>
                     <MyAppBar title={this.state.shopper ? this.state.shopper.name : ''} />
@@ -105,7 +110,7 @@ class Transactions extends Component {
                     <Card className={this.props.classes.card}>
                         <div className={this.props.classes.cardHeader}>
                             <Avatar
-                                src={Avatar1}
+                                src={avatar}
                                 className={this.props.classes.avatar}
                             />
                         </div>

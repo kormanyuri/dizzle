@@ -62,7 +62,8 @@ class InGroupBuySuccessful extends Component {
                     countDownDate:  new Date(response.data.dateExpired.date).getTime(),
                     percentOfGoal:  (bought/(response.data.giftCard.giftCardValue/100))/100,
                     bought:         bought,
-                    showLoading:    false
+                    showLoading:    false,
+                    logo:           response.data.giftCard.shopper.logo
                 });
 
             })
@@ -79,6 +80,11 @@ class InGroupBuySuccessful extends Component {
     }
 
     render() {
+        let avatar = Avatar1;
+
+        if (this.state.logo) {
+            avatar = '/backend/uploads/logos/' + this.state.logo;
+        }
 
         return (
             <div className={this.props.classes.root}>
@@ -86,7 +92,7 @@ class InGroupBuySuccessful extends Component {
                 <div className={this.props.classes.bgImg}>
                     <div className={this.props.classes.wrapCard}>
                         <Avatar
-                            src={Avatar1}
+                            src={avatar}
                             className={this.props.classes.avatar}
                         />
                         <div className={this.props.classes.container}>

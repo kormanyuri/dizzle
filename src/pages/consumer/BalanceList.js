@@ -75,15 +75,22 @@ class BalanceList extends Component {
                 <div className={this.props.classes.root}>
                     <MyAppBar classes={{}} title="Balanse"/>
                     {
-                        this.state.items.map((item, key) =>
-                            <MyCardBalance
-                                key={key}
-                                name={item.shopper.name}
-                                avatar={Avatar1}
-                                giftCard={`$` + item.balance / 100}
-                                groupBuyOwner="jacky"
-                                href={`/#/transactions/${item.shopper.id}`}
-                            />
+                        this.state.items.map((item, key) => {
+                                let avatar = Avatar1;
+
+                                if (item.shopper.logo) {
+                                    avatar = '/backend/uploads/logos/' + item.shopper.logo
+                                }
+
+                                return <MyCardBalance
+                                    key={key}
+                                    name={item.shopper.name}
+                                    avatar={avatar}
+                                    giftCard={`$` + item.balance / 100}
+                                    groupBuyOwner="jacky"
+                                    href={`/#/transactions/${item.shopper.id}`}
+                                />
+                            }
                         )
                     }
                 </div>

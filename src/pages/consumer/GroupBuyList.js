@@ -78,15 +78,20 @@ class GroupBuyList extends Component {
                     <MyAppBar title="My Group Buy"/>
                     {this.state.items.map((item, key) => {
                             let url =  '/#/ingroupbuy/' + item.giftCardGroupBuy.id;
+                            let avatar = Avatar1;
 
                             if (item.giftCardGroupBuy.status == 2) {
                                 url = '/#/ingroupbuysuccessful/' + item.giftCardGroupBuy.id;
                             }
 
+                            if (item.giftCardGroupBuy.giftCard.shopper.logo) {
+                                avatar = '/backend/uploads/logos/' + item.giftCardGroupBuy.giftCard.shopper.logo
+                            }
+
                             return <MyCard
                                         key={key}
                                         name={item.giftCardGroupBuy.giftCard.shopper.name}
-                                        avatar={Avatar1}
+                                        avatar={avatar}
                                         status={item.giftCardGroupBuy.status}
                                         giftCard={`$` + item.giftCardGroupBuy.giftCard.giftCardValue}
                                         sell={`$` + item.giftCardGroupBuy.giftCard.giftCardValue }
