@@ -2,25 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
+import styles from '../../theme/consumer/components/CompleteIcon';
 
 let h = 14;
 let w = 23;
-
-// 1. We define the styles.
-const styles = theme => ({
-    root: {
-        width: 51,
-        height: 51,
-        position: 'relative',
-        color: '#fff',
-        backgroundColor: '#77bf5e',
-        borderRadius: '50%',
-        display: 'inline-block',
-        paddingTop: h/4,
-        lineHeight: '51px',
-    },
-
-});
 
 class CompleteIcon extends React.Component {
 
