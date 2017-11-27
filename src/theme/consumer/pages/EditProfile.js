@@ -119,7 +119,8 @@ const styles = theme => ({
         fontSize: 14.66666,
         fontWeight: 'bold',
         color: '#fff',
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        backgroundColor: '#877650'
     },
     button: {
         fontWeight: 'bold',

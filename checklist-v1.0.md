@@ -16,3 +16,13 @@
 3. check edit profile http://joxi.ru/DmBJobOUNQvyRm
 4. try change fields and press Save changes http://joxi.ru/v29OMq6tGWXKvr
     - bug changes not work 
+
+
+
+
+
+
+
+-----Registration in shopper-------------
+1. go to http://dev.drizzle/#/admin/sign-up
+2. fill all fields press Sign Up

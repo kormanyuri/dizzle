@@ -24,6 +24,7 @@ class EditProfile extends Component {
         super(props);
         const config = new Config();
         console.log('constructor');
+
         this.state = {
             userId:         0,
             firstName:      '',
@@ -43,6 +44,7 @@ class EditProfile extends Component {
     componentWillMount(){
         const token = window.localStorage.getItem('token');
         console.log('will mount');
+
         if (token) {
             this.state.message = 'Load...';
 
@@ -147,16 +149,19 @@ class EditProfile extends Component {
     render() {
 
         console.log('render');
+        console.group('card content');
+        console.log(this.props.classes);
+        console.groupEnd();
 
         if (this.state.userId != 0) {
-            console.log(this.state);
+            //console.log(this.state);
 
             return (
                 <div className={this.props.classes.root}>
                     <MyAppBar title="Edit profile"/>
 
-                    <Card className={this.props.classes.card}>
-                        <CardContent className={this.props.classes.cardContent}>
+                    <Card classes={{root: this.props.classes.card}}>
+                        <CardContent classes={{root: this.props.classes.cardContent}}>
                             <div className={this.props.classes.wrapUpload}>
                                 <Avatar
                                     src={this.state.image}
@@ -312,5 +317,14 @@ EditProfile.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(EditProfile));
+const createGenerateClassName = () => {
+    let counter = 1000;
+
+    return (rule, sheet) => `pizza--${rule.key}-${counter++}`
+};
+
+export default withRoot(withStyles(styles, {
+    //withTheme: false,
+    //generateClassName: createGenerateClassName()
+})(EditProfile));
 

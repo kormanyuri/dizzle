@@ -42,7 +42,7 @@ class Profile extends React.Component {
     }
 
     uploadImage(e) {
-        // console.log(e.target.files[0]);
+        // console.log(e.target .files[0]);
         let fileObject = e.target.files[0];
         let formData = new FormData();
         formData.append('image', fileObject);
@@ -65,6 +65,13 @@ class Profile extends React.Component {
     }
 
     render(){
+
+        let logo = UploadAva;
+
+        if (typeof this.state.shopper.logo != 'undefined') {
+            logo = '/backend/uploads/logos/' + this.state.shopper.logo;
+        }
+
         return(
             <div>
                 <MyAppBar title="profile" />
@@ -72,7 +79,7 @@ class Profile extends React.Component {
                     <div className={this.props.classes.headContent}>
                         <div className={this.props.classes.wrapUpload}>
                             <Avatar
-                                src={`/backend/uploads/logos/` + this.state.shopper.logo}
+                                src={logo}
                                 className={this.props.classes.avatar}
                             />
                             <input type="file" className={this.props.classes.uploadInput} onChange={e => this.uploadImage(e)}/>
@@ -84,7 +91,7 @@ class Profile extends React.Component {
                         <Input
                             id="storeName"
                             disableUnderline="true"
-                            value={this.state.shopper.name}
+                            value={this.state.shopper.name ? this.state.shopper.name : ''}
                             onChange={e => this.handleChange(e)}
                         />
                     </FormControl>

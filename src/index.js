@@ -94,7 +94,7 @@ export default class Index extends React.Component {
                         <Route exact path="/admin/sign-up" component={SignUpAdmin}></Route>
                         <Route exact path="/admin/dashboard" component={Dashboard}></Route>
                         <Route exact path="/admin/redeem" component={Redeem}></Route>
-                        <Route exact path="/admin/redeem-step-1" component={RedeemStep1}></Route>
+                        <Route exact path="/admin/redeem-step-1/:consumerId/:balanceId" component={RedeemStep1}></Route>
                         <Route exact path="/admin/profile" component={Profile}></Route>
                         <Route exact path="/admin/change-password" component={ChangePassword}></Route>
                         <Route exact path="/admin/store-address" component={StoreAddress}></Route>

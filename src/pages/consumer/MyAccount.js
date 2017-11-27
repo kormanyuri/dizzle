@@ -110,5 +110,7 @@ MyAccount.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(MyAccount));
+export default withRoot(withStyles(styles, {
+    link: false
+})(MyAccount));
 

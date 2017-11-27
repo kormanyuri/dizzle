@@ -39,10 +39,18 @@ class Dashboard extends React.Component {
     }
 
     render(){
+        let logo = this.state.shopper.logo;
+
+        if (logo == '') {
+            logo = Avatar1;
+        } else {
+            logo = '/backend/uploads/logos/' + logo
+        }
+
         return(
             <div>
                 <MyAppBar title="dashboard" />
-                <MyPaper title={`Namaste, ` + this.state.shopper.name } avatar={Avatar1}>
+                <MyPaper title={`Namaste, ` + this.state.shopper.name } avatar={logo}>
                     <MyCard id="mycard-1" paramName="total members" paramValue="0" indicatorValue="30%">
                         short description appears when user taps\clicks on (i) information icon. White border expands smoothly. Description text is about this window - total members
                     </MyCard>

@@ -1,87 +1,101 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { withStyles, MuiThemeProvider } from 'material-ui/styles';
+import {withStyles, MuiThemeProvider} from 'material-ui/styles';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import createContext from '../../styles/createContext';
 
-
-
 // Apply some reset
 const styles = theme => ({
-  '@global': {
-    html: {
-      background: theme.palette.background.default,
-      WebkitFontSmoothing: 'antialiased', // Antialiasing.
-      MozOsxFontSmoothing: 'grayscale', // Antialiasing.
-      height: '100%',
-      fontFamily: 'Quicksand, sans-serif',
+
+    '@global': {
+        html: {
+            background: theme.palette.background.default,
+            WebkitFontSmoothing: 'antialiased', // Antialiasing.
+            MozOsxFontSmoothing: 'grayscale', // Antialiasing.
+            height: '100%',
+            fontFamily: 'Quicksand, sans-serif',
+        },
+        body: {
+            backgroundColor: '#f2f2f2',
+            maxWidth: 414,
+            margin: '0 auto',
+            position: 'relative'
+        },
+        div: {
+            boxSizing: 'border-box'
+        },
+        input: {
+            '-webkit-appearance': 'none',
+            '&:focus': {
+                boxShadow: 'none !important',
+                borderColor: 'rgba(255,255,255,0) !important',
+            }
+        },
+        ':focus': {
+            outline: 'none'
+        }
     },
-    body: {
-      backgroundColor: '#f2f2f2',
-      maxWidth: 414,
-      margin: '0 auto',
-      position: 'relative'
-    },
-    div: {
-      boxSizing: 'border-box'
-    },
-    input: {
-      '-webkit-appearance': 'none',
-      '&:focus': {
-        boxShadow: 'none !important',
-        borderColor: 'rgba(255,255,255,0) !important',
-      }
-    },
-    ':focus': {
-      outline: 'none'
-    }
-  },
 });
 
-let AppWrapper = props => props.children;
+let AppWrapper = (props, context) => {
+
+    console.log('app', context);
+    return props.children;
+};
 
 AppWrapper = withStyles(styles)(AppWrapper);
 
 const context = createContext();
 
+console.log(context);
+console.log(AppWrapper);
+
 function withRoot(BaseComponent) {
-  class WithRoot extends Component {
-    constructor(props){
-      super(props);
+    class WithRoot extends Component {
+        constructor(props) {
+            super(props);
+        }
+
+        componentDidMount() {
+            // Remove the server-side injected CSS.
+            const jssStyles = document.querySelector('#jss-server-side');
+            // console.group('with root');
+            // console.log(jssStyles);
+            // if (jssStyles) {
+            //     console.log(jssStyles.parentNode);
+            // }
+
+            if (jssStyles && jssStyles.parentNode) {
+                jssStyles.parentNode.removeChild(jssStyles);
+                //console.log('remove item')
+            }
+            // console.groupEnd();
+        }
+
+        render() {
+            return (
+                <JssProvider SheetsRegistry={context.sheetsRegistry} Jss={context.jss}>
+                    <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
+                        <AppWrapper>
+                            <BaseComponent match={this.props.match}/>
+                        </AppWrapper>
+                    </MuiThemeProvider>
+                </JssProvider>
+            );
+        }
     }
 
-    componentDidMount() {
-      // Remove the server-side injected CSS.
-      const jssStyles = document.querySelector('#jss-server-side');
-      if (jssStyles && jssStyles.parentNode) {
-        jssStyles.parentNode.removeChild(jssStyles);
-      }
-    }
+    // console.log(process.env.NODE_ENV);
+    //
+    // if (process.env.NODE_ENV !== 'production') {
+    //   WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
+    // }
 
-    render() {
-      return (
-          <JssProvider SheetsRegistry={context.sheetsRegistry} Jss={context.jss}>
-            <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
-              <AppWrapper>
-                <BaseComponent match={this.props.match}/>
-              </AppWrapper>
-            </MuiThemeProvider>
-          </JssProvider>
-      );
-    }
-  }
+    WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
 
-  // console.log(process.env.NODE_ENV);
-  //
-  // if (process.env.NODE_ENV !== 'production') {
-  //   WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
-  // }
-
-  WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
-
-  return WithRoot;
+    return WithRoot;
 }
 
 export default withRoot;

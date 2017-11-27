@@ -23,6 +23,16 @@ class SignUp extends Component {
         const config = new Config();
 
         this.state = {
+            showLoading: false,
+            showWarningEmail: false,
+            showWarningFirstName: false,
+            showWarningLastName: false,
+            showWarningPassword: false,
+            showWarningToast: false,
+
+            name: '',
+            warningToastMessage: '',
+            open: false,
             alert: {
                 open: false,
                 message: <span id="message-id">Error</span>
@@ -33,6 +43,138 @@ class SignUp extends Component {
         };
 
     }
+
+    showLoading() {
+        this.setState({showLoading: true});
+
+        this.state.loadingTimer = setTimeout(() => {
+            this.setState({
+                showLoading: false
+            });
+        }, 2000);
+    }
+
+    save() {
+
+        let allowSave = true;
+
+
+        if (this.state.name === '') {
+            this.setState({
+                showWarningLastName: true
+            });
+            allowSave = false;
+            this.setState({
+                alert: {
+                    open: true,
+                    message: 'Name is empty'
+                }
+            });
+        } else {
+            this.setState({
+                showWarningLastName: false
+            });
+        }
+
+        if (this.state.email === '') {
+            this.setState({
+                showWarningEmail: true
+            });
+            allowSave = false;
+            this.setState({
+                alert: {
+                    open: true,
+                    message: 'Email is empty'
+                }
+            });
+        } else {
+            this.setState({
+                showWarningEmail: false
+            });
+        }
+
+        if (this.state.password === '') {
+            this.setState({
+                showWarningPassword: true
+            });
+            allowSave = false;
+            this.setState({
+                alert: {
+                    open: true,
+                    message: 'Password is empty'
+                }
+            });
+        } else {
+            this.setState({
+                showWarningPassword: false
+            });
+        }
+
+        if (allowSave) {
+            this.setState({
+                showLoading: true
+            });
+
+            axios.post(this.state.baseUrl + 'gift-card/rest/shopper/0', {
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                email: this.state.email,
+                password: this.state.password
+            })
+                .then(response => {
+                    this.setState({
+                        showLoading: false,
+                        showWarningEmail: false
+                    });
+                    window.location = '/#/admin/login';
+                })
+                .catch(error => {
+                    console.log(error.response.data.message);
+                    this.setState({
+                        showLoading: false,
+                        showWarningEmail: true,
+                        showWarningToast: true,
+                        warningToastMessage: error.response.data.message
+                    });
+
+                    setTimeout(() => {
+                        this.setState({
+                            showWarningToast: false
+                        });
+                    }, 3000);
+                });
+        }
+    }
+
+    updateName(e) {
+        this.setState({
+            name: e.target.value
+        });
+    }
+
+    updateEmail(e) {
+        this.setState({
+            email: e.target.value
+        });
+    }
+
+    updatePassword(e) {
+        this.setState({
+            password: e.target.value
+        });
+    }
+
+    handleRequestClose() {
+        this.setState({
+            open: false,
+        });
+    };
+
+    handleClick() {
+        this.setState({
+            open: true,
+        });
+    };
 
     render() {
         return (
@@ -51,6 +193,7 @@ class SignUp extends Component {
                                     input: this.props.classes.textFieldInput,
                                 },
                             }}
+                            onChange={e => this.updateName(e) }
                         />
                         <TextField
                             placeholder="Your Email"
@@ -62,6 +205,7 @@ class SignUp extends Component {
                                     input: this.props.classes.textFieldInput,
                                 },
                             }}
+                            onChange={e => this.updateEmail(e) }
                         />
                         <TextField
                             type="password"
@@ -74,8 +218,9 @@ class SignUp extends Component {
                                     input: this.props.classes.textFieldInput,
                                 },
                             }}
+                            onChange={e => this.updatePassword(e) }
                         />
-                        <Button raised className={this.props.classes.button} href="/#/admin/groupbuylist">Sign up</Button>
+                        <Button raised className={this.props.classes.button} onClick={this.save.bind(this)}>Sign up</Button>
                         <Grid container style={{fontSize: 11, marginBottom: 45, textAlign: 'center'}}>
                             <Grid item xs={12}>
                                 <MyLinkStyled href="/#/admin/login" className={this.props.classes.link}>

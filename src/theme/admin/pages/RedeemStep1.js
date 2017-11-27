@@ -15,7 +15,10 @@ const styles = theme =>  ({
         color: '#fff'
     },
     labelInputInline: {
-        marginLeft: 50,
+        marginLeft: 50
+    },
+    label: {
+        backgroundColor: 'inherit !important'
     }
 });
 

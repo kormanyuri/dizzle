@@ -40,11 +40,11 @@ class SetupStoreCreditIncentive extends React.Component {
         this.loadGiftCards();
     }
 
-    changeValue(e, id) {
+    changeValue(e, index) {
         let giftCards = this.state.giftCards;
 
         giftCards.map((item, key) => {
-            if (item.id == id) {
+            if (item.index == index) {
                 giftCards[key].giftCardValue = e.target.value;
                 giftCards[key].changed = true;
             }
@@ -55,11 +55,11 @@ class SetupStoreCreditIncentive extends React.Component {
         });
     }
 
-    changeDiscount(e, id) {
+    changeDiscount(e, index) {
         let giftCards = this.state.giftCards;
 
         giftCards.map((item, key) => {
-            if (item.id == id) {
+            if (item.index == index) {
                 giftCards[key].giftCardDiscount = e.target.value;
                 giftCards[key].changed = true;
             }
@@ -85,6 +85,7 @@ class SetupStoreCreditIncentive extends React.Component {
 
                 response.data.map((item, key) => {
                     if (item.status == 1) {
+                        item.index = key;
                         giftCards.push(item);
                     }
                 });
@@ -102,13 +103,14 @@ class SetupStoreCreditIncentive extends React.Component {
         let giftCards = this.state.giftCards;
 
         giftCards.push(
-            {id: 0, giftCardValue: 100, giftCardDiscount: 0, changed: true}
+            {index: giftCards.length, id: 0, giftCardValue: 100, giftCardDiscount: 0, changed: true}
         );
 
         this.setState({
             giftCards: giftCards
         });
 
+        console.log(this.state);
     }
 
     del(item) {
@@ -127,12 +129,12 @@ class SetupStoreCreditIncentive extends React.Component {
             });
     }
 
-    deleteItem(id){
+    deleteItem(index){
 
         let giftCards = this.state.giftCards;
 
         giftCards.map((item, key) => {
-            if (item.id == id) {
+            if (item.index == index) {
                 giftCards.splice(key, 1);
                 this.del(item);
             }
@@ -177,7 +179,7 @@ class SetupStoreCreditIncentive extends React.Component {
                                 <FormControl className={this.props.classes.formControl}>
                                     <Select
                                         value={item.giftCardValue}
-                                        onChange={((e, id) => this.changeValue(e, item.id)).bind(this)}
+                                        onChange={((e, id) => this.changeValue(e, item.index)).bind(this)}
                                         displayEmpty
                                         className={this.props.classes.selectEmpty}
                                         disableUnderline="true"
@@ -198,7 +200,7 @@ class SetupStoreCreditIncentive extends React.Component {
                                         className={this.props.classes.labelInputInline}
                                         disableUnderline="true"
                                         value={item.giftCardDiscount}
-                                        onChange={((e, id) => this.changeDiscount(e, item.id)).bind(this)}
+                                        onChange={((e, id) => this.changeDiscount(e, item.index)).bind(this)}
                                         startAdornment={<InputAdornment position="start">%</InputAdornment>}
                                     />
                                 </FormControl>

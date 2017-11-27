@@ -1,6 +1,6 @@
 const styles = theme => ({
     root: {
-        backgroundColor: 'yellow'
+        //backgroundColor: 'yellow'
     },
     flex: {
         flex: 1,
@@ -34,6 +34,7 @@ const styles = theme => ({
         maxWidth: 414,
         marginLeft: -(document.body.offsetWidth/2),
         zIndex: 998,
+        padding: '0px !important'
     },
     shadow0: {
         fontSize: '44px'

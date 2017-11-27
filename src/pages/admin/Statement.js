@@ -123,6 +123,14 @@ class Statement extends React.Component {
             });
         }
 
+        let logo = this.state.shopper.logo;
+
+        if (logo == '') {
+            logo = Avatar1;
+        } else {
+            logo = '/backend/uploads/logos/' + logo
+        }
+
         if (this.state.data.length > 0) {
 
             return (
@@ -130,7 +138,7 @@ class Statement extends React.Component {
                     <MyAppBar
                         title="statement"
                     />
-                    <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
+                    <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={logo}>
                         <div className={this.props.classes.titleForm}>Display currency</div>
                         <div className={this.props.classes.wrapFilter} style={{position: 'relative'}}>
                             <Grid container spacing={0}>

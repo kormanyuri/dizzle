@@ -29,7 +29,8 @@ class StoreCreditList extends React.Component {
             member: typeof props.member !== 'undefined' ? props.member : '',
             balance: typeof props.balance !== 'undefined' ? props.balance : '',
             baseUrl: config.baseUrl,
-            shopper: JSON.parse(window.localStorage.getItem('shopper'))
+            shopper: JSON.parse(window.localStorage.getItem('shopper')),
+            token: window.localStorage.getItem('token')
         };
         const data = [
             this.createData('Jack k.', '$85'),
@@ -45,31 +46,56 @@ class StoreCreditList extends React.Component {
         this.createData=this.createData.bind(this);
     };
 
+    componentWillMount(){
+        axios.get(this.state.baseUrl + 'gift-card/rest/shopper-balance/0', {
+            params: {
+                shopperToken: this.state.token,
+                method: 'LIST'
+            }
+        })
+            .then(response => {
+                //console.log(response);
+                //this.state.data = response.data;
+                let data = [];
+                response.data.map((item, key) => {
+                    console.log(item.consumer.socialDataProfile.nickname);
+                    data.push({
+                        consumerName: item.consumer.socialDataProfile.nickname,
+                        balance: item.balance
+                    });
+                });
+
+                this.setState({
+                    data: data
+                });
+            })
+            .catch(error => {
+
+            });
+    }
+
     createData(member, balance) {
         this.state.id += 1;
         const id = this.state.id;
         return {  id, member, balance };
     };
 
-    handleClick = (event, member, balance) => {
+    render(){
 
-        if( member!=='' && balance!==''){
-            this.setState({
-                open: true,
-                member: member,
-                balance: balance,
-            });
+        let logo = this.state.shopper.logo;
+
+        if (logo == '') {
+            logo = Avatar1;
+        } else {
+            logo = '/backend/uploads/logos/' + logo
         }
 
-    };
-
-    render(){
         return(
             <div>
                 <MyAppBar
                     title="store credit list"
                 />
-                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
+                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={logo}>
                     <div className={this.props.classes.wrapFilter} style={{position: 'relative'}}>
 
                         <Table className={this.props.classes.table}>
@@ -80,11 +106,11 @@ class StoreCreditList extends React.Component {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {this.state.data.map(n => {
+                                {this.state.data.map((n, key) => {
                                     return (
-                                        <TableRow key={n.id}>
-                                            <TableCell>{n.member}</TableCell>
-                                            <TableCell>{n.balance}</TableCell>
+                                        <TableRow key={key}>
+                                            <TableCell>{n.consumerName}</TableCell>
+                                            <TableCell>${n.balance/100}</TableCell>
                                         </TableRow>
                                     );
                                 })}
