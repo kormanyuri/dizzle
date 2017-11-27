@@ -27,14 +27,19 @@ class InGroupBuy extends React.Component {
     constructor(props) {
         super(props);
         console.log(props);
-        const config = new Config();
+        const config = new Config()
+        const shareUrl = config.baseFrontUrl + 'plugin/friend-buy/' + props.match.params.id;
+
         this.state = {
             id: props.match.params.id,
             shopper: '',
             timeLeft: '',
             showLoading: false,
             baseUrl: config.baseUrl,
-            open: false
+            open: false,
+            shareFbUrl:         'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl) + '&t=Friend share Gift Card',
+            shareGooglePlusUrl: 'https://plus.google.com/share?url='+ encodeURIComponent(shareUrl),
+            shareTwitterUrl:    'https://twitter.com/share?url=' + encodeURIComponent(shareUrl) + '&via=TWITTER_HANDLE&text=Friend share Gift Card'
         };
 
         this.timer = this.timer.bind(this);
@@ -114,6 +119,14 @@ class InGroupBuy extends React.Component {
         }
     }
 
+    shareFB(e) {
+        window.open(this.state.shareFbUrl, '_blank');
+    }
+
+    shareTwitter(e){
+        window.open(this.state.shareTwitterUrl, '_blank');
+    }
+
     render() {
 
         let avatar = Avatar1;
@@ -165,12 +178,12 @@ class InGroupBuy extends React.Component {
                 <HeaderLineStyled className={this.props.classes.divider} >invite your friend to buy together</HeaderLineStyled>
                 <Grid container spacing={0} style={{fontSize: 11}}>
                     <Grid item xs={12} sm={6} className={this.props.classes.socGridItem}>
-                        <Button className={this.props.classes.btnFacebook}>
+                        <Button className={this.props.classes.btnFacebook} onClick={e => this.shareFB(e)}>
                             <span className={this.props.classes.facebookIco}></span>facebook
                         </Button>
                     </Grid>
                     <Grid item xs={12} sm={6} className={this.props.classes.socGridItem}>
-                        <Button className={this.props.classes.btnTwitter}>
+                        <Button className={this.props.classes.btnTwitter} onClick={e => this.shareTwitter(e)}>
                             <span className={this.props.classes.twitter}></span>twitter
                         </Button>
                     </Grid>

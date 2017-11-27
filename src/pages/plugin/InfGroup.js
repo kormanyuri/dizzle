@@ -24,13 +24,15 @@ class InfGroup extends Component {
         super(props);
         console.log(props);
         const config = new Config();
+
+
         this.state = {
             id: props.match.params.id,
             shopper: '',
             timeLeft: '',
             showLoading: false,
             baseUrl: config.baseUrl,
-            open: false
+            open: false,
         };
 
         this.timer = this.timer.bind(this);
