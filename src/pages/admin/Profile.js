@@ -72,10 +72,18 @@ class Profile extends React.Component {
             logo = '/backend/uploads/logos/' + this.state.shopper.logo;
         }
 
+        let logoAvatar = this.state.shopper.logo;
+
+        if (logoAvatar == '') {
+            logoAvatar = Avatar1;
+        } else {
+            logoAvatar = '/backend/uploads/logos/' + logoAvatar
+        }
+
         return(
             <div>
                 <MyAppBar title="profile" />
-                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
+                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={logoAvatar}>
                     <div className={this.props.classes.headContent}>
                         <div className={this.props.classes.wrapUpload}>
                             <Avatar

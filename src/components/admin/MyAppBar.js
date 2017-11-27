@@ -19,6 +19,7 @@ class MyAppBar extends React.Component {
             open: typeof props.open !== 'undefined' ? props.open : 'false',
             classes: typeof props.classes !== 'undefined' ? props.classes : '',
             title: typeof props.title !== 'undefined' ? props.title : '',
+            shopper: JSON.parse(window.localStorage.getItem('shopper')),
         };
     }
 
@@ -27,6 +28,14 @@ class MyAppBar extends React.Component {
     }
 
     render(){
+        let logo = this.state.shopper.logo;
+
+        if (logo == '') {
+            logo = Avatar1;
+        } else {
+            logo = '/backend/uploads/logos/' + logo
+        }
+
         return (
             <div>
                 <AppBar position="fixed" className={this.props.classes.appbar}>
@@ -42,7 +51,7 @@ class MyAppBar extends React.Component {
                         </IconButton>
                     </Toolbar>
                 </AppBar>
-                <MyMenu avatar={Avatar1} welcome="Namaste, Starbucks" open={this.state.open} />
+                <MyMenu avatar={logo} welcome={`Namaste, ` + this.state.shopper.name } open={this.state.open} />
             </div>
         );
     }
