@@ -37,6 +37,7 @@ class Login extends Component {
         };
 
         this.handleRequestClose = this.handleRequestClose.bind(this);
+        this.handleFBLogin = this.handleFBLogin.bind(this);
     };
 
     handleRequestClose() {
@@ -159,7 +160,7 @@ class Login extends Component {
     }
 
     handleFBLogin() {
-        FB.login(this.checkFBLoginState());
+        FB.login(this.checkFBLoginState);
     }
 
     componentDidMount(){
