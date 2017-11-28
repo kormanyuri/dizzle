@@ -28,7 +28,7 @@ class InGroupBuy extends React.Component {
         super(props);
         console.log(props);
         const config = new Config()
-        const shareUrl = config.baseFrontUrl + 'plugin/friend-buy/' + props.match.params.id;
+        const shareUrl = config.baseFrontUrl + '#/plugin/friend-buy/' + props.match.params.id;
 
         this.state = {
             id: props.match.params.id,

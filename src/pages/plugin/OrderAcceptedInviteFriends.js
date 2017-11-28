@@ -27,7 +27,7 @@ class OrderAcceptedInviteFriends extends Component {
 
         const orderGroupBuyId = window.localStorage.getItem('order_group_buy_id');
         const config = new Config();
-        const shareUrl = config.baseFrontUrl + 'plugin/friend-buy/' + orderGroupBuyId;
+        const shareUrl = config.baseFrontUrl + '#/plugin/friend-buy/' + orderGroupBuyId;
 
 
         this.state = {
