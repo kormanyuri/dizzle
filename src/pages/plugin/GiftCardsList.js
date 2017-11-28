@@ -124,7 +124,7 @@ class GiftCardsList extends Component {
 
         axios.get(this.state.baseUrl + 'gift-card/rest/group-buy/' + this.state.groupBuyId)
             .then(response => {
-                console.log(response);
+                //console.log(response);
 
                 const shopperObject = JSON.stringify({
                     name:   response.data.giftCard.shopper.name,

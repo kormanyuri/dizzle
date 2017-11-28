@@ -16,7 +16,7 @@ class MyButtonType2 extends React.Component {
     }
 
     componentWillReceiveProps(props) {
-        console.log(props);
+        // console.log(props);
         this.setState({
             href: props.href
         });

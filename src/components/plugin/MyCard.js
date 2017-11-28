@@ -43,6 +43,7 @@ class MyCard extends React.Component {
             titlecontent:    typeof props.titlecontent !== 'undefined' ? props.titlecontent : '',
             subtitlecontent: typeof props.subtitlecontent !== 'undefined' ? props.subtitlecontent : '',
             selValue:        typeof props.selValue !== 'undefined' ? props.selValue : '25',
+            giftCardId:      typeof props.giftCardId !== 'undefined' ? props.giftCardId : '',
             discount:        props.discount,
             token:           window.localStorage.getItem('token'),
             baseUrl:         config.baseUrl
@@ -52,8 +53,9 @@ class MyCard extends React.Component {
     };
 
     componentWillMount(){
+        const orderGiftCardId = window.localStorage.getItem('order_gift_card_id');
         const isFriendlyBuy = window.localStorage.getItem('is_friend_buy');
-        if (isFriendlyBuy) {
+        if (isFriendlyBuy && orderGiftCardId == this.state.giftCardId) {
             this.state.opendialog1 = true;
         }
     }
