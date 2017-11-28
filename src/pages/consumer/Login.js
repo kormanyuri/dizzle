@@ -109,6 +109,63 @@ class Login extends Component {
         }
     }
 
+    loadFbLoginApi(){
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1246488792150506',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v2.11'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    }
+
+    testAPI() {
+        console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me', function(response) {
+            console.log('Successful login for: ' + response.name);
+            document.getElementById('status').innerHTML =
+                'Thanks for logging in, ' + response.name + '!';
+        });
+    }
+
+    statusFBChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        if (response.status === 'connected') {
+            this.testAPI();
+        } else if (response.status === 'not_authorized') {
+            console.log("Please log into this app.");
+        } else {
+            console.log("Please log into this facebook.");
+        }
+    }
+
+    checkFBLoginState() {
+        FB.getLoginStatus(function(response) {
+            this.statusFBChangeCallback(response);
+        }.bind(this));
+    }
+
+    handleFBLogin() {
+        FB.login(this.checkFBLoginState());
+    }
+
+    componentDidMount(){
+        this.loadFbLoginApi();
+    }
+
     render() {
 
         return (
@@ -159,7 +216,7 @@ class Login extends Component {
                             <HeaderLineStyled className={this.props.classes.horDivId}>or Login with</HeaderLineStyled>
                             <Grid container spacing={0} style={{fontSize: 11}}>
                                 <Grid item xs={12} sm={6} className={this.props.classes.gridItem}>
-                                    <Button className={this.props.classes.btnFacebook}>
+                                    <Button className={this.props.classes.btnFacebook} onClick={this.handleFBLogin}>
                                         <span className={this.props.classes.facebookIco}></span>facebook
                                     </Button>
                                 </Grid>
