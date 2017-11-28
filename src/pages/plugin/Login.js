@@ -25,7 +25,7 @@ class Login extends Component {
         super(props);
         const config = new Config();
 
-        const shopper = window.localStorage.getItem('shopper');
+        const shopper = JSON.parse(window.localStorage.getItem('shopper'));
 
         this.state = {
             alert: {
@@ -184,7 +184,7 @@ class Login extends Component {
                                         password?</MyLinkStyled>
                                 </Grid>
                                 <Grid item xs={6} style={{textAlign: 'right'}}>
-                                    <MyLinkStyled href="/#/plugin/sign-up" className={this.props.classes.link}>
+                                    <MyLinkStyled href={`/#/plugin/sign-up/` + this.state.shopperId} className={this.props.classes.link}>
                                         New here? Sign Up
                                     </MyLinkStyled>
                                 </Grid>

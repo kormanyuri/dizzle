@@ -17,13 +17,23 @@ class MyAppBar extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
+            shopper: JSON.parse(window.localStorage.getItem('shopper')),
             open: false
         };
+
+        this.close = this.close.bind(this);
     }
 
     handleClickOpen() {
         this.setState({ open: true });
+    }
+
+    close(e){
+        e.preventDefault();
+        window.localStorage.clear();
+        window.location = '/#/plugin/login/' + this.state.shopper.id;
     }
 
     render(){
@@ -47,7 +57,7 @@ class MyAppBar extends React.Component {
                 <MyDialog1 open={this.state.open} titlecontent="Do you want to exit?!" subtitlecontent={["Do you really want", <br key="0"/>, "to exit?"]} >
                     <div className={this.props.classes.wrapsoc}>
                         <div style={{textAlign: 'center'}}>
-                            <MyButtonType2 href="#">exit</MyButtonType2>
+                            <MyButtonType2 href="#" onClick={e => this.close(e)}>exit</MyButtonType2>
                         </div>
                     </div>
                 </MyDialog1>

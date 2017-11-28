@@ -4,6 +4,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import Login from './pages/consumer/Login';
 import PluginLogin from './pages/plugin/Login';
+import PluginSignUp from './pages/plugin/SignUp';
+
 import SignUp from './pages/consumer/SignUp';
 import GroupBuyList from './pages/consumer/GroupBuyList';
 import InGroupBuy from './pages/consumer/InGroupBuy';
@@ -79,6 +81,7 @@ export default class Index extends React.Component {
 
                         <Route exact path="/plugin/login" component={PluginLogin}/>
                         <Route exact path="/plugin/login/:shopperId" component={PluginLogin}/>
+                        <Route exact path="/plugin/sign-up/:shopperId" component={PluginSignUp}/>
                         <Route exact path="/plugin/gift-cards-list/:shopperId" component={GiftCardsList}/>
                         <Route exact path="/plugin/friend-buy/:groupBuyId" component={GiftCardsList}/>
                         <Route exact path="/plugin/inf-group/:id" component={InfGroup}/>

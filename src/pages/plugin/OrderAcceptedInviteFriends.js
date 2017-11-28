@@ -35,6 +35,9 @@ class OrderAcceptedInviteFriends extends Component {
             shareGooglePlusUrl: 'https://plus.google.com/share?url='+ encodeURIComponent(shareUrl),
             shareTwitterUrl:    'https://twitter.com/share?url=' + encodeURIComponent(shareUrl) + '&via=TWITTER_HANDLE&text=Friend share Gift Card',
             giftCard:           JSON.parse(window.localStorage.getItem('gift_card')),
+            user:               user,
+            shopper:            shopper,
+            amount:             window.localStorage.getItem('order_amount'),
             open:               false
         };
     }
@@ -53,22 +56,20 @@ class OrderAcceptedInviteFriends extends Component {
 
         return (
             <div className={this.props.classes.root}>
-                <MyAppBar
-                    title="Order Accepted"
-                />
+                <MyAppBar title="Order Accepted" />
                 <Card className={this.props.classes.card}>
                     <div className={this.props.classes.cardHeader}>
                     </div>
                     <CardContent className={this.props.classes.cardContent}>
                         <div className={this.props.classes.title}>
-                            Welcome, {this.state.userName}
+                            Welcome, {this.state.user.name}
                         </div>
                         <Divider className={this.props.classes.divider} />
                         <ul className={this.props.classes.ul}>
                             <li className={this.props.classes.listItem}>
                                 <div className={classNames(this.props.classes.param)}>
                                     <span className={this.props.classes.paramValue}>${this.state.amount/100}</span>
-                                    <span className={this.props.classes.paramProp}>{this.state.shopperName} ${this.state.giftCard.giftCardValue} gift card</span>
+                                    <span className={this.props.classes.paramProp}>{this.state.shopper.name} ${this.state.giftCard.giftCardValue} gift card</span>
                                 </div>
                             </li>
                         </ul>
@@ -76,16 +77,22 @@ class OrderAcceptedInviteFriends extends Component {
                         <TextGroup groupName="Payment Confirmation">
                             <div style={{marginTop: 70, marginBottom: 35, textAlign: 'center'}}>
                                 <CompleteIcon className={this.props.classes.compIcon} />
-                                <div className={this.props.classes.subName} style={{opacity: 1}}>ongratulations, Your
-                                    <br/>group buy is active!</div>
+                                <div className={this.props.classes.subName} style={{opacity: 1}}>
+                                    ongratulations, Your
+                                    <br/>group buy is active!
+                                </div>
                             </div>
                             <div style={{textAlign: 'center', marginTop: 30, marginBottom: 70}}>
                                 <Grid container>
                                     <Grid item xs={12} style={{padding: 6}}>
-                                        <MyButtonType2 style={{width: '100%'}} onClick={this.handleClickOpen.bind(this)}>invite your friends</MyButtonType2>
+                                        <MyButtonType2 style={{width: '100%'}} onClick={this.handleClickOpen.bind(this)}>
+                                            invite your friends
+                                        </MyButtonType2>
                                     </Grid>
                                     <Grid item xs={12} style={{padding: 6}}>
-                                        <MyButtonType2 style={{paddingLeft: 22, paddingRight: 22, width: '100%'}} href="/#/groupbuylist">check group buy status</MyButtonType2>
+                                        <MyButtonType2 style={{paddingLeft: 22, paddingRight: 22, width: '100%'}} href="/#/groupbuylist">
+                                            check group buy status
+                                        </MyButtonType2>
                                     </Grid>
                                 </Grid>
                             </div>

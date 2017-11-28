@@ -7,16 +7,16 @@ import {purple, green} from 'material-ui/colors';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
 
 const theme = createMuiTheme({
-  palette: {
-    primary: purple,
-    secondary: green,
-  },
-  spacing: {
-    unit: 5
-  },
-  typography: {
-    fontFamily: 'Quicksand, sans-serif',
-  }
+    palette: {
+        primary: purple,
+        secondary: green,
+    },
+    spacing: {
+        unit: 5
+    },
+    typography: {
+        fontFamily: 'Quicksand, sans-serif',
+    }
 });
 
 // Configure JSS
@@ -24,12 +24,12 @@ const jss = create(preset());
 //console.log(jss);
 jss.options.createGenerateClassName = createGenerateClassName;
 
-console.log(jss.options.createGenerateClassName);
+// console.log(jss.options.createGenerateClassName);
 
 export const sheetsManager = new Map();
 
 export default function createContext() {
-    console.log('create context');
+    // console.log('create context');
     return {
         jss,
         theme,

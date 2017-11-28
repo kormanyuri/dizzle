@@ -163,21 +163,29 @@ class GiftCardsList extends Component {
                 <div className={this.props.classes.root}>
 
                     <MyAppBar title="Gift Cards"/>
-                    {this.state.items.map((item, i) =>
-                        <MyCard
-                            key={i}
-                            name={item.shopper.name}
-                            avatar={Avatar1}
-                            giftcard={`$` + item.giftCardValue}
-                            sell={`$` + (item.giftCardValue - (item.giftCardValue * item.giftCardDiscount/100))}
-                            buytogether="true"
-                            infbutt={`/#/plugin/inf-group/` + item.id}
-                            titlecontent={`$` + item.giftCardValue + ` Gift Card Group Buy`}
-                            subtitlecontent={["input the amount you", <br key="0"/>, "want to buy (min. $25; max $"  + item.giftCardValue + ")"]}
-                            discount={item.giftCardDiscount}
-                            giftCardId={item.id}
-                            giftCardValue={item.giftCardValue * 100}
-                        />
+                    {this.state.items.map((item, i) => {
+                            let logo = Avatar1;
+
+                            if (item.shopper.logo != '') {
+                                logo = '/backend/uploads/logos/' + item.shopper.logo;
+                            }
+
+                            return <MyCard
+                                key={i}
+                                name={item.shopper.name}
+                                avatar={logo}
+                                giftcard={`$` + item.giftCardValue}
+                                sell={`$` + (item.giftCardValue - (item.giftCardValue * item.giftCardDiscount / 100))}
+                                buytogether="true"
+                                infbutt={`/#/plugin/inf-group/` + item.id}
+                                titlecontent={`$` + item.giftCardValue + ` Gift Card Group Buy`}
+                                subtitlecontent={["input the amount you",
+                                    <br key="0"/>, "want to buy (min. $25; max $" + item.giftCardValue + ")"]}
+                                discount={item.giftCardDiscount}
+                                giftCardId={item.id}
+                                giftCardValue={item.giftCardValue * 100}
+                            />
+                        }
                     )}
                 </div>
 

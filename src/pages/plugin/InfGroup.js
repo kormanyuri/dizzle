@@ -22,7 +22,7 @@ class InfGroup extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
+        //console.log(props);
         const config = new Config();
 
 
@@ -39,26 +39,27 @@ class InfGroup extends Component {
     }
 
     componentWillMount(){
-        console.log(this.props.classes);
-        console.log(styles());
+        //console.log(this.props.classes);
+        //console.log(styles());
 
         this.setState({
             showLoading: true
         });
 
-        axios.get(this.state.baseUrl + 'gift-card/rest/group-buy/' + this.state.id)
+        axios.get(this.state.baseUrl + 'gift-card/rest/gift-card/' + this.state.id)
             .then(response => {
+                console.log(response.data);
 
                 const bought = response.data.bought ? response.data.bought : 0;
 
                 this.setState({
-                    shopper:        response.data.giftCard.shopper.name,
-                    giftCardValue:  response.data.giftCard.giftCardValue,
-                    owner:          response.data.ownerConsumer.socialDataProfile.nickname,
-                    totalUsers:     response.data.countPartners,
-                    sell:           response.data.giftCard.giftCardValue,
-                    countDownDate:  new Date(response.data.dateExpired.date).getTime(),
-                    percentOfGoal:  (bought/(response.data.giftCard.giftCardValue/100))/100,
+                    shopper:        response.data.shopper,
+                    giftCardValue:  response.data.giftCardValue,
+                    //owner:          response.data.ownerConsumer.socialDataProfile.nickname,
+                    //totalUsers:     response.data.countPartners,
+                    //sell:           response.data.giftCard.giftCardValue,
+                    //countDownDate:  new Date(response.data.dateExpired.date).getTime(),
+                    //percentOfGoal:  (bought/(response.data.giftCard.giftCardValue/100))/100,
                     bought:         bought,
                     showLoading:    false
                 });
@@ -113,18 +114,24 @@ class InfGroup extends Component {
 
     render() {
 
+        let logo = Avatar1;
+
+        if (this.state.shopper && this.state.shopper.logo != '') {
+            logo = '/backend/uploads/logos/' + this.state.shopper.logo;
+        }
+
         return (
             <div className={this.props.classes.root}>
                 <MyAppBar title="My Group Buy"/>
                 <div className={this.props.classes.bgImg}>
                     <div className={this.props.classes.wrapCard}>
                         <Avatar
-                            src={Avatar1}
+                            src={logo}
                             className={this.props.classes.avatar}
                         />
                         <div className={this.props.classes.container}>
                             <div className={this.props.classes.wrapTitle}>
-                                <p className={this.props.classes.title}>{this.state.shopper}</p>
+                                <p className={this.props.classes.title}>{this.state.shopper.name}</p>
                                 <p className={this.props.classes.subTitle}>{this.state.giftCardValue} USD gift card</p>
                             </div>
                         </div>

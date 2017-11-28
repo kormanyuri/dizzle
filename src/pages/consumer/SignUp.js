@@ -21,8 +21,6 @@ import styles from '../../theme/consumer/pages/SignUp';
 import Config from '../../Config';
 import axios from 'axios';
 
-
-
 class SignUp extends Component {
 
     constructor(props) {
@@ -249,12 +247,12 @@ class SignUp extends Component {
                                 }}
                                 onChange={e => this.updatePassword(e) }
                             />
-                            <Button raised className={this.props.classes.button}  onClick={this.save.bind(this)}>
+                            <Button raised className={this.props.classes.button} onClick={this.save.bind(this)}>
                                 Sign up
                             </Button>
                             <Grid container style={{fontSize: 11, marginBottom: 45, textAlign: 'center'}}>
                                 <Grid item xs={12}>
-                                    <MyLinkStyled href="#login" className={this.props.classes.link}>
+                                    <MyLinkStyled href="/#/login" className={this.props.classes.link}>
                                         Already have an account? Log In!
                                     </MyLinkStyled>
                                 </Grid>

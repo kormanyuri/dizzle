@@ -49,8 +49,8 @@ AppWrapper = withStyles(styles)(AppWrapper);
 
 const context = createContext();
 
-console.log(context);
-console.log(AppWrapper);
+// console.log(context);
+// console.log(AppWrapper);
 
 function withRoot(BaseComponent) {
     class WithRoot extends Component {

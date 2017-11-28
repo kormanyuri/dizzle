@@ -63,7 +63,7 @@ class InGroupBuy extends React.Component {
                     giftCardValue:  response.data.giftCard.giftCardValue,
                     owner:          response.data.ownerConsumer.socialDataProfile.nickname,
                     totalUsers:     response.data.countPartners,
-                    sell:           response.data.giftCard.giftCardValue,
+                    sell:           (response.data.giftCard.giftCardValue * 100 - response.data.bought)/100,
                     countDownDate:  new Date(response.data.dateExpired.date).getTime(),
                     percentOfGoal:  (bought/(response.data.giftCard.giftCardValue/100))/100,
                     bought:         bought,
