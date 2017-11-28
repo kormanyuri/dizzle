@@ -94,7 +94,7 @@ class GroupBuyList extends Component {
                                         avatar={avatar}
                                         status={item.giftCardGroupBuy.status}
                                         giftCard={`$` + item.giftCardGroupBuy.giftCard.giftCardValue}
-                                        sell={`$` + ((item.giftCardGroupBuy.giftCard.giftCardValue * 100 - item.giftCardGroupBuy.bought)/100)}
+                                        sell={`$` + (item.giftCardValue - (item.giftCardValue * item.giftCardDiscount / 100))}
                                         groupBuyOwner={item.giftCardGroupBuy.ownerConsumer.socialDataProfile.nickname}
                                         href={url}
                                     />
