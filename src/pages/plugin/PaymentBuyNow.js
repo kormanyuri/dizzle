@@ -24,8 +24,9 @@ class Payment extends Component {
     constructor(props) {
         super(props);
         const config = new Config();
-        const shopper = JSON.parse(window.localStorage.getItem('shopper'));
-        const user = JSON.parse(window.localStorage.getItem('user'));
+        const shopper    = JSON.parse(window.localStorage.getItem('shopper'));
+        const user       = JSON.parse(window.localStorage.getItem('user'));
+        const groupBuyId = window.localStorage.getItem('order_group_buy_id');
 
         this.state = {
             cardNumber: null,
@@ -37,7 +38,8 @@ class Payment extends Component {
             shopperName: shopper.name,
             userName: user ? user.name : '',
             giftCard: JSON.parse(window.localStorage.getItem('gift_card')),
-            displayHoldMessage: 'none'
+            displayHoldMessage: 'none',
+            groupBuyId: groupBuyId ? groupBuyId : 0
         }
     }
 
@@ -75,6 +77,7 @@ class Payment extends Component {
             ccvCode: this.state.ccvCode,
             amount: window.localStorage.getItem('order_amount'),
             giftCardId: window.localStorage.getItem('order_gift_card_id'),
+            groupBuyId: this.state.groupBuyId,
             isBuyNow: window.localStorage.getItem('isBuyNow'),
             userToken: window.localStorage.getItem('token')
         })
@@ -82,6 +85,7 @@ class Payment extends Component {
                 console.log(response);
 
                 const isBuyNow = window.localStorage.getItem('isBuyNow');
+                window.localStorage.removeItem('order_group_buy_id');
 
                 if (isBuyNow != 0) {
                     window.location = '/#/plugin/order-accepted'
