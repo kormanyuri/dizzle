@@ -137,7 +137,7 @@ class Login extends Component {
 
     loginFB() {
         console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', {fields: 'last_name, email'}, function(response) {
+        FB.api('/me', {fields: 'name, email'}, function(response) {
             console.log(response);
             // console.log('Successful login for: ' + response.name);
             // document.getElementById('status').innerHTML =
@@ -167,7 +167,7 @@ class Login extends Component {
     }
 
     handleFBLogin() {
-        FB.login(this.checkFBLoginState);
+        FB.login(this.checkFBLoginState, {scope: 'email,user_likes'});
     }
 
     componentDidMount(){
