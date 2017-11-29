@@ -130,7 +130,7 @@ class StoreAdress extends React.Component {
                     <FormControl className={this.props.classes.formControl}>
 
                         <Select
-                            value={this.state.country}
+                            value={this.state.country ? this.state.country : ''}
                             onChange={e => this.changeCountry(e)}
                             displayEmpty
                             disableUnderline="true"
@@ -147,7 +147,7 @@ class StoreAdress extends React.Component {
                             id="province"
                             disableUnderline="true"
                             placeholder="State / Province"
-                            value={this.state.province}
+                            value={this.state.province ? this.state.province : ''}
                             onChange={e => this.changeProvince(e)}
                         />
                     </FormControl>
@@ -156,7 +156,7 @@ class StoreAdress extends React.Component {
                             id="City"
                             disableUnderline="true"
                             placeholder="City"
-                            value={this.state.city}
+                            value={this.state.city ? this.state.city : ''}
                             onChange={e => this.changeCity(e)}
                         />
                     </FormControl>
@@ -165,7 +165,7 @@ class StoreAdress extends React.Component {
                             id="Address1"
                             disableUnderline="true"
                             placeholder="Address 1"
-                            value={this.state.address1}
+                            value={this.state.address1 ? this.state.address1 : ''}
                             onChange={e => this.changeAddress1(e)}
                         />
                     </FormControl>
@@ -174,7 +174,7 @@ class StoreAdress extends React.Component {
                             id="Address2"
                             disableUnderline="true"
                             placeholder="Address 2"
-                            value={this.state.address2}
+                            value={this.state.address2 ? this.state.address2 : ''}
                             onChange={e => this.changeAddress2(e)}
                         />
                     </FormControl>
@@ -183,7 +183,7 @@ class StoreAdress extends React.Component {
                             id="PostalCode"
                             disableUnderline="true"
                             placeholder="Postal code"
-                            value={this.state.postalCode}
+                            value={this.state.postalCode ? this.state.postalCode : ''}
                             onChange={e => this.changePostalCode(e)}
                         />
                     </FormControl>

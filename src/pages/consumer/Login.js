@@ -170,6 +170,10 @@ class Login extends Component {
         FB.login(this.checkFBLoginState, {scope: 'email,user_likes'});
     }
 
+    componentWillMount(){
+        window.localStorage.clear();
+    }
+
     componentDidMount(){
         this.loadFbLoginApi();
     }
