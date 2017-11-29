@@ -58,8 +58,8 @@ class InGroupBuy extends React.Component {
 
                 //console.log(response);
                 const bought = response.data.bought ? response.data.bought : 0;
-                const sell   = (item.giftCardGroupBuy.giftCard.giftCardValue - (item.giftCardGroupBuy.giftCard.giftCardValue * item.giftCardGroupBuy.giftCard.giftCardDiscount / 100));
-                
+                const sell   = response.data.giftCard.giftCardValue - (response.data.giftCard.giftCardValue * response.data.giftCard.giftCardDiscount / 100);
+
                 this.setState({
                     shopper:        response.data.giftCard.shopper.name ? response.data.giftCard.shopper.name : '',
                     giftCardValue:  response.data.giftCard.giftCardValue,
