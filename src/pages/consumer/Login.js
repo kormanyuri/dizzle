@@ -135,20 +135,21 @@ class Login extends Component {
         }(document, 'script', 'facebook-jssdk'));
     }
 
-    testAPI() {
+    loginFB() {
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
-            console.log('Successful login for: ' + response.name);
-            document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.name + '!';
+            console.log(response);
+            // console.log('Successful login for: ' + response.name);
+            // document.getElementById('status').innerHTML =
+            //     'Thanks for logging in, ' + response.name + '!';
         });
     }
 
     statusFBChangeCallback(response) {
-        console.log('statusChangeCallback');
+        //console.log('statusChangeCallback');
         console.log(response);
         if (response.status === 'connected') {
-            this.testAPI();
+            this.loginFB();
         } else if (response.status === 'not_authorized') {
             console.log("Please log into this app.");
         } else {
@@ -159,8 +160,8 @@ class Login extends Component {
     checkFBLoginState() {
         // FB.getLoginStatus(this.statusFBChangeCallback);
         FB.getLoginStatus(response => {
-            console.log(response);
-            console.log(this);
+            //console.log(response);
+            //console.log(this);
             this.statusFBChangeCallback(response);
         });
     }
