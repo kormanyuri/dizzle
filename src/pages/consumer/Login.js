@@ -158,6 +158,7 @@ class Login extends Component {
     checkFBLoginState() {
         // FB.getLoginStatus(this.statusFBChangeCallback);
         FB.getLoginStatus((function(response) {
+            console.log(response);
             this.statusFBChangeCallback(response);
         }).bind(this));
     }
