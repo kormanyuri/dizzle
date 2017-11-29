@@ -56,14 +56,16 @@ class InGroupBuy extends React.Component {
         axios.get(this.state.baseUrl + 'gift-card/rest/group-buy/' + this.state.id)
             .then(response => {
 
+                //console.log(response);
                 const bought = response.data.bought ? response.data.bought : 0;
-
+                const sell   = (item.giftCardGroupBuy.giftCard.giftCardValue - (item.giftCardGroupBuy.giftCard.giftCardValue * item.giftCardGroupBuy.giftCard.giftCardDiscount / 100));
+                
                 this.setState({
                     shopper:        response.data.giftCard.shopper.name ? response.data.giftCard.shopper.name : '',
                     giftCardValue:  response.data.giftCard.giftCardValue,
                     owner:          response.data.ownerConsumer.socialDataProfile.nickname,
                     totalUsers:     response.data.countPartners,
-                    sell:           item.giftCardGroupBuy.giftCard.giftCardValue - (item.giftCardGroupBuy.giftCard.giftCardValue * item.giftCardGroupBuy.giftCard.giftCardDiscount / 100),
+                    sell:           sell,
                     countDownDate:  new Date(response.data.dateExpired.date).getTime(),
                     percentOfGoal:  (bought/(response.data.giftCard.giftCardValue/100))/100,
                     bought:         bought,
