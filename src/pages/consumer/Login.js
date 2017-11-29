@@ -137,7 +137,7 @@ class Login extends Component {
 
     loginFB() {
         console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function(response) {
+        FB.api('/me', {fields: 'email'}, function(response) {
             console.log(response);
             // console.log('Successful login for: ' + response.name);
             // document.getElementById('status').innerHTML =
