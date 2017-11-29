@@ -90,7 +90,7 @@ class GroupBuyList extends Component {
 
                             return <MyCard
                                         key={key}
-                                        name={item.giftCardGroupBuy.giftCard.shopper.name}
+                                        name={item.giftCardGroupBuy.giftCard.shopper.name ? item.giftCardGroupBuy.giftCard.shopper.name : ''}
                                         avatar={avatar}
                                         status={item.giftCardGroupBuy.status}
                                         giftCard={`$` + item.giftCardGroupBuy.giftCard.giftCardValue}
