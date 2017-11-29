@@ -172,7 +172,7 @@ class GiftCardsList extends Component {
 
                             return <MyCard
                                 key={i}
-                                name={item.shopper.name}
+                                name={item.shopper.name ? item.shopper.name : ''}
                                 avatar={logo}
                                 giftcard={`$` + item.giftCardValue}
                                 sell={`$` + (item.giftCardValue - (item.giftCardValue * item.giftCardDiscount / 100))}

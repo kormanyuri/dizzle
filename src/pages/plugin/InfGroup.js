@@ -131,7 +131,7 @@ class InfGroup extends Component {
                         />
                         <div className={this.props.classes.container}>
                             <div className={this.props.classes.wrapTitle}>
-                                <p className={this.props.classes.title}>{this.state.shopper.name}</p>
+                                <p className={this.props.classes.title}>{this.state.shopper.name ? this.state.shopper.name : ''}</p>
                                 <p className={this.props.classes.subTitle}>{this.state.giftCardValue} USD gift card</p>
                             </div>
                         </div>
