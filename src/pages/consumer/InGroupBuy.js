@@ -59,7 +59,7 @@ class InGroupBuy extends React.Component {
                 const bought = response.data.bought ? response.data.bought : 0;
 
                 this.setState({
-                    shopper:        response.data.giftCard.shopper.name,
+                    shopper:        response.data.giftCard.shopper.name ? response.data.giftCard.shopper.name : '',
                     giftCardValue:  response.data.giftCard.giftCardValue,
                     owner:          response.data.ownerConsumer.socialDataProfile.nickname,
                     totalUsers:     response.data.countPartners,
