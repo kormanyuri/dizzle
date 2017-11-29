@@ -40,7 +40,7 @@ class Login extends Component {
         this.handleFBLogin          = this.handleFBLogin.bind(this);
         this.checkFBLoginState      = this.checkFBLoginState.bind(this);
         this.statusFBChangeCallback = this.statusFBChangeCallback.bind(this);
-        this.testAPI                = this.testAPI.bind(this);
+        this.loginFB                = this.loginFB.bind(this);
     };
 
     handleRequestClose() {
