@@ -12,9 +12,9 @@ import Snackbar from 'material-ui/Snackbar';
 import MyLinkStyled from '../../components/consumer/MyLink';
 import HeaderLineStyled from '../../components/consumer/HeaderLineStyled';
 
-import Background from '../../img/consumer/bg-women.png';
-import facebookIco from '../../img/consumer/facebook.svg';
-import twitterIco from '../../img/consumer/twitter.svg';
+// import Background from '../../img/consumer/bg-women.png';
+// import facebookIco from '../../img/consumer/facebook.svg';
+// import twitterIco from '../../img/consumer/twitter.svg';
 
 import styles from '../../theme/consumer/pages/SignUp';
 

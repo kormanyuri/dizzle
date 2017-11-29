@@ -1,3 +1,7 @@
+import Background from '../../../img/consumer/bg-women.png';
+import facebookIco from '../../../img/consumer/facebook.svg';
+import twitterIco from '../../../img/consumer/twitter.svg';
+
 let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
 let h = Math.max(
