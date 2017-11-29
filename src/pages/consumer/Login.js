@@ -36,10 +36,11 @@ class Login extends Component {
             baseUrl: config.baseUrl
         };
 
-        this.handleRequestClose = this.handleRequestClose.bind(this);
-        this.handleFBLogin = this.handleFBLogin.bind(this);
+        this.handleRequestClose     = this.handleRequestClose.bind(this);
+        this.handleFBLogin          = this.handleFBLogin.bind(this);
+        this.checkFBLoginState      = this.checkFBLoginState.bind(this);
         this.statusFBChangeCallback = this.statusFBChangeCallback.bind(this);
-        this.testAPI = this.testAPI.bind(this);
+        this.testAPI                = this.testAPI.bind(this);
     };
 
     handleRequestClose() {
@@ -161,7 +162,7 @@ class Login extends Component {
             console.log(response);
             console.log(this);
             this.statusFBChangeCallback(response);
-        }).bind(this);
+        });
     }
 
     handleFBLogin() {
