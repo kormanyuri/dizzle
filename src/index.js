@@ -48,9 +48,12 @@ import styles from './theme/admin/pages/Index';
 
 
 // import { HashRouter,Route} from 'react-router-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+//import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router';
 
+import createBrowserHistory from 'history/createBrowserHistory';
 
+const history = createBrowserHistory();
 
 export default class Index extends React.Component {
 
@@ -64,7 +67,7 @@ export default class Index extends React.Component {
                 backgroundColor: '#f2f2f2'
             }}>
 
-                <Router>
+                <Router history={history}>
                     <div style={{minHeight: '100%', height: '100%'}}>
                         <Route exact path="/" component={GroupBuyList}></Route>
                         <Route exact path="/login" component={Login}></Route>
