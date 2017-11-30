@@ -57,7 +57,7 @@ class DisplayCurrency extends React.Component {
             currency:    this.state.currency,
         })
             .then(response => {
-                window.location = '/#/admin/profile'
+                window.location = '/admin/profile'
             })
             .catch(error => {
 

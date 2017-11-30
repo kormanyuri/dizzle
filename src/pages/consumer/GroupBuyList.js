@@ -77,11 +77,11 @@ class GroupBuyList extends Component {
                 <div className={this.props.classes.root}>
                     <MyAppBar title="My Group Buy"/>
                     {this.state.items.map((item, key) => {
-                            let url =  '/#/ingroupbuy/' + item.giftCardGroupBuy.id;
+                            let url =  '/ingroupbuy/' + item.giftCardGroupBuy.id;
                             let avatar = Avatar1;
 
                             if (item.giftCardGroupBuy.status == 2) {
-                                url = '/#/ingroupbuysuccessful/' + item.giftCardGroupBuy.id;
+                                url = '/ingroupbuysuccessful/' + item.giftCardGroupBuy.id;
                             }
 
                             if (item.giftCardGroupBuy.giftCard.shopper.logo) {

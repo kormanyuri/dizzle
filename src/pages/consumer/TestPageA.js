@@ -23,7 +23,7 @@ class TestPageA extends Component {
             <div className={this.props.classes.root}>
                 <MyAppBar title="Balance" />
                 <p>Test Page A1</p>
-                <a className={this.props.classes.hrefA} href="/#/test-page-b">Test B</a>
+                <a className={this.props.classes.hrefA} href="/test-page-b">Test B</a>
             </div>
         )
     }

@@ -33,7 +33,7 @@ class MyAppBar extends React.Component {
     close(e){
         e.preventDefault();
         window.localStorage.clear();
-        window.location = '/#/plugin/login/' + this.state.shopper.id;
+        window.location = '/plugin/login/' + this.state.shopper.id;
     }
 
     render(){

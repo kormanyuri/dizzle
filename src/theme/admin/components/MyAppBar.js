@@ -36,6 +36,7 @@ const styles = theme => ({
         left: (windowW > 414)? '50%' : 0,
         marginLeft: (windowW > 414)? '-207px': 0,
         zIndex: 998,
+        alignItems: 'stretch'
     },
 });
 

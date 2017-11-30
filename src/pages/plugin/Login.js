@@ -122,10 +122,10 @@ class Login extends Component {
                 const orderProcess = window.localStorage.getItem('order_process');
 
                 if (!orderProcess) {
-                    window.location = '/#/plugin/gift-cards-list/' + shopper.id;
+                    window.location = '/plugin/gift-cards-list/' + shopper.id;
                 } else {
                     window.localStorage.removeItem('order_process');
-                    window.location = '/#/plugin/payment-buy-now';
+                    window.location = '/plugin/payment-buy-now';
                 }
 
             })
@@ -184,7 +184,7 @@ class Login extends Component {
                                         password?</MyLinkStyled>
                                 </Grid>
                                 <Grid item xs={6} style={{textAlign: 'right'}}>
-                                    <MyLinkStyled href={`/#/plugin/sign-up/` + this.state.shopperId} className={this.props.classes.link}>
+                                    <MyLinkStyled href={`/plugin/sign-up/` + this.state.shopperId} className={this.props.classes.link}>
                                         New here? Sign Up
                                     </MyLinkStyled>
                                 </Grid>

@@ -148,7 +148,7 @@ class SignUp extends Component {
                         showLoading: false,
                         showWarningEmail: false
                     });
-                    window.location = '/#/login';
+                    window.location = '/login';
                 })
                 .catch(error => {
                     console.log(error.response.data.message);
@@ -252,7 +252,7 @@ class SignUp extends Component {
                             </Button>
                             <Grid container style={{fontSize: 11, marginBottom: 45, textAlign: 'center'}}>
                                 <Grid item xs={12}>
-                                    <MyLinkStyled href="/#/login" className={this.props.classes.link}>
+                                    <MyLinkStyled href="/login" className={this.props.classes.link}>
                                         Already have an account? Log In!
                                     </MyLinkStyled>
                                 </Grid>

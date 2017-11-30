@@ -18,7 +18,7 @@ class MyAppBar extends React.Component {
 
     constructor(props){
        super(props);
-       console.log(props);
+       // console.log(props);
        this.state = {
            title: props.title
        }
@@ -41,6 +41,7 @@ class MyAppBar extends React.Component {
 
     render(){
         const { classes, title } = this.props;
+
         return (
             <AppBar position="fixed" classes={{
                 root: this.props.classes.root,

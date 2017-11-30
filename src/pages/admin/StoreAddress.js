@@ -113,7 +113,7 @@ class StoreAdress extends React.Component {
             postalCode: this.state.postalCode
         })
             .then(response => {
-
+                window.location = '/admin/profile';
             })
             .catch(error => {
 

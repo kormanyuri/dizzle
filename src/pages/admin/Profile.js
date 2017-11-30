@@ -35,10 +35,22 @@ class Profile extends React.Component {
 
     handleChange(event) {
         let shopper = this.state.shopper;
-        shopper.name = event.target.value,
+        shopper.name = event.target.value;
+
         this.setState({
             shopper: shopper
+        });
+
+        axios.post(this.state.baseUrl + 'gift-card/rest/shopper/' + this.state.shopper.id, {
+            name:    shopper.name
         })
+            .then(response => {
+                console.log('name is save');
+                window.localStorage.setItem('shopper', JSON.stringify(this.state.shopper));
+            })
+            .catch(error => {
+
+            });
     }
 
     uploadImage(e) {
@@ -57,7 +69,18 @@ class Profile extends React.Component {
                 this.setState({
                     shopper: shopper
                 });
+
                 window.localStorage.setItem('shopper', JSON.stringify(this.state.shopper));
+
+                axios.post(this.state.baseUrl + 'gift-card/rest/shopper/' + this.state.shopper.id, {
+                    logo:    shopper.logo
+                })
+                    .then(response => {
+                        console.log('logo is save');
+                    })
+                    .catch(error => {
+
+                    });
             })
             .catch(error => {
 
@@ -103,13 +126,13 @@ class Profile extends React.Component {
                             onChange={e => this.handleChange(e)}
                         />
                     </FormControl>
-                    <Button className={this.props.classes.button} href="/#/admin/change-password">CHANGE PASSWORD</Button>
-                    <Button className={this.props.classes.button} href="/#/admin/store-address">STORE ADDRESS</Button>
-                    <Button className={this.props.classes.button} href="/#/admin/display-currency">DISPLAY CURRENCY</Button>
-                    <Button className={this.props.classes.button} href="/#/admin/store-credit-incentive">STORE CREDIT INCENTIVE</Button>
-                    <Button className={this.props.classes.button} href="/#/admin/profile">DOWNLOAD SHOP’S QR CODE</Button>
-                    <Button className={this.props.classes.button} href="/#/admin/plugin-setup">PLUGIN SETUP</Button>
-                    <Button className={this.props.classes.button} href="/#/admin/sms-info">SMS INFO</Button>
+                    <Button className={this.props.classes.button} href="/admin/change-password">CHANGE PASSWORD</Button>
+                    <Button className={this.props.classes.button} href="/admin/store-address">STORE ADDRESS</Button>
+                    <Button className={this.props.classes.button} href="/admin/display-currency">DISPLAY CURRENCY</Button>
+                    <Button className={this.props.classes.button} href="/admin/store-credit-incentive">STORE CREDIT INCENTIVE</Button>
+                    <Button className={this.props.classes.button} href="/admin/profile">DOWNLOAD SHOP’S QR CODE</Button>
+                    <Button className={this.props.classes.button} href="/admin/plugin-setup">PLUGIN SETUP</Button>
+                    <Button className={this.props.classes.button} href="/admin/sms-info">SMS INFO</Button>
                 </MyPaper>
             </div>
         );

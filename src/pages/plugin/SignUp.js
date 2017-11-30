@@ -154,7 +154,7 @@ class Signup extends Component {
                         showLoading: false,
                         showWarningEmail: false
                     });
-                    window.location = '/#/plugin/login/' + this.state.shopper.id;
+                    window.location = '/plugin/login/' + this.state.shopper.id;
                 })
                 .catch(error => {
                     console.log(error.response.data.message);
@@ -231,7 +231,7 @@ class Signup extends Component {
                                 up</Button>
                             <Grid container style={{fontSize: 11, marginBottom: 45, textAlign: 'center'}}>
                                 <Grid item xs={12}>
-                                    <MyLinkStyled href={`/#/plugin/login/` + this.state.shopper.id} className={this.props.classes.link}>
+                                    <MyLinkStyled href={`/plugin/login/` + this.state.shopper.id} className={this.props.classes.link}>
                                         Already have an account? Log In!
                                     </MyLinkStyled>
                                 </Grid>

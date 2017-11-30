@@ -26,7 +26,7 @@ class PluginSetup extends React.Component {
     }
 
     goToPlugin(){
-        window.open(window.location.origin + '/#/plugin/gift-cards-list/' + this.state.shopper.id, '_blank');
+        window.open(window.location.origin + '/plugin/gift-cards-list/' + this.state.shopper.id, '_blank');
     }
 
     render(){

@@ -65,7 +65,7 @@ class ChangePassword extends React.Component {
                 })
                     .then(response => {
                         //redirect to /#/admin/profile
-                        window.location = '/#/admin/profile';
+                        window.location = '/admin/profile';
                     })
                     .catch(error => {
 

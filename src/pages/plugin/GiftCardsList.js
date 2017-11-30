@@ -177,7 +177,7 @@ class GiftCardsList extends Component {
                                 giftcard={`$` + item.giftCardValue}
                                 sell={`$` + (item.giftCardValue - (item.giftCardValue * item.giftCardDiscount / 100))}
                                 buytogether="true"
-                                infbutt={`/#/plugin/inf-group/` + item.id}
+                                infbutt={`/plugin/inf-group/` + item.id}
                                 titlecontent={`$` + item.giftCardValue + ` Gift Card Group Buy`}
                                 subtitlecontent={["input the amount you",
                                     <br key="0"/>, "want to buy (min. $25; max $" + item.giftCardValue + ")"]}

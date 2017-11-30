@@ -46,7 +46,7 @@ class Redeem extends React.Component {
         })
             .then(response => {
                 console.log(response);
-                window.location = '/#/admin/redeem-step-1/' + response.data.consumerId + '/' + response.data.balanceId;
+                window.location = '/admin/redeem-step-1/' + response.data.consumerId + '/' + response.data.balanceId;
                 // let shopper = this.state.shopper;
                 // shopper.logo = response.data[0];
                 // this.setState({

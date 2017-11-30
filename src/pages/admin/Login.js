@@ -83,7 +83,7 @@ class Login extends Component {
                     name:   response.data.name,
                     logo:   response.data.image
                 }));
-                window.location = '/#/admin/dashboard';
+                window.location = '/admin/dashboard';
                 // const orderShopperId = window.localStorage.getItem('order_shopper_id');
                 // const orderProcess = window.localStorage.getItem('order_process');
                 //
@@ -145,7 +145,7 @@ class Login extends Component {
                                     password?</MyLinkStyled>
                             </Grid>
                             <Grid item xs={6} style={{textAlign: 'right'}}>
-                                <MyLinkStyled href="/#/admin/sign-up" className={this.props.classes.link}>New here? Sign
+                                <MyLinkStyled href="/admin/sign-up" className={this.props.classes.link}>New here? Sign
                                     Up</MyLinkStyled>
                             </Grid>
                         </Grid>

@@ -95,7 +95,7 @@ class Login extends Component {
                     }));
                     // const orderShopperId = window.localStorage.getItem('order_shopper_id');
                     // const orderProcess = window.localStorage.getItem('order_process');
-                    window.location = '/#/';
+                    window.location = '/';
                     // if (!orderProcess) {
                     //     window.location = '/#/';
                     // }
@@ -220,7 +220,7 @@ class Login extends Component {
                                     </MyLinkStyled>
                                 </Grid>
                                 <Grid item xs={6} style={{textAlign: 'right'}}>
-                                    <MyLinkStyled href="#signup" className={this.props.classes.link}>
+                                    <MyLinkStyled href="/signup" className={this.props.classes.link}>
                                         New here? Sign Up
                                     </MyLinkStyled>
                                 </Grid>

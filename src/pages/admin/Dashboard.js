@@ -29,13 +29,13 @@ class Dashboard extends React.Component {
     }
 
     componentWillMount(){
-        axios.get(this.state.baseUrl + '')
-            .then(response => {
-
-            })
-            .catch(error => {
-
-            });
+        // axios.get(this.state.baseUrl + '')
+        //     .then(response => {
+        //
+        //     })
+        //     .catch(error => {
+        //
+        //     });
     }
 
     render(){

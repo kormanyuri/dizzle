@@ -116,8 +116,7 @@ class SignUp extends Component {
             });
 
             axios.post(this.state.baseUrl + 'gift-card/rest/shopper/0', {
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
+                name: this.state.name,
                 email: this.state.email,
                 password: this.state.password
             })
@@ -126,7 +125,7 @@ class SignUp extends Component {
                         showLoading: false,
                         showWarningEmail: false
                     });
-                    window.location = '/#/admin/login';
+                    window.location = '/admin/login';
                 })
                 .catch(error => {
                     console.log(error.response.data.message);
@@ -184,7 +183,7 @@ class SignUp extends Component {
                         <div className={this.props.classes.title}>DRIZZLE</div>
                         <div className={this.props.classes.subtitle}>welcome to Merchant Portal</div>
                         <TextField
-                            placeholder="Your Name"
+                            placeholder="Name"
                             fullWidth={true}
                             InputProps={{
                                 disableUnderline: true,
@@ -196,7 +195,7 @@ class SignUp extends Component {
                             onChange={e => this.updateName(e) }
                         />
                         <TextField
-                            placeholder="Your Email"
+                            placeholder="Email"
                             fullWidth={true}
                             InputProps={{
                                 disableUnderline: true,
@@ -223,7 +222,7 @@ class SignUp extends Component {
                         <Button raised className={this.props.classes.button} onClick={this.save.bind(this)}>Sign up</Button>
                         <Grid container style={{fontSize: 11, marginBottom: 45, textAlign: 'center'}}>
                             <Grid item xs={12}>
-                                <MyLinkStyled href="/#/admin/login" className={this.props.classes.link}>
+                                <MyLinkStyled href="/admin/login" className={this.props.classes.link}>
                                     Already have an account? Log In!
                                 </MyLinkStyled>
                             </Grid>

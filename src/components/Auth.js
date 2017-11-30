@@ -10,7 +10,7 @@ export default class Auth
         if (token) {
             return true;
         } else {
-            window.location = '/#/login';
+            window.location = '/login';
         }
     }
 }

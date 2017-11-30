@@ -47,7 +47,8 @@ import StoreCreditList from './pages/admin/StoreCreditList';
 import styles from './theme/admin/pages/Index';
 
 
-import { HashRouter,Route} from 'react-router-dom';
+// import { HashRouter,Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 
@@ -63,23 +64,23 @@ export default class Index extends React.Component {
                 backgroundColor: '#f2f2f2'
             }}>
 
-                <HashRouter>
+                <Router>
                     <div style={{minHeight: '100%', height: '100%'}}>
-                        <Route exact path="/" component={GroupBuyList}/>
-                        <Route exact path="/login" component={Login}/>
-                        <Route exact path="/signup" component={SignUp}/>
-                        <Route exact path="/groupbuylist" component={GroupBuyList}/>
-                        <Route exact path="/ingroupbuy/:id" component={InGroupBuy}/>
-                        <Route exact path="/ingroupbuysuccessful/:id" component={InGroupBuySuccessful}/>
-                        <Route exact path="/balancelist" component={BalanceList}/>
-                        <Route exact path="/transactions/:shopperId" component={Transactions}/>
-                        <Route exact path="/myaccount" component={MyAccount}/>
-                        <Route exact path="/editprofile" component={EditProfile}/>
-                        <Route exact path="/qr" component={QRqode}/>
-                        <Route exact path="/test-page-a" component={TestPageA}/>
-                        <Route exact path="/test-page-b" component={TestPageB}/>
+                        <Route exact path="/" component={GroupBuyList}></Route>
+                        <Route exact path="/login" component={Login}></Route>
+                        <Route exact path="/signup" component={SignUp}></Route>
+                        <Route exact path="/groupbuylist" component={GroupBuyList}></Route>
+                        <Route exact path="/ingroupbuy/:id" component={InGroupBuy}></Route>
+                        <Route exact path="/ingroupbuysuccessful/:id" component={InGroupBuySuccessful}></Route>
+                        <Route exact path="/balancelist" component={BalanceList}></Route>
+                        <Route exact path="/transactions/:shopperId" component={Transactions}></Route>
+                        <Route exact path="/myaccount" component={MyAccount}></Route>
+                        <Route exact path="/editprofile" component={EditProfile}></Route>
+                        <Route exact path="/qr" component={QRqode}></Route>
+                        <Route exact path="/test-page-a" component={TestPageA}></Route>
+                        <Route exact path="/test-page-b" component={TestPageB}></Route>
 
-                        <Route exact path="/plugin/login" component={PluginLogin}/>
+                        <Route exact path="/plugin/login" component={PluginLogin}></Route>
                         <Route exact path="/plugin/login/:shopperId" component={PluginLogin}/>
                         <Route exact path="/plugin/sign-up/:shopperId" component={PluginSignUp}/>
                         <Route exact path="/plugin/gift-cards-list/:shopperId" component={GiftCardsList}/>
@@ -92,23 +93,23 @@ export default class Index extends React.Component {
                         <Route exact path="/plugin/order-accepted-invite-friends" component={OrderAcceptedInviteFriends}/>
 
 
-                        <Route exact path="/admin" component={LoginAdmin}></Route>
-                        <Route exact path="/admin/login" component={LoginAdmin}></Route>
-                        <Route exact path="/admin/sign-up" component={SignUpAdmin}></Route>
-                        <Route exact path="/admin/dashboard" component={Dashboard}></Route>
-                        <Route exact path="/admin/redeem" component={Redeem}></Route>
-                        <Route exact path="/admin/redeem-step-1/:consumerId/:balanceId" component={RedeemStep1}></Route>
-                        <Route exact path="/admin/profile" component={Profile}></Route>
-                        <Route exact path="/admin/change-password" component={ChangePassword}></Route>
-                        <Route exact path="/admin/store-address" component={StoreAddress}></Route>
-                        <Route exact path="/admin/display-currency" component={DisplayCurrency}></Route>
-                        <Route exact path="/admin/store-credit-incentive" component={SetupStoreCreditIncentive}></Route>
-                        <Route exact path="/admin/plugin-setup" component={PluginSetup}></Route>
-                        <Route exact path="/admin/sms-info" component={SmsInfo}></Route>
-                        <Route exact path="/admin/statement" component={Statement}></Route>
-                        <Route exact path="/admin/store-credit-list" component={StoreCreditList}></Route>
+                        <Route exact path="/admin" component={LoginAdmin}/>
+                        <Route exact path="/admin/login" component={LoginAdmin}/>
+                        <Route exact path="/admin/sign-up" component={SignUpAdmin}/>
+                        <Route exact path="/admin/dashboard" component={Dashboard}/>
+                        <Route exact path="/admin/redeem" component={Redeem}/>
+                        <Route exact path="/admin/redeem-step-1/:consumerId/:balanceId" component={RedeemStep1}/>
+                        <Route exact path="/admin/profile" component={Profile}/>
+                        <Route exact path="/admin/change-password" component={ChangePassword}/>
+                        <Route exact path="/admin/store-address" component={StoreAddress}/>
+                        <Route exact path="/admin/display-currency" component={DisplayCurrency}/>
+                        <Route exact path="/admin/store-credit-incentive" component={SetupStoreCreditIncentive}/>
+                        <Route exact path="/admin/plugin-setup" component={PluginSetup}/>
+                        <Route exact path="/admin/sms-info" component={SmsInfo}/>
+                        <Route exact path="/admin/statement" component={Statement}/>
+                        <Route exact path="/admin/store-credit-list" component={StoreCreditList}/>
                     </div>
-                </HashRouter>
+                </Router>
 
             </div>
         )

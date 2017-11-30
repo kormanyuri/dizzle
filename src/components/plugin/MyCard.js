@@ -80,16 +80,16 @@ class MyCard extends React.Component {
 
 
     goToPayment(){
-        return window.location.href = '/#/plugin/payment';
+        return window.location.href = '/plugin/payment';
     }
 
-    startGroupBuy(e, id){
-        //$('#plugin').modal('hide');
-        //$('#plugin-how-much').modal('show');
-        window.localStorage.setItem('order_gift_card_id', id);
-        window.localStorage.setItem('order_shopper_id', this.state.shopperId);
-        window.location = '/order.php/#/order/how-much';
-    }
+    // startGroupBuy(e, id){
+    //     //$('#plugin').modal('hide');
+    //     //$('#plugin-how-much').modal('show');
+    //     window.localStorage.setItem('order_gift_card_id', id);
+    //     window.localStorage.setItem('order_shopper_id', this.state.shopperId);
+    //     window.location = '/order.php/#/order/how-much';
+    // }
 
     btnBuyNowClick() {
 
@@ -150,11 +150,11 @@ class MyCard extends React.Component {
 
         if (this.state.token) {
 
-            window.location = '/#/plugin/payment-buy-now';
+            window.location = '/plugin/payment-buy-now';
 
         } else {
 
-            window.location = '/#/plugin/login';
+            window.location = '/plugin/login';
 
         }
 
@@ -179,7 +179,7 @@ class MyCard extends React.Component {
 
             window.localStorage.setItem('order_process', 1);
             window.localStorage.setItem('order_shopper_id', this.state.shopperId);
-            window.location = '/#/login';
+            window.location = '/login';
 
         }
     }

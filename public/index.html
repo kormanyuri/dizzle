@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="user-scalable=0, initial-scale=1, minimum-scale=1, width=device-width, height=device-height">
+    <meta name="viewport"
+          content="user-scalable=0, initial-scale=1, minimum-scale=1, width=device-width, height=device-height">
     <!-- PWA primary color -->
     <meta name="theme-color" content="#000000">
 
@@ -24,104 +25,114 @@
     <title>Dizzle</title>
 
     <style>
-      .menu {
-        position: fixed;
-        top: 0;
-        left: 50%;
-        height: 100%;
-        z-index: 1000;
-        background: rgba(135,118,80,0.8);
-        max-width: 414;
-        display: none;
-      }
-      .menu-head {
-        width: 100%;
-        text-align: right;
-        color: #fff;
-        z-index: 1200;
-        padding-top: 28px;
-      }
-      .menu-head svg {
-        cursor: pointer;
-      }
-      .menu ul {
-        list-style-type: none;
-        margin: 37px 0 0;
-        padding: 0;
-        font-size: 16px;
-        font-weight: bold;
-        text-transform: uppercase;
-        text-align: center;
-      }
-      .menu ul a {
-         color: #fff;
-         text-decoration: none;
-         line-height: 2.5;
-      }
-      .menu ul a:hover {
-        color: #fff;
-        text-decoration: none;
-        line-height: 2.5;
-        opacity: 0.7;
-      }
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            height: 100%;
+            z-index: 1000;
+            background: rgba(135, 118, 80, 0.8);
+            max-width: 414;
+            display: none;
+        }
+
+        .menu-head {
+            width: 100%;
+            text-align: right;
+            color: #fff;
+            z-index: 1200;
+            padding-top: 28px;
+        }
+
+        .menu-head svg {
+            cursor: pointer;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            margin: 37px 0 0;
+            padding: 0;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .menu ul a {
+            color: #fff;
+            text-decoration: none;
+            line-height: 2.5;
+        }
+
+        .menu ul a:hover {
+            color: #fff;
+            text-decoration: none;
+            line-height: 2.5;
+            opacity: 0.7;
+        }
     </style>
 
     <style>
-      .myMenuOpen {
-        top: 0 !important;
-      }
+        .myMenuOpen {
+            top: 0 !important;
+        }
     </style>
 
-  </head>
-  <body>
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <div id="root" style="min-height: 100%"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+</head>
+<body>
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+<noscript>
+    You need to enable JavaScript to run this app.
+</noscript>
+<div id="root" style="min-height: 100%"></div>
+<!--
+  This HTML file is a template.
+  If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  You can add webfonts, meta tags, or analytics to this file.
+  The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-    <div class="menu" id="menu">
-      <div class="menu-head">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false" id="close-icon"><path stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeMiterlimit="10" d="M1.61 0c-.294-.01-.593.092-.827.31L.777.313C.31.748.283 1.474.717 1.94L4.553 6.07.37 9.957c-.468.434-.495 1.158-.06 1.625l.004.008c.434.467 1.16.494 1.625.06l4.185-3.886 3.887 4.185c.433.466 1.158.493 1.625.06l.008-.006c.466-.434.494-1.158.06-1.625L7.818 6.19l4.13-3.835c.468-.433.495-1.158.062-1.625l-.006-.007C11.57.256 10.846.23 10.38.663L6.245 4.5 2.41.37C2.193.135 1.903.01 1.61 0z" fill="#fff"></path></svg>
-      </div>
-      <ul>
-        <li><a href="#groupbuylist">my group buy</a></li>
-        <li><a href="#balancelist">balance</a></li>
-        <li><a href="#myaccount">my account</a></li>
-        <li><a href="#login">logout</a></li>
-      </ul>
+  To begin the development, run `npm start` or `yarn start`.
+  To create a production bundle, use `npm run build` or `yarn build`.
+-->
+<div class="menu" id="menu">
+    <div class="menu-head">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false"
+             id="close-icon">
+            <path stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeMiterlimit="10"
+                  d="M1.61 0c-.294-.01-.593.092-.827.31L.777.313C.31.748.283 1.474.717 1.94L4.553 6.07.37 9.957c-.468.434-.495 1.158-.06 1.625l.004.008c.434.467 1.16.494 1.625.06l4.185-3.886 3.887 4.185c.433.466 1.158.493 1.625.06l.008-.006c.466-.434.494-1.158.06-1.625L7.818 6.19l4.13-3.835c.468-.433.495-1.158.062-1.625l-.006-.007C11.57.256 10.846.23 10.38.663L6.245 4.5 2.41.37C2.193.135 1.903.01 1.61 0z"
+                  fill="#fff"></path>
+        </svg>
     </div>
-    <script>
-      let root = document.getElementById("root");
-      let menu = document.getElementById("menu");
-      let close = document.getElementById("close-icon");
-      let wr = root.clientWidth+20;
-      if(wr>414){
-        menu.style.width=414+'px';
-        menu.style.marginLeft = -414/2 + 'px';
-      } else {
-        menu.style.width=100+'%';
-        menu.style.marginLeft = -wr/2 + 'px';
-      }
+    <ul>
+        <li><a href="/groupbuylist">my group buy</a></li>
+        <li><a href="/balancelist">balance</a></li>
+        <li><a href="/myaccount">my account</a></li>
+        <li><a href="/login">logout</a></li>
+    </ul>
+</div>
+<script>
+    let root = document.getElementById("root");
+    let menu = document.getElementById("menu");
+    let close = document.getElementById("close-icon");
+    let wr = root.clientWidth + 20;
+    if (wr > 414) {
+        menu.style.width = 414 + 'px';
+        menu.style.marginLeft = -414 / 2 + 'px';
+    } else {
+        menu.style.width = 100 + '%';
+        menu.style.marginLeft = -wr / 2 + 'px';
+    }
 
 
-      function closeMenu(event){
+    function closeMenu(event) {
         root.style.filter = 'none';
-        menu.style.transition="display 5s ease-out 5s";
-        menu.style.display="none";
+        menu.style.transition = "display 5s ease-out 5s";
+        menu.style.display = "none";
 
-      }
+    }
 
-      menu.onclick = closeMenu;
-    </script>
-  </body>
+    menu.onclick = closeMenu;
+</script>
+</body>
 </html>

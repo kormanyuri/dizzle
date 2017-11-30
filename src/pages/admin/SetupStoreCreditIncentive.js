@@ -83,15 +83,17 @@ class SetupStoreCreditIncentive extends React.Component {
 
                 const giftCards = [];
 
-                response.data.map((item, key) => {
-                    if (item.status == 1) {
-                        item.index = key;
-                        giftCards.push(item);
-                    }
-                });
-                this.setState({
-                    giftCards: giftCards
-                });
+                if (typeof response.data.message == 'undefined') {
+                    response.data.map((item, key) => {
+                        if (item.status == 1) {
+                            item.index = key;
+                            giftCards.push(item);
+                        }
+                    });
+                    this.setState({
+                        giftCards: giftCards
+                    });
+                }
             })
             .catch(error => {
                 console.log(error);

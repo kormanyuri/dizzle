@@ -9,7 +9,8 @@ const styles = theme => ({
         fontSize: 12,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginBottom: -8
+        marginBottom: -8,
+        position: 'relative'
     },
     menuButton: {
         marginRight: -10,

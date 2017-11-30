@@ -90,7 +90,7 @@ class OrderAcceptedInviteFriends extends Component {
                                         </MyButtonType2>
                                     </Grid>
                                     <Grid item xs={12} style={{padding: 6}}>
-                                        <MyButtonType2 style={{paddingLeft: 22, paddingRight: 22, width: '100%'}} href="/#/groupbuylist">
+                                        <MyButtonType2 style={{paddingLeft: 22, paddingRight: 22, width: '100%'}} href="/groupbuylist">
                                             check group buy status
                                         </MyButtonType2>
                                     </Grid>
