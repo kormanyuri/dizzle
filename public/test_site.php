@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <a id="gift-card" class="btn btn-success" href="/order.php/#/130">Gift Card</a>
+    <a id="gift-card" class="btn btn-success" href="/plugin/gift-cards-list/130">Gift Card</a>
     <a id="logout" class="btn btn-danger" href="/" style="display: none">Logout</a>
 </div>
 <div id="root" class="container"></div>
@@ -51,8 +51,8 @@
            $('#gift-card').click(function (e) {
                e.preventDefault();
                var shopperId = $('[name="shopperId"]').val();
-               $(this).attr('href', '/#/plugin/gift-cards-list/' + shopperId);
-               window.location = '/#/plugin/gift-cards-list/' + shopperId;
+               $(this).attr('href', '/plugin/gift-cards-list/' + shopperId);
+               window.location = '/plugin/gift-cards-list/' + shopperId;
            });
         });
     })(jQuery);
