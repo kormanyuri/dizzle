@@ -32,17 +32,8 @@ class StoreCreditList extends React.Component {
             shopper: JSON.parse(window.localStorage.getItem('shopper')),
             token: window.localStorage.getItem('shopper_token')
         };
-        const data = [
-            this.createData('Jack k.', '$85'),
-            this.createData('Micky D.', '$45'),
-            this.createData('Jack k.', '$85'),
-            this.createData('Micky D.', '$45'),
-            this.createData('Jack k.', '$85'),
-            this.createData('Micky D.', '$45'),
-            this.createData('Jack k.', '$85'),
-            this.createData('Micky D.', '$45'),
-        ];
-        this.state.data=data;
+
+        this.state.data=[];
         this.createData=this.createData.bind(this);
     };
 
