@@ -161,6 +161,7 @@ class SetupStoreCreditIncentive extends React.Component {
             })
                 .then(response => {
                     console.log(response);
+                    window.location = '/admin/profile';
                 })
                 .catch(error => {
                     console.log(error);

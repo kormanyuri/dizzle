@@ -57,13 +57,16 @@ class StoreCreditList extends React.Component {
                 //console.log(response);
                 //this.state.data = response.data;
                 let data = [];
-                response.data.map((item, key) => {
-                    console.log(item.consumer.socialDataProfile.nickname);
-                    data.push({
-                        consumerName: item.consumer.socialDataProfile.nickname,
-                        balance: item.balance
+
+                if (typeof response.data.message == 'undefined') {
+                    response.data.map((item, key) => {
+                        console.log(item.consumer.socialDataProfile.nickname);
+                        data.push({
+                            consumerName: item.consumer.socialDataProfile.nickname,
+                            balance: item.balance
+                        });
                     });
-                });
+                }
 
                 this.setState({
                     data: data

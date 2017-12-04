@@ -22,6 +22,7 @@ class EditProfile extends Component {
 
     constructor(props){
         super(props);
+
         const config = new Config();
         console.log('constructor');
 
@@ -107,9 +108,11 @@ class EditProfile extends Component {
         })
             .then(response => {
                 //redirect to profile
+                window.location = '/myaccount';
             })
             .catch(error => {
                 console.log(error.response.data.message);
+
                 this.setState({
                     showLoading: false,
                     showWarningEmail: true,

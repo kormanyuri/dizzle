@@ -97,7 +97,7 @@ class MyAccount extends Component {
                             </div>
                         </div>
                         <div style={{textAlign: 'right'}}>
-                            <Button className={this.props.classes.button} href="#editprofile">edit profile</Button>
+                            <Button className={this.props.classes.button} href="/editprofile">edit profile</Button>
                         </div>
                     </CardContent>
                 </Card>
