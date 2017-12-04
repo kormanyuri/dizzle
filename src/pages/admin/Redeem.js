@@ -23,7 +23,7 @@ class Redeem extends React.Component {
         this.state = {
             baseUrl: config.baseUrl,
             shopper: JSON.parse(window.localStorage.getItem('shopper')),
-            token:   window.localStorage.getItem('token')
+            token:   window.localStorage.getItem('shopper_token')
         }
     }
 

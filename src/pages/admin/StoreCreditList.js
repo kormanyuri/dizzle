@@ -30,7 +30,7 @@ class StoreCreditList extends React.Component {
             balance: typeof props.balance !== 'undefined' ? props.balance : '',
             baseUrl: config.baseUrl,
             shopper: JSON.parse(window.localStorage.getItem('shopper')),
-            token: window.localStorage.getItem('token')
+            token: window.localStorage.getItem('shopper_token')
         };
         const data = [
             this.createData('Jack k.', '$85'),

@@ -34,9 +34,9 @@ class Login extends Component {
         };
 
         this.handleRequestClose = this.handleRequestClose.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.updateEmail = this.updateEmail.bind(this);
-        this.updatePassword = this.updatePassword.bind(this);
+        this.handleClick        = this.handleClick.bind(this);
+        this.updateEmail        = this.updateEmail.bind(this);
+        this.updatePassword     = this.updatePassword.bind(this);
     }
 
     handleRequestClose() {
@@ -77,7 +77,7 @@ class Login extends Component {
             .then(response => {
                 console.log(response);
 
-                window.localStorage.setItem('token', response.data.token);
+                window.localStorage.setItem('shopper_token', response.data.token);
                 window.localStorage.setItem('shopper', JSON.stringify({
                     id:     response.data.id,
                     name:   response.data.name,

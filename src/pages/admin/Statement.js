@@ -37,7 +37,7 @@ class Statement extends React.Component {
             paid:    typeof props.paid !== 'undefined' ? props.paid : '',
             balance: typeof props.balance !== 'undefined' ? props.balance : '',
             baseUrl: config.baseUrl,
-            token:   window.localStorage.getItem('token'),
+            token:   window.localStorage.getItem('shopper_token'),
             data:   [],
             shopper: JSON.parse(window.localStorage.getItem('shopper'))
         };
