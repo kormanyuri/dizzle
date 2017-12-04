@@ -30,7 +30,14 @@ class SetupStoreCreditIncentive extends React.Component {
             endValue:   '',
             baseUrl:    config.baseUrl,
             shopper:    JSON.parse(window.localStorage.getItem('shopper')),
-            giftCards:  []
+            giftCards:  [],
+            values:     [
+                {selected: false, value:100},
+                {selected: false, value:200},
+                {selected: false, value:300},
+                {selected: false, value:400},
+                {selected: false, value:500}
+            ]
         };
 
         this.loadGiftCards  = this.loadGiftCards.bind(this);
@@ -43,6 +50,15 @@ class SetupStoreCreditIncentive extends React.Component {
 
     changeValue(e, index) {
         let giftCards = this.state.giftCards;
+        // let values    = this.state.values;
+        //
+        // const indexVal = values.indexOf(e.target.value);
+        //
+        // if (indexVal > -1) {
+        //     values.splice(indexVal, 1);
+        // }
+
+        //console.log(values, e.target.value, indexVal);
 
         giftCards.map((item, key) => {
             if (item.index == index) {
@@ -52,12 +68,14 @@ class SetupStoreCreditIncentive extends React.Component {
         });
 
         this.setState({
-            giftCards: giftCards
+            giftCards: giftCards,
+            //values: values
         });
     }
 
     changeDiscount(e, index) {
         let giftCards = this.state.giftCards;
+
 
         giftCards.map((item, key) => {
             if (item.index == index) {
@@ -85,14 +103,26 @@ class SetupStoreCreditIncentive extends React.Component {
                 const giftCards = [];
 
                 if (typeof response.data.message == 'undefined') {
+                    //selected values
+                    let values = this.state.values;
+
                     response.data.map((item, key) => {
                         if (item.status == 1) {
                             item.index = key;
+
                             giftCards.push(item);
+
+                            this.state.values.map((val, _key) => {
+                                if (val.value == item.giftCardValue) {
+                                    values[_key].selected = true;
+                                }
+                            });
                         }
                     });
+
                     this.setState({
-                        giftCards: giftCards
+                        giftCards: giftCards,
+                        values: values
                     });
                 }
             })
@@ -121,7 +151,7 @@ class SetupStoreCreditIncentive extends React.Component {
             id: item.id,
             giftCardValue:      item.giftCardValue,
             giftCardDiscount:   item.giftCardDiscount,
-            shopperId: this.state.shopper.id,
+            shopperId:          this.state.shopper.id,
             status: 0
         })
             .then(response => {
@@ -172,7 +202,20 @@ class SetupStoreCreditIncentive extends React.Component {
     }
 
     render(){
-        let items = [];
+        let items  = [];
+        let values = [];
+
+        this.state.values.map((item, key) => {
+            if (item.selected) {
+                values.push(
+                    <MenuItem key={key} value={item.value} style={{color: '#ffffff'}}>{item.value} USD</MenuItem>
+                );
+            } else {
+                values.push(
+                    <MenuItem key={key} value={item.value}>{item.value} USD</MenuItem>
+                );
+            }
+        });
 
         this.state.giftCards.map((item, key) => {
             items.push(
@@ -188,11 +231,7 @@ class SetupStoreCreditIncentive extends React.Component {
                                         className={this.props.classes.selectEmpty}
                                         disableUnderline="true"
                                     >
-                                        <MenuItem value={100}>100 USD</MenuItem>
-                                        <MenuItem value={200}>200 USD</MenuItem>
-                                        <MenuItem value={300}>300 USD</MenuItem>
-                                        <MenuItem value={400}>400 USD</MenuItem>
-                                        <MenuItem value={500}>500 USD</MenuItem>
+                                        {values}
                                     </Select>
                                 </FormControl>
                             </Grid>

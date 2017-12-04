@@ -93,7 +93,7 @@ class MyAccount extends Component {
                             </div>
                             <div className={this.props.classes.row}>
                                 <div className={this.props.classes.param}>your redeem code</div>
-                                <div className={this.props.classes.value} style={{letterSpacing: 2}}><a href="#qr">#{this.state.userId}</a></div>
+                                <div className={this.props.classes.value} style={{letterSpacing: 2}}><a href="/qr">#{this.state.userId}</a></div>
                             </div>
                         </div>
                         <div style={{textAlign: 'right'}}>
