@@ -87,7 +87,7 @@ class StoreCreditList extends React.Component {
         return(
             <div>
                 <MyAppBar
-                    title="store credit list"
+                    title="gift card list"
                 />
                 <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={logo}>
                     <div className={this.props.classes.wrapFilter} style={{position: 'relative'}}>
@@ -96,7 +96,7 @@ class StoreCreditList extends React.Component {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>member</TableCell>
-                                    <TableCell>Store credit balance</TableCell>
+                                    <TableCell>Gift card balance</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

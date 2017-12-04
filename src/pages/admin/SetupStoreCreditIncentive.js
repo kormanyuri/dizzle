@@ -33,7 +33,8 @@ class SetupStoreCreditIncentive extends React.Component {
             giftCards:  []
         };
 
-        this.loadGiftCards = this.loadGiftCards.bind(this);
+        this.loadGiftCards  = this.loadGiftCards.bind(this);
+        this.deleteItem     = this.deleteItem.bind(this);
     }
 
     componentWillMount(){
@@ -132,7 +133,7 @@ class SetupStoreCreditIncentive extends React.Component {
     }
 
     deleteItem(index){
-
+        //alert(index);
         let giftCards = this.state.giftCards;
 
         giftCards.map((item, key) => {
@@ -210,7 +211,7 @@ class SetupStoreCreditIncentive extends React.Component {
                             </Grid>
                         </Grid>
                     </div>
-                    <div className={this.props.classes.deleteRowBtn} onClick={(id => this.deleteItem(item.id)).bind(this)}>
+                    <div className={this.props.classes.deleteRowBtn} onClick={ id => this.deleteItem(item.index) }>
                         <span>-</span>
                     </div>
                 </div>
@@ -220,9 +221,9 @@ class SetupStoreCreditIncentive extends React.Component {
 
         return(
             <div>
-                <MyAppBar title="setup store credit" />
+                <MyAppBar title="setup gift card" />
                 <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
-                    <div className={this.props.classes.titleForm}>setup store credit incentive</div>
+                    <div className={this.props.classes.titleForm}>setup gift card incentive</div>
                         <div>
                             {items}
                         </div>

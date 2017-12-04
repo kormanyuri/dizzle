@@ -66,8 +66,10 @@ class Statement extends React.Component {
                 let data = [];
 
                 if (typeof response.data.message == 'undefined') {
+
                     response.data.items.map(item => {
                         console.log(item);
+
                         data.push({
                             id: item[0].id,
                             date: item[1],
@@ -116,6 +118,8 @@ class Statement extends React.Component {
                     </TableRow>];
 
         if (this.state.data.length > 0) {
+            items = [];
+
             this.state.data.map(n => {
                 items.push(<TableRow key={n.id} onClick={event => this.handleClick(event, n.date, n.member, n.action, n.paid, n.balance)}>
                                 <TableCell>{n.date}</TableCell>
@@ -215,7 +219,7 @@ class Statement extends React.Component {
                                 </div>
                                 <div className={this.props.classes.dialogRow}>
                                     <div className={this.props.classes.param}>
-                                        New store Credit balance
+                                        New Gift Card balance
                                     </div>
                                     <div className={this.props.classes.paramValue}>
                                         {this.state.balance/100}

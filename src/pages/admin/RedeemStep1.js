@@ -127,7 +127,7 @@ class RedeemStep1 extends React.Component {
                         <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: '#fff'}}>
                             <TextGroupItem param="Customer name" value={this.state.consumerName} />
                             <TextGroupItem param="Member ID" value={this.state.consumerId} />
-                            <TextGroupItem param="Store Credit Balance" value={(this.state.balance ? this.state.balance.balance / 100 : 0) + ` USD`} />
+                            <TextGroupItem param="Gift Card Balance" value={(this.state.balance ? this.state.balance.balance / 100 : 0) + ` USD`} />
                         </ul>
                         <FormControl fullWidth className={this.props.classes.formControl}>
                             <InputLabel htmlFor="spent" className={this.props.classes.label}>Spent</InputLabel>
