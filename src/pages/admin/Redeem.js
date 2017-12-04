@@ -43,6 +43,13 @@ class Redeem extends React.Component {
         formData.append('qr_file', fileObject);
         console.log(formData);
 
+        this.setState({
+            alert: {
+                open: true,
+                message: <span id="message-id">Please wait for finish upload...</span>
+            }
+        });
+
         axios.post(this.state.baseUrl + 'shopper-admin/rest/redeem-decode-qr', formData, {
             headers: { 'content-type': 'multipart/form-data' },
             params: {
