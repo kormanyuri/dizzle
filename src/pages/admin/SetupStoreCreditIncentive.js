@@ -10,6 +10,8 @@ import { MenuItem } from 'material-ui/Menu';
 import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 import Grid from 'material-ui/Grid';
+import Snackbar from 'material-ui/Snackbar';
+
 
 import Avatar1 from '../../img/admin/avatar-1.jpg';
 
@@ -37,7 +39,11 @@ class SetupStoreCreditIncentive extends React.Component {
                 {selected: false, value:300},
                 {selected: false, value:400},
                 {selected: false, value:500}
-            ]
+            ],
+            alert: {
+                open: false,
+                message: <span id="message-id">Error</span>
+            }
         };
 
         //fixed old version
@@ -65,6 +71,7 @@ class SetupStoreCreditIncentive extends React.Component {
         // }
 
         //console.log(values, e.target.value, indexVal);
+
 
         giftCards.map((item, key) => {
             if (item.index == index) {
@@ -192,6 +199,7 @@ class SetupStoreCreditIncentive extends React.Component {
         this.save();
     }
 
+
     save(){
         //redirect to /#/admin/profile
         let giftCards = this.state.giftCards;
@@ -215,6 +223,7 @@ class SetupStoreCreditIncentive extends React.Component {
         });
     }
 
+
     render(){
         let items  = [];
         let values = [];
@@ -222,7 +231,7 @@ class SetupStoreCreditIncentive extends React.Component {
         this.state.values.map((item, key) => {
             if (item.selected) {
                 values.push(
-                    <MenuItem key={key} value={item.value} style={{color: '#ffffff'}}>{item.value} {this.state.shopper.currency}</MenuItem>
+                    <MenuItem key={key} value={item.value} style={{backgroundColor: '#ff9999'}} disabled={true}>{item.value} {this.state.shopper.currency}</MenuItem>
                 );
             } else {
                 values.push(
@@ -283,6 +292,17 @@ class SetupStoreCreditIncentive extends React.Component {
                     <Button color="primary" className={this.props.classes.fullWidth} style={{marginBottom: 40,}} onClick={this.addItem.bind(this)}>Add line</Button>
                     {/*<Button color="primary" className={this.props.classes.fullWidth} onClick={this.save.bind(this)}>Save</Button>*/}
                 </MyPaper>
+
+                <Snackbar
+                    className={this.props.classes.message}
+                    anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+                    open={this.state.alert.open}
+                    onRequestClose={this.handleRequestClose}
+                    SnackbarContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={this.state.alert.message}
+                />
             </div>
         );
     }
