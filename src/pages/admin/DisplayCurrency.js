@@ -50,6 +50,14 @@ class DisplayCurrency extends React.Component {
         this.setState({
             currency: e.target.value
         });
+
+        let shopper = this.state.shopper;
+        shopper.currency = e.target.value;
+        this.setState({
+            shopper: shopper
+        });
+
+        window.localStorage.setItem('shopper', JSON.stringify(shopper));
     };
 
     save(){

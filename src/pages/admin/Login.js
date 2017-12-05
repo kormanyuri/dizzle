@@ -159,7 +159,7 @@ class Login extends Component {
                     SnackbarContentProps={{
                         'aria-describedby': 'message-id',
                     }}
-                    message={<span id="message-id">Error</span>}
+                    message={this.state.alert.message}
                 />
             </div>
         );

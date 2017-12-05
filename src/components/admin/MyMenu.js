@@ -45,6 +45,7 @@ class MyMenu extends React.Component {
                     <li><a href="/admin/statement">statement</a></li>
                     <li><a href="/admin/store-credit-list">member store <br/>credit list</a></li>
                     <li><a href="/admin/profile">profile</a></li>
+                    <li><a href="/admin/login">logout</a></li>
                 </ul>
             </div>
         );

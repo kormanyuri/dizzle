@@ -64,7 +64,7 @@ class OrderAccepted extends Component {
                                 <div className={this.props.classes.subName} style={{opacity: 1}}>congratulations! <br/>your order is accepted</div>
                             </div>
                             <div style={{textAlign: 'center', marginTop: 30, marginBottom: 70}}>
-                                <MyButtonType2 href="/groupbuylist">access your gift card</MyButtonType2>
+                                <MyButtonType2 href="/balancelist">access your gift card</MyButtonType2>
                             </div>
                         </TextGroup>
                     </CardContent>

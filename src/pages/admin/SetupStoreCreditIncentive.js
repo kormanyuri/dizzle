@@ -40,6 +40,12 @@ class SetupStoreCreditIncentive extends React.Component {
             ]
         };
 
+        //fixed old version
+        if (typeof this.state.shopper.currency == 'undefined') {
+            this.state.shopper.currency = 'USD';
+            window.localStorage.setItem('shopper', JSON.stringify(this.state.shopper));
+        }
+
         this.loadGiftCards  = this.loadGiftCards.bind(this);
         this.deleteItem     = this.deleteItem.bind(this);
     }
@@ -71,6 +77,8 @@ class SetupStoreCreditIncentive extends React.Component {
             giftCards: giftCards,
             //values: values
         });
+
+        this.save();
     }
 
     changeDiscount(e, index) {
@@ -87,6 +95,8 @@ class SetupStoreCreditIncentive extends React.Component {
         this.setState({
             giftCards: giftCards
         });
+
+        this.save();
     }
 
     loadGiftCards(){
@@ -143,6 +153,8 @@ class SetupStoreCreditIncentive extends React.Component {
             giftCards: giftCards
         });
 
+        this.save();
+
         console.log(this.state);
     }
 
@@ -176,6 +188,8 @@ class SetupStoreCreditIncentive extends React.Component {
         this.setState({
             giftCards: giftCards
         });
+
+        this.save();
     }
 
     save(){
@@ -192,7 +206,7 @@ class SetupStoreCreditIncentive extends React.Component {
             })
                 .then(response => {
                     console.log(response);
-                    window.location = '/admin/profile';
+                    //window.location = '/admin/profile';
                 })
                 .catch(error => {
                     console.log(error);
@@ -208,11 +222,11 @@ class SetupStoreCreditIncentive extends React.Component {
         this.state.values.map((item, key) => {
             if (item.selected) {
                 values.push(
-                    <MenuItem key={key} value={item.value} style={{color: '#ffffff'}}>{item.value} USD</MenuItem>
+                    <MenuItem key={key} value={item.value} style={{color: '#ffffff'}}>{item.value} {this.state.shopper.currency}</MenuItem>
                 );
             } else {
                 values.push(
-                    <MenuItem key={key} value={item.value}>{item.value} USD</MenuItem>
+                    <MenuItem key={key} value={item.value}>{item.value} {this.state.shopper.currency}</MenuItem>
                 );
             }
         });
@@ -267,7 +281,7 @@ class SetupStoreCreditIncentive extends React.Component {
                             {items}
                         </div>
                     <Button color="primary" className={this.props.classes.fullWidth} style={{marginBottom: 40,}} onClick={this.addItem.bind(this)}>Add line</Button>
-                    <Button color="primary" className={this.props.classes.fullWidth} onClick={this.save.bind(this)}>Save</Button>
+                    {/*<Button color="primary" className={this.props.classes.fullWidth} onClick={this.save.bind(this)}>Save</Button>*/}
                 </MyPaper>
             </div>
         );

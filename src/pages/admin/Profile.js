@@ -87,6 +87,10 @@ class Profile extends React.Component {
             });
     }
 
+    downloadQR(){
+        window.open(this.state.baseUrl + 'shopper-admin/rest/qr-code?shopperId=' + this.state.shopper.id, '_blank');
+    }
+
     render(){
 
         let logo = UploadAva;
@@ -130,7 +134,7 @@ class Profile extends React.Component {
                     <Button className={this.props.classes.button} href="/admin/store-address">STORE ADDRESS</Button>
                     <Button className={this.props.classes.button} href="/admin/display-currency">DISPLAY CURRENCY</Button>
                     <Button className={this.props.classes.button} href="/admin/store-credit-incentive">GIFT CARD INCENTIVE</Button>
-                    <Button className={this.props.classes.button} href="/admin/profile">DOWNLOAD SHOP’S QR CODE</Button>
+                    <Button className={this.props.classes.button} onClick={this.downloadQR.bind(this)}>DOWNLOAD SHOP’S QR CODE</Button>
                     <Button className={this.props.classes.button} href="/admin/plugin-setup">PLUGIN SETUP</Button>
                     <Button className={this.props.classes.button} href="/admin/sms-info">SMS INFO</Button>
                 </MyPaper>
