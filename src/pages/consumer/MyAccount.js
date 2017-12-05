@@ -49,6 +49,7 @@ class MyAccount extends Component {
                         userId: response.data.id,
                         nickname:  response.data.socialDataProfile.nickname,
                         email:     response.data.email,
+                        dateOfBirth: typeof response.data.socialDataProfile.dateOfBirth != 'undefined' ? response.data.socialDataProfile.dateOfBirth : '',
                         showLoading: false,
                         image: typeof response.data.socialDataProfile.image != 'undefined' ? response.data.socialDataProfile.image : Avatar4
                     });
@@ -81,7 +82,7 @@ class MyAccount extends Component {
                             </div>
                             <div className={this.props.classes.row}>
                                 <div className={this.props.classes.param}>date of birth</div>
-                                <div className={this.props.classes.value}>10.11.1960</div>
+                                <div className={this.props.classes.value}>{this.state.dateOfBirth}</div>
                             </div>
                             <div className={this.props.classes.row}>
                                 <div className={this.props.classes.param}>facebook account </div>
