@@ -122,11 +122,11 @@ class Transactions extends Component {
                                 <TextGroup key={i} groupName={item[0].transactionRoute == 1 ? 'Refill' : 'Reduce' }>
                                     <TextGroupItem param="date" value={item[1]}/>
                                     <TextGroupItem param="time" value={item[2]}/>
-                                    <TextGroupItem param="paid" value={ item[0].transactionValue / 100 + ` ` + this.state.shopper.socialDataProfile.currency}/>
+                                    <TextGroupItem param="paid" value={ item[0].transactionValue / 100 + ` ` + (this.state.shopper ? this.state.shopper.socialDataProfile.currency : '') }/>
                                     <TextGroupItem param="type"
                                                    value={item[0].transactionRoute == 1 ? 'Refill' : 'Reduce' }/>
-                                    <TextGroupItem param="previous balance" value={item[0].prevBalance / 100 + ` ` + this.state.shopper.socialDataProfile.currency}/>
-                                    <TextGroupItem param="new balance" value={item[0].newBalance / 100 + ` ` + this.state.shopper.socialDataProfile.currency}/>
+                                    <TextGroupItem param="previous balance" value={item[0].prevBalance / 100 + ` ` + (this.state.shopper ? this.state.shopper.socialDataProfile.currency : '')}/>
+                                    <TextGroupItem param="new balance" value={item[0].newBalance / 100 + ` ` + (this.state.shopper ? this.state.shopper.socialDataProfile.currency : '')}/>
                                 </TextGroup>
                             )}
                         </CardContent>
