@@ -130,7 +130,7 @@ class Login extends Component {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) {return;}
             js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            js.src = "//connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     }
@@ -139,6 +139,17 @@ class Login extends Component {
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', {fields: 'name, email'}, function(response) {
             console.log(response);
+            axios.post(this.state.baseUrl + 'gift-card/rest/social-auth/fb', {
+                name: response.name,
+                id: response.id,
+                email: response.email
+            })
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
             // console.log('Successful login for: ' + response.name);
             // document.getElementById('status').innerHTML =
             //     'Thanks for logging in, ' + response.name + '!';
