@@ -137,7 +137,7 @@ class Login extends Component {
 
     loginFB() {
         console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', {fields: 'name, email'}, function(response) {
+        FB.api('/me', {fields: 'name, email'}, response => {
             console.log(response);
             axios.post(this.state.baseUrl + 'gift-card/rest/social-auth/fb', {
                 name: response.name,
