@@ -141,8 +141,9 @@ class Login extends Component {
                         <Button raised className={this.props.classes.button} onClick={this.login.bind(this)}>Login</Button>
                         <Grid container style={{fontSize: 11, marginBottom: 45}}>
                             <Grid item xs={6}>
-                                <MyLinkStyled href="#" className={this.props.classes.link}>Forgot
-                                    password?</MyLinkStyled>
+                                <MyLinkStyled href="/restore-password-step-1" className={this.props.classes.link}>
+                                    Forgot password?
+                                </MyLinkStyled>
                             </Grid>
                             <Grid item xs={6} style={{textAlign: 'right'}}>
                                 <MyLinkStyled href="/admin/sign-up" className={this.props.classes.link}>New here? Sign

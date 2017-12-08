@@ -15,6 +15,8 @@ import Transactions from './pages/consumer/Transactions';
 import MyAccount from './pages/consumer/MyAccount';
 import EditProfile from './pages/consumer/EditProfile';
 import QRqode from './pages/consumer/Qr';
+import RestoreStep1 from './pages/consumer/restore_password/RestoreStep1';
+import RestoreStep2 from './pages/consumer/restore_password/RestoreStep2';
 import TestPageA from './pages/consumer/TestPageA';
 import TestPageB from './pages/consumer/TestPageB';
 
@@ -80,6 +82,8 @@ export default class Index extends React.Component {
                         <Route exact path="/myaccount" component={MyAccount}></Route>
                         <Route exact path="/editprofile" component={EditProfile}></Route>
                         <Route exact path="/qr" component={QRqode}></Route>
+                        <Route exact path="/restore-password-step-1" component={RestoreStep1}></Route>
+                        <Route exact path="/restore-password-step-2" component={RestoreStep2}></Route>
                         <Route exact path="/test-page-a" component={TestPageA}></Route>
                         <Route exact path="/test-page-b" component={TestPageB}></Route>
 
