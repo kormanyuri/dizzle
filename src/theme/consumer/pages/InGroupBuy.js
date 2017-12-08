@@ -143,7 +143,7 @@ const styles = (theme) =>  {
         },
         indicator: {
             height: '100%',
-            width: '90%',
+            width: '0%',
             backgroundColor: '#887650',
             opacity: 0.7,
         },

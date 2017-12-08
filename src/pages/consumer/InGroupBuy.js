@@ -167,7 +167,7 @@ class InGroupBuy extends React.Component {
                                 </Grid>
                                 <div className={this.props.classes.time}>{this.state.timeLeft}</div>
                                 <div className={this.props.classes.progressbar}>
-                                    <div className={this.props.classes.indicator}></div>
+                                    <div className={this.props.classes.indicator} style={{width: (100 - this.state.percentOfGoal) + '%'}}></div>
                                 </div>
                                 <div className={classNames(this.props.classes.subName, this.props.classes.horizd)}>{this.state.percentOfGoal}% of ${this.state.giftCardValue} goal</div>
                                 <div className={this.props.classes.subName}>${this.state.bought/100} bought by {this.state.totalUsers} users</div>

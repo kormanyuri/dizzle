@@ -14,6 +14,7 @@ import Button from 'material-ui/Button';
 import NumberFormat from 'react-number-format';
 import classNames from 'classnames';
 import Popover from 'material-ui/Popover';
+import Typography from 'material-ui/Typography';
 
 import styles from '../../theme/plugin/pages/PaymentBuyNow';
 
@@ -110,10 +111,12 @@ class Payment extends Component {
     }
 
     helpCVV(e) {
+        console.log(e);
+
         this.setState({
             popover: {
                 open: true,
-                anchorEl: findDOMNode(this.button),
+                anchorEl: findDOMNode(e.target),
             }
         });
     }
@@ -149,8 +152,9 @@ class Payment extends Component {
                                 Discover, American Express
                             </div>
                             <div className={this.props.classes.row}>
-                                <label className={this.props.classes.inputLabel} style={{fontSize: 11}}>card
-                                    number</label>
+                                <label className={this.props.classes.inputLabel} style={{fontSize: 11}}>
+                                    card number
+                                </label>
                                 <div className={this.props.classes.wrapNumberFormat}>
                                     <NumberFormat
                                         className={this.props.classes.numberFormat}
@@ -224,8 +228,6 @@ class Payment extends Component {
                                             <Popover
                                                 open={this.state.popover.open}
                                                 anchorEl={this.state.popover.anchorEl}
-                                                anchorReference={'anchorEl'}
-                                                anchorPosition={{ top: 0, left: 400 }}
                                                 onRequestClose={this.handleRequestClose}
                                                 anchorOrigin={{
                                                     vertical: 'bottom',
@@ -235,7 +237,9 @@ class Payment extends Component {
                                                     vertical: 'bottom',
                                                     horizontal: 'center',
                                                 }}
-                                            >CCV</Popover>
+                                            >
+                                                <Typography>CCV code 3 number</Typography>
+                                            </Popover>
                                         </div>
 
                                     </Grid>
