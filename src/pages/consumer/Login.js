@@ -146,6 +146,15 @@ class Login extends Component {
             })
                 .then(response => {
                     console.log(response);
+                    window.localStorage.setItem('token', response.data.token);
+                    window.localStorage.setItem('consumer', JSON.stringify({
+                        id: response.data.id,
+                        name: typeof response.data.user.name != 'undefined' ? response.data.user.name : '',
+                        image: typeof response.data.user.image != 'undefined' && response.data.user.image != '' ? response.data.user.image : UploadAva
+                    }));
+                    // const orderShopperId = window.localStorage.getItem('order_shopper_id');
+                    // const orderProcess = window.localStorage.getItem('order_process');
+                    window.location = '/';
                 })
                 .catch(error => {
                     console.log(error);
