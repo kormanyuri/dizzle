@@ -148,7 +148,50 @@ const styles = theme => ({
         opacity: 0,
         zIndex: 100
     },
-
-});
+    date: {
+        '& label': {
+            fontSize: 11,
+            color: '#fff',
+            fontWeight: 700,
+            textTransform: 'uppercase',
+        }
+    },
+    WrapInputDate: {
+        marginTop: 7,
+        marginBottom: 20,
+        '& .DayPickerInput-Overlay': {
+            left: 0,
+            right: 'auto',
+            '& input': {
+                width: '100%'
+            }
+        },
+        '& .DayPickerInput': {
+            width: '100%',
+            position: 'relative',
+            zIndex: 2,
+            '& input': {
+                width: '100%',
+                background: '#fff',
+                border: '1px solid #fff',
+                borderRadius: 5,
+                padding: '15px 10px',
+                boxSizing: 'border-box',
+                cursor: 'pointer',
+                color: 'rgba(136,118,80,0.7)',
+                fontSize: 11,
+                '&::-webkit-input-placeholder': {
+                    color: 'rgba(136,118,80,0.7)',
+                    //opacity: 0.5,
+                    //fontSize: 11,
+                    fontWeight: 'normal'
+                },
+                //'&:focus':{
+                //    borderColor: '#a99771 !important',
+                //}
+            },
+        }
+    }
+})
 
 export default styles;

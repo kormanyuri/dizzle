@@ -9,6 +9,8 @@ import Card, { CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Avatar from 'material-ui/Avatar';
 import UploadAva from '../../img/consumer/upload-ava.png';
+import DayPickerInput from "react-day-picker/DayPickerInput";
+import "react-day-picker/lib/style.css";
 
 import styles from '../../theme/consumer/pages/EditProfile';
 
@@ -192,26 +194,11 @@ class EditProfile extends Component {
                                         onChange={e => this.changeName(e)}
                                     />
                                 </div>
-                                <div className={this.props.classes.row}>
-                                    <TextField
-                                        id="date"
-                                        label="date of birth"
-                                        type="date"
-                                        defaultValue={this.state.dateOfBirth}
-                                        fullWidth={true}
-                                        InputProps={{
-                                            disableUnderline: true,
-                                            classes: {
-                                                root: this.props.classes.textFieldRoot,
-                                                input: this.props.classes.textFieldInput,
-                                            },
-                                        }}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                            className: this.props.classes.textFieldFormLabel,
-                                        }}
-                                        onChange={e => this.changeDateOfBirth(e)}
-                                    />
+                                <div className={this.props.classes.date}>
+                                    <label>date of birth</label>
+                                    <div className={this.props.classes.WrapInputDate}>
+                                        <DayPickerInput placeholder="DD/MM/YYYY" format="DD/MM/YYYY" onChange={e => this.changeDateOfBirth(e)}/>
+                                    </div>
                                 </div>
                                 <div className={this.props.classes.row}>
                                     <TextField
