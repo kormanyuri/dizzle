@@ -192,6 +192,41 @@ class Login extends Component {
 
     componentWillMount(){
         window.localStorage.clear();
+        const reg = /\?token=([a-z0-9]+)/;
+        const match = reg.exec(window.location.search);
+
+        if (typeof match[1] != 'undefined') {
+            const token = match[1];
+
+            axios.post(this.state.baseUrl + 'gift-card/rest/consumer/login', {
+                token: token
+            })
+                .then(response => {
+                    //console.log(response);
+                    window.localStorage.setItem('token', response.data.token);
+                    window.localStorage.setItem('consumer', JSON.stringify({
+                        id: response.data.id,
+                        name: typeof response.data.user.name != 'undefined' ? response.data.user.name : '',
+                        image: typeof response.data.user.image != 'undefined' && response.data.user.image != '' ? response.data.user.image : UploadAva
+                    }));
+                    // const orderShopperId = window.localStorage.getItem('order_shopper_id');
+                    // const orderProcess = window.localStorage.getItem('order_process');
+                    window.location = '/';
+                    // if (!orderProcess) {
+                    //     window.location = '/#/';
+                    // }
+
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.setState({
+                        alert: {
+                            open: true,
+                            message: <span id="message-id">Login or password incorrect</span>
+                        }
+                    });
+                });
+        }
     }
 
     componentDidMount(){
