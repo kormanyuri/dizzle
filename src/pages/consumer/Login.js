@@ -190,6 +190,10 @@ class Login extends Component {
         FB.login(this.checkFBLoginState, {scope: 'email,user_likes'});
     }
 
+    handleTwitterLogin() {
+        window.location = '/backend/gift-card/rest/twitter-auth/reuest-token';
+    }
+
     componentWillMount(){
         window.localStorage.clear();
         const reg = /\?token=([a-z0-9]+)/;
@@ -288,7 +292,7 @@ class Login extends Component {
                                     </Button>
                                 </Grid>
                                 <Grid item xs={12} sm={6} className={this.props.classes.gridItem}>
-                                    <Button className={this.props.classes.btnTwitter}>
+                                    <Button className={this.props.classes.btnTwitter} onClick={this.handleTwitterLogin}>
                                         <span className={this.props.classes.twitter}></span>twitter
                                     </Button>
                                 </Grid>
