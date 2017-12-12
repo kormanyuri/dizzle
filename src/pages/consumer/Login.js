@@ -199,7 +199,7 @@ class Login extends Component {
         const reg = /\?token=([a-z0-9]+)/;
         const match = reg.exec(window.location.search);
 
-        if (typeof match[1] != 'undefined') {
+        if (match && typeof match[1] != 'undefined') {
             const token = match[1];
 
             axios.post(this.state.baseUrl + 'gift-card/rest/consumer/login', {
