@@ -22,9 +22,7 @@ class SmsInfo extends React.Component {
     render(){
         return(
             <div>
-                <MyAppBar
-                    title="sms info"
-                />
+                <MyAppBar title="sms info" />
                 <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
                     <div className={this.props.classes.titleForm}>How it works with SMS</div>
                     <div className={this.props.classes.rowStep}>
@@ -36,8 +34,8 @@ class SmsInfo extends React.Component {
                         <span className={this.props.classes.textStep}>Customer will receive a gift card buy link.</span>
                     </div>
                     <div className={this.props.classes.rowInfo}>
-                        Your Restaurant code is XXXXXXX <br/><br/>
-                        SMS number is XXXXXXXX
+                        Your Restaurant code is {this.state.shopper.id} <br/><br/>
+                        SMS number is +1(604) 332-6662
                     </div>
                 </MyPaper>
             </div>
