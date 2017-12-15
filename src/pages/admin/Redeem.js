@@ -82,7 +82,6 @@ class Redeem extends React.Component {
     }
 
     render(){
-
         let logo = this.state.shopper.logo;
 
         if (logo == '') {

@@ -28,6 +28,7 @@ import OrderAcceptedInviteFriends from './pages/plugin/OrderAcceptedInviteFriend
 import InfGroup from './pages/plugin/InfGroup';
 import PaymentBuyNow from './pages/plugin/PaymentBuyNow';
 import PaymentBuyTogether from './pages/plugin/PaymentBuyTogether';
+import Intro from './pages/plugin/Intro';
 
 
 import withRoot from './components/admin/withRoot';
@@ -71,24 +72,25 @@ export default class Index extends React.Component {
 
                 <Router history={history}>
                     <div style={{minHeight: '100%', height: '100%'}}>
-                        <Route exact path="/" component={GroupBuyList}></Route>
-                        <Route exact path="/login" component={Login}></Route>
-                        <Route exact path="/signup" component={SignUp}></Route>
-                        <Route exact path="/groupbuylist" component={GroupBuyList}></Route>
-                        <Route exact path="/ingroupbuy/:id" component={InGroupBuy}></Route>
-                        <Route exact path="/ingroupbuysuccessful/:id" component={InGroupBuySuccessful}></Route>
-                        <Route exact path="/balancelist" component={BalanceList}></Route>
-                        <Route exact path="/transactions/:shopperId" component={Transactions}></Route>
-                        <Route exact path="/myaccount" component={MyAccount}></Route>
-                        <Route exact path="/editprofile" component={EditProfile}></Route>
-                        <Route exact path="/qr" component={QRqode}></Route>
-                        <Route exact path="/restore-password-step-1" component={RestoreStep1}></Route>
-                        <Route exact path="/restore-password-step-2" component={RestoreStep2}></Route>
-                        <Route exact path="/test-page-a" component={TestPageA}></Route>
-                        <Route exact path="/test-page-b" component={TestPageB}></Route>
+                        <Route exact path="/" component={GroupBuyList}/>
+                        <Route exact path="/login" component={Login}/>
+                        <Route exact path="/signup" component={SignUp}/>
+                        <Route exact path="/groupbuylist" component={GroupBuyList}/>
+                        <Route exact path="/ingroupbuy/:id" component={InGroupBuy}/>
+                        <Route exact path="/ingroupbuysuccessful/:id" component={InGroupBuySuccessful}/>
+                        <Route exact path="/balancelist" component={BalanceList}/>
+                        <Route exact path="/transactions/:shopperId" component={Transactions}/>
+                        <Route exact path="/myaccount" component={MyAccount}/>
+                        <Route exact path="/editprofile" component={EditProfile}/>
+                        <Route exact path="/qr" component={QRqode}/>
+                        <Route exact path="/restore-password-step-1" component={RestoreStep1}/>
+                        <Route exact path="/restore-password-step-2" component={RestoreStep2}/>
+                        <Route exact path="/test-page-a" component={TestPageA}/>
+                        <Route exact path="/test-page-b" component={TestPageB}/>
 
-                        <Route exact path="/plugin/login" component={PluginLogin}></Route>
+                        <Route exact path="/plugin/login" component={PluginLogin}/>
                         <Route exact path="/plugin/login/:shopperId" component={PluginLogin}/>
+                        <Route exact path="/plugin/intro/:shopperId" component={Intro}/>
                         <Route exact path="/plugin/sign-up/:shopperId" component={PluginSignUp}/>
                         <Route exact path="/plugin/gift-cards-list/:shopperId" component={GiftCardsList}/>
                         <Route exact path="/plugin/friend-buy/:groupBuyId" component={GiftCardsList}/>
