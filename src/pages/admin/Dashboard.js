@@ -39,7 +39,7 @@ class Dashboard extends React.Component {
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         axios.get(this.state.baseUrl + 'gift-card/rest/shopper-statistic', {
             params: {
                 token: this.state.token
