@@ -51,12 +51,12 @@ class Dashboard extends React.Component {
                 this.setState({
                     today: {
                         totalMembers: response.data.today.totalMembers,
-                        totalRevenue: response.data.today.totalRevenue,
+                        totalRevenue: response.data.today.totalRevenue/100,
                         totalStoreCreditSold: response.data.today.totalStoreCreditSold
                     },
                     total: {
                         totalMembers: response.data.total.totalMembers,
-                        totalRevenue: response.data.total.totalRevenue,
+                        totalRevenue: response.data.total.totalRevenue/100,
                         totalStoreCreditSold: response.data.total.totalStoreCreditSold
                     }
                 });
