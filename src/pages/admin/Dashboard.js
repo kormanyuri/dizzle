@@ -90,7 +90,7 @@ class Dashboard extends React.Component {
                     <MyCard id="mycard-3" paramName="total Revenue" paramValue={`$` + this.state.total.totalRevenue} indicatorValue="60%">
                         short description appears when user taps\clicks on (i) information icon. White border expands smoothly. Description text is about this window - total members
                     </MyCard>
-                    <MyCard id="mycard-4" paramName="today Gift Card sold" paramValue="$0" indicatorValue="20%">
+                    <MyCard id="mycard-4" paramName="today Gift Card sold" paramValue={this.state.today.totalStoreCreditSold} indicatorValue="20%">
                         short description appears when user taps\clicks on (i) information icon. White border expands smoothly. Description text is about this window - total members
                     </MyCard>
                     <MyCard id="mycard-5" paramName="today Revenue" paramValue={`$` + this.state.today.totalRevenue} indicatorValue="10%">
