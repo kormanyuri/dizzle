@@ -24,12 +24,17 @@ class Dashboard extends React.Component {
 
         this.state = {
             baseUrl: config.baseUrl,
+            token: window.localStorage.getItem('shopper_token'),
             shopper: JSON.parse(window.localStorage.getItem('shopper'))
         }
     }
 
     componentWillMount(){
-        axios.get(this.state.baseUrl + 'gift-card/rest/shopper-statistic')
+        axios.get(this.state.baseUrl + 'gift-card/rest/shopper-statistic', {
+            params: {
+                token: this.state.token
+            }
+        })
             .then(response => {
                 console.log(response);
             })
