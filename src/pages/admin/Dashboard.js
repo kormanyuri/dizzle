@@ -29,13 +29,13 @@ class Dashboard extends React.Component {
     }
 
     componentWillMount(){
-        // axios.get(this.state.baseUrl + '')
-        //     .then(response => {
-        //
-        //     })
-        //     .catch(error => {
-        //
-        //     });
+        axios.get(this.state.baseUrl + 'gift-card/rest/shopper-statistic')
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     render(){
