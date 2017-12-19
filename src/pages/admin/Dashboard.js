@@ -46,6 +46,7 @@ class Dashboard extends React.Component {
             }
         })
             .then(response => {
+                console.log(response.data);
                 this.setState({
                     today: response.data.today,
                     total: response.data.total
