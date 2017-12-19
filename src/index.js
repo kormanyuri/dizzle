@@ -45,6 +45,7 @@ import SetupStoreCreditIncentive from './pages/admin/SetupStoreCreditIncentive';
 import PluginSetup from './pages/admin/PluginSetup';
 import SmsInfo from './pages/admin/SmsInfo';
 import Statement from './pages/admin/Statement';
+import Invoice from './pages/admin/Invoice';
 import StoreCreditList from './pages/admin/StoreCreditList';
 
 import styles from './theme/admin/pages/Index';
@@ -115,6 +116,7 @@ export default class Index extends React.Component {
                         <Route exact path="/admin/store-credit-incentive" component={SetupStoreCreditIncentive}/>
                         <Route exact path="/admin/plugin-setup" component={PluginSetup}/>
                         <Route exact path="/admin/sms-info" component={SmsInfo}/>
+                        <Route exact path="/admin/invoices" component={Invoice}/>
                         <Route exact path="/admin/statement" component={Statement}/>
                         <Route exact path="/admin/store-credit-list" component={StoreCreditList}/>
                     </div>
