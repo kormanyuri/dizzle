@@ -60,6 +60,8 @@ class Dashboard extends React.Component {
                         totalStoreCreditSold: response.data.total.totalStoreCreditSold
                     }
                 });
+
+                console.log(this.state);
             })
             .catch(error => {
                 console.log(error);
