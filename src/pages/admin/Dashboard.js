@@ -47,9 +47,18 @@ class Dashboard extends React.Component {
         })
             .then(response => {
                 console.log(response.data);
+                
                 this.setState({
-                    today: response.data.today,
-                    total: response.data.total
+                    today: {
+                        totalMembers: response.data.today.totalMembers,
+                        totalRevenue: response.data.today.totalRevenue,
+                        totalStoreCreditSold: response.data.today.totalStoreCreditSold
+                    },
+                    total: {
+                        totalMembers: response.data.total.totalMembers,
+                        totalRevenue: response.data.total.totalRevenue,
+                        totalStoreCreditSold: response.data.total.totalStoreCreditSold
+                    }
                 });
             })
             .catch(error => {
