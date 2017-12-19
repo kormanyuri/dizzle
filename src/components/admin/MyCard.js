@@ -23,6 +23,18 @@ class MyCard extends React.Component {
         };
     }
 
+    componentWillReceiveProps(props){
+        this.state = {
+            classes: '',
+            children: typeof props.children !== 'undefined' ? props.children : '',
+            className: typeof props.className !== 'undefined' ? props.className : '',
+            paramName: typeof props.paramName !== 'undefined' ? props.paramName : '',
+            paramValue: typeof props.paramValue !== 'undefined' ? props.paramValue : '',
+            indicatorValue: typeof props.indicatorValue !== 'undefined' ? props.indicatorValue : '0%',
+            id: typeof props.id !== 'undefined' ? props.id : '',
+        };
+    }
+
     toggleInf(){
         let myCardInfBlock = document.querySelector('#'+this.state.id+' .'+this.props.classes.myCardInf);
         let showInfBtn = document.querySelector('#'+this.state.id+' .'+this.props.classes.showInfBtn);
