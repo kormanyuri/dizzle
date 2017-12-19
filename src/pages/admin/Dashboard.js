@@ -24,6 +24,8 @@ class Dashboard extends React.Component {
 
         this.state = {
             baseUrl: config.baseUrl,
+            today: [],
+            total: [],
             token: window.localStorage.getItem('shopper_token'),
             shopper: JSON.parse(window.localStorage.getItem('shopper'))
         }
@@ -36,7 +38,10 @@ class Dashboard extends React.Component {
             }
         })
             .then(response => {
-                console.log(response);
+                this.setState({
+                    today: response.data.today,
+                    total: response.data.total
+                });
             })
             .catch(error => {
                 console.log(error);
@@ -56,19 +61,19 @@ class Dashboard extends React.Component {
             <div>
                 <MyAppBar title="dashboard" />
                 <MyPaper title={`Namaste, ` + this.state.shopper.name } avatar={logo}>
-                    <MyCard id="mycard-1" paramName="total members" paramValue="0" indicatorValue="30%">
+                    <MyCard id="mycard-1" paramName="total members" paramValue={this.state.total.totalMembers} indicatorValue="30%">
                         short description appears when user taps\clicks on (i) information icon. White border expands smoothly. Description text is about this window - total members
                     </MyCard>
-                    <MyCard id="mycard-2" paramName="total Gift Card sold" paramValue="$0" indicatorValue="70%">
+                    <MyCard id="mycard-2" paramName="total Gift Card sold" paramValue={this.state.total.totalStoreCreditSold} indicatorValue="70%">
                         short description appears when user taps\clicks on (i) information icon. White border expands smoothly. Description text is about this window - total members
                     </MyCard>
-                    <MyCard id="mycard-3" paramName="total Revenue" paramValue="$0" indicatorValue="60%">
+                    <MyCard id="mycard-3" paramName="total Revenue" paramValue={`$` + this.state.total.totalRevenue} indicatorValue="60%">
                         short description appears when user taps\clicks on (i) information icon. White border expands smoothly. Description text is about this window - total members
                     </MyCard>
                     <MyCard id="mycard-4" paramName="today Gift Card sold" paramValue="$0" indicatorValue="20%">
                         short description appears when user taps\clicks on (i) information icon. White border expands smoothly. Description text is about this window - total members
                     </MyCard>
-                    <MyCard id="mycard-5" paramName="today Revenue" paramValue="$0" indicatorValue="10%">
+                    <MyCard id="mycard-5" paramName="today Revenue" paramValue={`$` + this.state.today.totalRevenue} indicatorValue="10%">
                         short description appears when user taps\clicks on (i) information icon. White border expands smoothly. Description text is about this window - total members
                     </MyCard>
                 </MyPaper>
