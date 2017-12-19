@@ -24,8 +24,16 @@ class Dashboard extends React.Component {
 
         this.state = {
             baseUrl: config.baseUrl,
-            today: [],
-            total: [],
+            today: {
+                totalMembers:0,
+                totalRevenue:0,
+                totalStoreCreditSold:0
+            },
+            total: {
+                totalMembers:0,
+                totalRevenue:0,
+                totalStoreCreditSold:0
+            },
             token: window.localStorage.getItem('shopper_token'),
             shopper: JSON.parse(window.localStorage.getItem('shopper'))
         }
