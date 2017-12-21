@@ -78,7 +78,39 @@ class Payment extends Component {
         this.state.ccvCode = e.target.value;
     }
 
-    charge() {
+    chargeAuthorizeNet() {
+        axios.post(this.state.baseUrl + 'gift-card/charge-authorization-net-rest', {
+            cardNumber: this.state.cardNumber,
+            name: this.state.name,
+            expiryDate: this.state.expiryDate,
+            ccvCode: this.state.ccvCode,
+            amount: window.localStorage.getItem('order_amount'),
+            giftCardId: window.localStorage.getItem('order_gift_card_id'),
+            groupBuyId: this.state.groupBuyId,
+            isBuyNow: window.localStorage.getItem('isBuyNow'),
+            userToken: window.localStorage.getItem('token')
+        })
+            .then(response => {
+                console.log(response);
+
+                const isBuyNow = window.localStorage.getItem('isBuyNow');
+                window.localStorage.removeItem('order_group_buy_id');
+
+                if (isBuyNow != 0) {
+                    window.location = '/plugin/order-accepted'
+                } else {
+                    window.localStorage.setItem('order_group_buy_id', response.data.groupBuyId);
+                    window.location = '/plugin/order-accepted-invite-friends'
+                }
+
+                //clear locale storage
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    chargeStripe() {
         axios.post(this.state.baseUrl + 'gift-card/charge-rest', {
             cardNumber: this.state.cardNumber,
             name: this.state.name,
@@ -245,7 +277,7 @@ class Payment extends Component {
                                     </Grid>
                                 </Grid>
                                 <div style={{textAlign: 'center', marginTop: 30}}>
-                                    <MyButtonType2 onClick={this.charge.bind(this)}>complete order</MyButtonType2>
+                                    <MyButtonType2 onClick={this.chargeAuthorizeNet.bind(this)}>complete order</MyButtonType2>
                                 </div>
                             </div>
                         </TextGroup>
