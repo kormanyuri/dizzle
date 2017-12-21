@@ -40,6 +40,10 @@ class Invoice extends React.Component {
             commission:  typeof props.commission  !== 'undefined' ? props.commission : '',
             prevBalance: typeof props.prevBalance !== 'undefined' ? props.prevBalance : '',
             newBalance:  typeof props.newBalance  !== 'undefined' ? props.newBalance : '',
+            search: {
+                dateFrom: '',
+                dateTo:   ''
+            },
 
             shopperId:      shopper.id,
             shopper:        shopper,
@@ -63,15 +67,34 @@ class Invoice extends React.Component {
         //     this.createData('2017.07.09', 'Sell $100 Gift Card', '$160', '$9', '$0', '$151'),
         // ];
         // this.state.data=data;
-        this.createData=this.createData.bind(this);
+        // this.createData=this.createData.bind(this);
+
+        this.loadList = this.loadList.bind(this);
+        this.changeDateFrom = this.changeDateFrom.bind(this);
+        this.changeDateTo = this.changeDateTo.bind(this);
     }
 
     componentWillMount() {
+        this.loadList();
+
+    }
+
+    loadList(){
+        let params = {
+            shopperId: this.state.shopperId,
+            method: 'LIST'
+        };
+
+        if (this.state.search.dateFrom != '') {
+            params.dateFrom = this.state.search.dateFrom;
+        }
+
+        if (this.state.search.dateTo != '') {
+            params.dateTo = this.state.search.dateTo;
+        }
+
         axios.get(this.state.baseUrl + 'gift-card/rest/transaction/0', {
-            params: {
-                shopperId: this.state.shopperId,
-                method: 'LIST'
-            }
+            params: params
         })
             .then(response => {
                 console.log(response);
@@ -96,11 +119,11 @@ class Invoice extends React.Component {
             });
     }
 
-    createData(date, transaction, revenue, commission, prevBalance, newBalance) {
-        this.state.id += 1;
-        const id = this.state.id;
-        return {  id, date, transaction, revenue, commission, prevBalance, newBalance };
-    };
+    // createData(date, transaction, revenue, commission, prevBalance, newBalance) {
+    //     this.state.id += 1;
+    //     const id = this.state.id;
+    //     return {  id, date, transaction, revenue, commission, prevBalance, newBalance };
+    // };
 
     handleClick = (event, date, transaction, revenue, commission, prevBalance, newBalance) => {
 
@@ -116,6 +139,28 @@ class Invoice extends React.Component {
             });
         }
     };
+
+    changeDateFrom(day, modifiers){
+
+        let search = this.state.search;
+        search.dateFrom = day.format('YYYY-MM-DD');
+
+        this.setState({
+            search: search
+        });
+        this.loadList();
+    }
+
+    changeDateTo(day, modifiers){
+        let search = this.state.search;
+        search.dateTo = day.format('YYYY-MM-DD');
+
+        this.setState({
+            search: search
+        });
+
+        this.loadList();
+    }
 
     render(){
 
@@ -146,9 +191,7 @@ class Invoice extends React.Component {
 
         return(
             <div>
-                <MyAppBar
-                    title="Invoice"
-                />
+                <MyAppBar title="Invoice" />
                 <MyPaper title="Namaste, Starbucks" avatar={Avatar1}>
                     <div className={this.props.classes.titleForm}>
                         You can access stripe dashboard for detail statement
@@ -161,12 +204,12 @@ class Invoice extends React.Component {
                         <Grid container spacing={0}>
                             <Grid item xs={6}  style={{paddingRight: 14}}>
                                 <div className={this.props.classes.WrapStartDate}>
-                                    <DayPickerInput placeholder="DD/MM/YYYY" format="DD/MM/YYYY" />
+                                    <DayPickerInput placeholder="DD/MM/YYYY" format="DD/MM/YYYY" onDayChange={(day, modifiers) => this.changeDateFrom(day, modifiers) } />
                                 </div>
                             </Grid>
                             <Grid item xs={6} style={{paddingLeft: 14}}>
                                 <div className={this.props.classes.WrapEndDate}>
-                                    <DayPickerInput placeholder="DD/MM/YYYY" format="DD/MM/YYYY" />
+                                    <DayPickerInput placeholder="DD/MM/YYYY" format="DD/MM/YYYY" onDayChange={(day, modifiers) => this.changeDateTo(day, modifiers) }/>
                                 </div>
                             </Grid>
                         </Grid>
