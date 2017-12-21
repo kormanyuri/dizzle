@@ -153,7 +153,7 @@ class Invoice extends React.Component {
                     <div className={this.props.classes.titleForm}>
                         You can access stripe dashboard for detail statement
                     </div>
-                    <Button color="primary" className={this.props.classes.fullWidth} href="/admin/dashboard">Access Stripe Dashboard</Button>
+                    {/*<Button color="primary" className={this.props.classes.fullWidth} href="/admin/dashboard">Access Stripe Dashboard</Button>*/}
                     <br/>
                     <br/>
 
