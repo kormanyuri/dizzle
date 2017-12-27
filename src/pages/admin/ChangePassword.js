@@ -94,10 +94,19 @@ class ChangePassword extends React.Component {
     }
 
     render(){
+
+        let logo = this.state.shopper.logo;
+
+        if (logo == '') {
+            logo = Avatar1;
+        } else {
+            logo = '/backend/uploads/logos/' + logo
+        }
+
         return(
             <div>
                 <MyAppBar title="change password" />
-                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
+                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={logo}>
                     <div className={this.props.classes.titleForm}>change password</div>
                     <FormControl fullWidth className={this.props.classes.formControl}>
                         <Input

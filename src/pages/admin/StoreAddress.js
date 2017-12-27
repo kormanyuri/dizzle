@@ -121,11 +121,20 @@ class StoreAdress extends React.Component {
     }
 
     render(){
+
+        let logo = this.state.shopper.logo;
+
+        if (logo == '') {
+            logo = Avatar1;
+        } else {
+            logo = '/backend/uploads/logos/' + logo
+        }
+
         return(
             <div>
                 <MyAppBar title="store adress" />
 
-                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
+                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={logo}>
                     <div className={this.props.classes.titleForm}>Store address</div>
                     <FormControl className={this.props.classes.formControl}>
 

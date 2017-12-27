@@ -280,11 +280,19 @@ class SetupStoreCreditIncentive extends React.Component {
             );
         });
 
+        let logo = this.state.shopper.logo;
+
+        if (logo == '') {
+            logo = Avatar1;
+        } else {
+            logo = '/backend/uploads/logos/' + logo
+        }
 
         return(
+
             <div>
                 <MyAppBar title="setup gift card" />
-                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
+                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={logo}>
                     <div className={this.props.classes.titleForm}>setup gift card incentive</div>
                         <div>
                             {items}

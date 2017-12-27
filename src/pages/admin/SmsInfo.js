@@ -20,10 +20,18 @@ class SmsInfo extends React.Component {
     }
 
     render(){
+        let logo = this.state.shopper.logo;
+
+        if (logo == '') {
+            logo = Avatar1;
+        } else {
+            logo = '/backend/uploads/logos/' + logo
+        }
+
         return(
             <div>
                 <MyAppBar title="sms info" />
-                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={Avatar1}>
+                <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={logo}>
                     <div className={this.props.classes.titleForm}>How it works with SMS</div>
                     <div className={this.props.classes.rowStep}>
                         <span className={this.props.classes.numberStep}>1</span>
