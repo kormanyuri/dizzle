@@ -151,17 +151,58 @@ class SetupStoreCreditIncentive extends React.Component {
     addItem(){
 
         let giftCards = this.state.giftCards;
+        let giftCardDefaultValue = 0;
+        let values = this.state.values;
+        console.log(values);
 
-        giftCards.push(
-            {index: giftCards.length, id: 0, giftCardValue: 100, giftCardDiscount: 0, changed: true}
-        );
+        this.state.values.map((item, key) => {
+            if (item.selected == false) {
+                if (giftCardDefaultValue == 0) {
+                    giftCardDefaultValue = item.value;
 
-        this.setState({
-            giftCards: giftCards
+                    values[key].selected = true;
+                    this.setState({
+                        values: values
+                    });
+                }
+            }
         });
 
-        this.save();
+        if (giftCardDefaultValue != 0) {
+            giftCards.push(
+                {
+                    index: giftCards.length,
+                    id: 0,
+                    giftCardValue: giftCardDefaultValue,
+                    giftCardDiscount: 0,
+                    changed: true
+                }
+            );
 
+            this.setState({
+                giftCards: giftCards
+            });
+
+            this.save();
+        } else {
+            //error
+            this.setState({
+                alert: {
+                    message: 'no free values',
+                    open: true
+                }
+            });
+
+            setTimeout(() => {
+                this.setState({
+                    alert: {
+                        message: '',
+                        open: false
+                    }
+                })
+            }, 3000);
+
+        }
         console.log(this.state);
     }
 
@@ -184,11 +225,26 @@ class SetupStoreCreditIncentive extends React.Component {
     deleteItem(index){
         //alert(index);
         let giftCards = this.state.giftCards;
+        let values = this.state.values;
+
+
 
         giftCards.map((item, key) => {
             if (item.index == index) {
                 giftCards.splice(key, 1);
                 this.del(item);
+
+                //update values
+                values.map((valItem, valKey) => {
+
+                    if (valItem.value == item.giftCardValue) {
+                        values[valKey].selected = false;
+                        this.setState({
+                            values: values
+                        });
+                    }
+
+                });
             }
         });
 
@@ -206,20 +262,26 @@ class SetupStoreCreditIncentive extends React.Component {
 
         giftCards.map((item, key) => {
 
-            axios.post(this.state.baseUrl + 'gift-card/rest/gift-card', {
-                id:                 item.id,
-                shopperId:          this.state.shopper.id,
-                giftCardValue:      item.giftCardValue,
-                giftCardDiscount:   item.giftCardDiscount
-            })
-                .then(response => {
-                    console.log(response);
-                    //window.location = '/admin/profile';
+            if (item.giftCardDiscount !== '') {
+                axios.post(this.state.baseUrl + 'gift-card/rest/gift-card', {
+                    id: item.id,
+                    shopperId: this.state.shopper.id,
+                    giftCardValue: item.giftCardValue,
+                    giftCardDiscount: item.giftCardDiscount
                 })
-                .catch(error => {
-                    console.log(error);
-                });
+                    .then(response => {
+                        console.log(response);
+                        giftCards[key].id = response.data.giftCardId;
+                        this.setState({
+                            giftCards: giftCards
+                        });
 
+                        //window.location = '/admin/profile';
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
         });
     }
 
