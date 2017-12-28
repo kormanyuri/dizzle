@@ -77,6 +77,7 @@ export default class Facebook
     checkFBLoginState() {
         // FB.getLoginStatus(this.statusFBChangeCallback);
         const self = this;
+        console.log(self);
         FB.getLoginStatus(response => {
             //console.log(response);
             //console.log(this);
