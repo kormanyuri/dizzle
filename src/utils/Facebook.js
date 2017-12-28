@@ -2,6 +2,7 @@
  * Created by korman on 28.12.17.
  */
 
+import axios from 'axios';
 
 export default class Facebook
 {
