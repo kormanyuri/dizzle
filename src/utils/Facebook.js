@@ -6,6 +6,10 @@
 export default class Facebook
 {
 
+    constructor(){
+        this.statusFBChangeCallback = this.statusFBChangeCallback.bind(this);
+    }
+
     loadFbLoginApi(){
         window.fbAsyncInit = function() {
             FB.init({
