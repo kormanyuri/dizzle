@@ -8,6 +8,9 @@ export default class Facebook
 
     constructor(){
         this.statusFBChangeCallback = this.statusFBChangeCallback.bind(this);
+        this.checkFBLoginState = this.checkFBLoginState.bind(this);
+        this.loginFB = this.loginFB.bind(this);
+        this.loadFbLoginApi = this.loadFbLoginApi.bind(this);
     }
 
     loadFbLoginApi(){
