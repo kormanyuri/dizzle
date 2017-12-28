@@ -76,10 +76,11 @@ export default class Facebook
 
     checkFBLoginState() {
         // FB.getLoginStatus(this.statusFBChangeCallback);
+        const self = this;
         FB.getLoginStatus(response => {
             //console.log(response);
             //console.log(this);
-            this.statusFBChangeCallback(response);
+            self.statusFBChangeCallback(response);
         });
     }
 }
