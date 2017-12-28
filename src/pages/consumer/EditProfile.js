@@ -17,7 +17,7 @@ import styles from '../../theme/consumer/pages/EditProfile';
 import Auth from '../../components/Auth';
 import Config from '../../Config';
 import axios from 'axios';
-
+import Facebook from '../../utils/Facebook';
 
 class EditProfile extends Component {
 
@@ -41,7 +41,9 @@ class EditProfile extends Component {
             open:           false,
             message:        '',
             token:          window.localStorage.getItem('token')
-        }
+        };
+
+        this.handleFBLogin          = this.handleFBLogin.bind(this);
     }
 
     componentWillMount(){
@@ -76,6 +78,17 @@ class EditProfile extends Component {
                     console.log(error);
                 })
         }
+    }
+
+    componentDidMount(){
+        //this.loadFbLoginApi();
+        const facebook = new Facebook();
+        facebook.loadFbLoginApi();
+    }
+
+    handleFBLogin() {
+        const facebook = new Facebook();
+        FB.login(facebook.checkFBLoginState, {scope: 'email,user_likes'});
     }
 
     changeName(e){
@@ -236,8 +249,7 @@ class EditProfile extends Component {
                                             className: this.props.classes.textFieldFormLabel,
                                         }}
                                     />
-                                    <div
-                                        className={classNames(this.props.classes.status, this.props.classes.connectedStatus)}>
+                                    <div className={classNames(this.props.classes.status, this.props.classes.connectedStatus)}  onClick={this.handleFBLogin}>
                                         connected
                                     </div>
                                 </div>
