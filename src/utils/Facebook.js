@@ -10,6 +10,9 @@ export default class Facebook
 
     constructor(){
         const config = new Config();
+        this.state = {
+            baseUrl: config.baseUrl
+        };
 
         this.statusFBChangeCallback = this.statusFBChangeCallback.bind(this);
         this.checkFBLoginState = this.checkFBLoginState.bind(this);
