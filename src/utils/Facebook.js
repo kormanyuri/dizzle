@@ -3,11 +3,14 @@
  */
 
 import axios from 'axios';
+import Config from '../Config';
 
 export default class Facebook
 {
 
     constructor(){
+        const config = new Config();
+
         this.statusFBChangeCallback = this.statusFBChangeCallback.bind(this);
         this.checkFBLoginState = this.checkFBLoginState.bind(this);
         this.loginFB = this.loginFB.bind(this);
