@@ -35,7 +35,7 @@ class Login extends Component {
             password: '',
             baseUrl: config.baseUrl
         };
-
+        this.facebook = new Facebook();
         this.handleRequestClose     = this.handleRequestClose.bind(this);
         this.handleFBLogin          = this.handleFBLogin.bind(this);
         // this.checkFBLoginState      = this.checkFBLoginState.bind(this);
@@ -187,8 +187,8 @@ class Login extends Component {
     // }
 
     handleFBLogin() {
-        const facebook = new Facebook();
-        FB.login(facebook.checkFBLoginState, {scope: 'email,user_likes'});
+
+        FB.login(this.facebook.checkFBLoginState, {scope: 'email,user_likes'});
     }
 
     handleTwitterLogin() {
@@ -236,8 +236,7 @@ class Login extends Component {
 
     componentDidMount(){
         //this.loadFbLoginApi();
-        const facebook = new Facebook();
-        facebook.loadFbLoginApi();
+        this.facebook.loadFbLoginApi();
     }
 
     render() {
