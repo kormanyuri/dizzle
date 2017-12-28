@@ -187,7 +187,7 @@ class Login extends Component {
     // }
 
     handleFBLogin() {
-
+        console.log(this.facebook);
         FB.login(this.facebook.checkFBLoginState, {scope: 'email,user_likes'});
     }
 
