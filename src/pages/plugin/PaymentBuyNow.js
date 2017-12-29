@@ -100,7 +100,7 @@ class Payment extends Component {
                     //window.location = '/plugin/order-accepted'
                 } else {
                     window.localStorage.setItem('order_group_buy_id', response.data.groupBuyId);
-                    //window.location = '/plugin/order-accepted-invite-friends'
+                    window.location = '/plugin/order-accepted-invite-friends'
                 }
 
                 //clear locale storage
