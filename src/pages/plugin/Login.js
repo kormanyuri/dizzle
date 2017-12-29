@@ -39,8 +39,9 @@ class Login extends Component {
             baseUrl:    config.baseUrl
         };
         this.facebook = new Facebook();
-        this.loadShopper = this.loadShopper.bind(this);
-        this.handleRequestClose = this.handleRequestClose.bind(this);
+        this.loadShopper            = this.loadShopper.bind(this);
+        this.handleRequestClose     = this.handleRequestClose.bind(this);
+        this.handleFBLogin          = this.handleFBLogin.bind(this);
     };
 
     componentWillMount(){
