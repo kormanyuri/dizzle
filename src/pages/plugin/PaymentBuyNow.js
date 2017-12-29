@@ -15,6 +15,7 @@ import NumberFormat from 'react-number-format';
 import classNames from 'classnames';
 import Popover from 'material-ui/Popover';
 import Typography from 'material-ui/Typography';
+import Snackbar from 'material-ui/Snackbar';
 
 import styles from '../../theme/plugin/pages/PaymentBuyNow';
 
@@ -46,8 +47,12 @@ class Payment extends Component {
             popover: {
                 open: false,
                 anchorEl: null
-            }
-        }
+            },
+            alert: {
+                open: false,
+                message: <span id="message-id">Error</span>
+            },
+        };
 
         this.helpCVV = this.helpCVV.bind(this);
     }
@@ -99,8 +104,17 @@ class Payment extends Component {
                 if (isBuyNow != 0) {
                     //window.location = '/plugin/order-accepted'
                 } else {
-                    window.localStorage.setItem('order_group_buy_id', response.data.groupBuyId);
-                    window.location = '/plugin/order-accepted-invite-friends'
+                    if (response.data.error == 0) {
+                        window.localStorage.setItem('order_group_buy_id', response.data.groupBuyId);
+                        window.location = '/plugin/order-accepted-invite-friends'
+                    } else {
+                        this.setState({
+                            alert: {
+                                open: true,
+                                message: <span id="message-id">{response.data.errorMessage}</span>
+                            }
+                        });
+                    }
                 }
 
                 //clear locale storage
@@ -283,6 +297,16 @@ class Payment extends Component {
                         </TextGroup>
                     </CardContent>
                 </Card>
+                <Snackbar
+                    className={this.props.classes.message}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    open={this.state.alert.open}
+                    onRequestClose={this.handleRequestClose}
+                    SnackbarContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={this.state.alert.message}
+                />
             </div>
         );
     }
