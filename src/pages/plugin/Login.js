@@ -17,9 +17,10 @@ import styles from '../../theme/plugin/pages/Login'
 import Auth from '../../components/Auth';
 import Config from '../../Config';
 import axios from 'axios';
+import Facebook from '../../utils/Facebook';
+
 
 class Login extends Component {
-
 
     constructor(props) {
         super(props);
@@ -140,7 +141,19 @@ class Login extends Component {
             });
     }
 
+    handleFBLogin() {
+        console.log(this.facebook);
+        FB.login(this.facebook.checkFBLoginState, {scope: 'email,user_likes'});
+    }
 
+    handleTwitterLogin() {
+        window.location = '/backend/gift-card/rest/twitter-auth/reuest-token';
+    }
+
+    componentDidMount(){
+        //this.loadFbLoginApi();
+        this.facebook.loadFbLoginApi();
+    }
 
     render() {
         //const { vertical, horizontal, open } = this.state;
@@ -193,17 +206,18 @@ class Login extends Component {
                             <HeaderLineStyled className={this.props.classes.horDivid}>or Login with</HeaderLineStyled>
                             <Grid container spacing={0} style={{fontSize: 11}}>
                                 <Grid item xs={12} sm={6} className={this.props.classes.gridItem}>
-                                    <Button className={this.props.classes.btnfacebook}>
+                                    <Button className={this.props.classes.btnfacebook} onClick={this.handleFBLogin}>
                                         <span className={this.props.classes.facebookIco}></span>facebook
                                     </Button>
                                 </Grid>
                                 <Grid item xs={12} sm={6} className={this.props.classes.gridItem}>
-                                    <Button className={this.props.classes.btntwitter}>
+                                    <Button className={this.props.classes.btntwitter} onClick={this.handleTwitterLogin}>
                                         <span className={this.props.classes.twitter}></span>twitter
                                     </Button>
                                 </Grid>
                             </Grid>
                         </div>
+
                     </div>
                 </div>
                 <Snackbar
