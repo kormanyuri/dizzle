@@ -38,7 +38,7 @@ class Login extends Component {
             shopperId:  shopper ? shopper.id : props.match.params.shopperId,
             baseUrl:    config.baseUrl
         };
-
+        this.facebook = new Facebook();
         this.loadShopper = this.loadShopper.bind(this);
         this.handleRequestClose = this.handleRequestClose.bind(this);
     };
