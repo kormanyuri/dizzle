@@ -152,7 +152,13 @@ class Payment extends Component {
                 //clear locale storage
             })
             .catch(error => {
-                console.log(error);
+                console.log(error.response);
+                this.setState({
+                    alert: {
+                        open: true,
+                        message: error.response.data.chargeData.message
+                    }
+                });
             });
     }
 
