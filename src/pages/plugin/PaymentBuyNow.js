@@ -29,7 +29,7 @@ class Payment extends Component {
         super(props);
         const config = new Config();
         const shopper    = JSON.parse(window.localStorage.getItem('shopper'));
-        const user       = JSON.parse(window.localStorage.getItem('user'));
+        const user       = JSON.parse(window.localStorage.getItem('consumer'));
         const groupBuyId = window.localStorage.getItem('order_group_buy_id');
 
         this.state = {

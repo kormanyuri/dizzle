@@ -119,7 +119,7 @@ class Login extends Component {
             .then(response => {
                 console.log(response);
                 window.localStorage.setItem('token', response.data.token);
-                window.localStorage.setItem('user', JSON.stringify(response.data.user));
+                window.localStorage.setItem('consumer', JSON.stringify(response.data.user));
                 // const orderShopperId = window.localStorage.getItem('order_shopper_id');
                 const orderProcess = window.localStorage.getItem('order_process');
 

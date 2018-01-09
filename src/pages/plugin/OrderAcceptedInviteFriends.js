@@ -23,7 +23,7 @@ class OrderAcceptedInviteFriends extends Component {
     constructor(props) {
         super(props);
         const shopper = JSON.parse(window.localStorage.getItem('shopper'));
-        const user    = JSON.parse(window.localStorage.getItem('user'));
+        const user    = JSON.parse(window.localStorage.getItem('consumer'));
 
         const orderGroupBuyId = window.localStorage.getItem('order_group_buy_id');
         const config = new Config();
