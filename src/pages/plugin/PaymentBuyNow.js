@@ -102,7 +102,7 @@ class Payment extends Component {
                 window.localStorage.removeItem('order_group_buy_id');
 
                 if (isBuyNow != 0) {
-                    //window.location = '/plugin/order-accepted'
+                    window.location = '/plugin/order-accepted'
                 } else {
                     if (response.data.error == 0) {
                         window.localStorage.setItem('order_group_buy_id', response.data.groupBuyId);
