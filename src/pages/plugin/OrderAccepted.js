@@ -23,7 +23,7 @@ class OrderAccepted extends Component {
 
         const config = new Config();
         const shopper = JSON.parse(window.localStorage.getItem('shopper'));
-        const user    = JSON.parse(window.localStorage.getItem('user'));
+        const user    = JSON.parse(window.localStorage.getItem('consumer'));
 
         this.state = {
             shopperName: shopper.name,
