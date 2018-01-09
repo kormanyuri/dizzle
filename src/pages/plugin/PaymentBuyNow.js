@@ -295,6 +295,7 @@ class Payment extends Component {
                                                     vertical: 'bottom',
                                                     horizontal: 'center',
                                                 }}
+                                                style={{top: '25px'}}
                                             >
                                                 <Typography>CCV code 3 number</Typography>
                                             </Popover>
