@@ -7,6 +7,10 @@ import {withStyles} from 'material-ui/styles';
 import withRoot from '../../../components/consumer/withRoot';
 import TextField from 'material-ui/TextField';
 import Snackbar from 'material-ui/Snackbar';
+import Grid from 'material-ui/Grid';
+
+import MyLinkStyled from '../../../components/consumer/MyLink';
+import HeaderLineStyled from '../../../components/consumer/HeaderLineStyled';
 
 import styles from '../../../theme/consumer/pages/Login';
 
@@ -52,7 +56,7 @@ class RestoreStep1 extends Component {
             showLoading: true
         });
 
-        if (this.state.email == '' || this.state.password == '') {
+        if (this.state.email == '') {
             this.setState({
                 alert: {
                     open: true,
@@ -60,35 +64,8 @@ class RestoreStep1 extends Component {
                 }
             });
         } else {
-            axios.post(this.state.baseUrl + 'gift-card/rest/consumer/login', {
-                email: this.state.email,
-                password: this.state.password
-            })
-                .then(response => {
-                    //console.log(response);
-                    window.localStorage.setItem('token', response.data.token);
-                    window.localStorage.setItem('consumer', JSON.stringify({
-                        id: response.data.id,
-                        name: typeof response.data.user.name != 'undefined' ? response.data.user.name : '',
-                        image: typeof response.data.user.image != 'undefined' && response.data.user.image != '' ? response.data.user.image : UploadAva
-                    }));
-                    // const orderShopperId = window.localStorage.getItem('order_shopper_id');
-                    // const orderProcess = window.localStorage.getItem('order_process');
-                    window.location = '/';
-                    // if (!orderProcess) {
-                    //     window.location = '/#/';
-                    // }
-
-                })
-                .catch(error => {
-                    console.log(error);
-                    this.setState({
-                        alert: {
-                            open: true,
-                            message: <span id="message-id">Login or password incorrect</span>
-                        }
-                    });
-                });
+            //TODO: send request to check isset email
+            //TODO: send request to restore
         }
     }
 
@@ -96,7 +73,6 @@ class RestoreStep1 extends Component {
     componentWillMount(){
         window.localStorage.clear();
     }
-
 
     render() {
 
@@ -120,7 +96,18 @@ class RestoreStep1 extends Component {
                                 onChange={ e => this.updateEmail(e) }
                             />
                             <Button raised className={this.props.classes.button} onClick={this.login.bind(this)}>Send Restore</Button>
-
+                            <Grid container style={{fontSize: 11, marginBottom: 45}}>
+                                <Grid item xs={6}>
+                                    <MyLinkStyled href="/login" className={this.props.classes.link}>
+                                        Login
+                                    </MyLinkStyled>
+                                </Grid>
+                                <Grid item xs={6} style={{textAlign: 'right'}}>
+                                    <MyLinkStyled href="/signup" className={this.props.classes.link}>
+                                        New here? Sign Up
+                                    </MyLinkStyled>
+                                </Grid>
+                            </Grid>
                         </div>
                     </div>
                 </div>

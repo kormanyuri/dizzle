@@ -183,7 +183,7 @@ class SignUp extends Component {
                         <div className={this.props.classes.title}>DRIZZLE</div>
                         <div className={this.props.classes.subtitle}>welcome to Merchant Portal</div>
                         <TextField
-                            placeholder="Name"
+                            placeholder="Shopper Name"
                             fullWidth={true}
                             InputProps={{
                                 disableUnderline: true,
