@@ -124,7 +124,7 @@ class Payment extends Component {
                 this.setState({
                     alert: {
                         open: true,
-                        message: error.response.data.chargeData.message
+                        message: error.response.data.chargeData.errorMessage
                     }
                 });
             });
