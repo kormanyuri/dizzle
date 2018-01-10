@@ -62,7 +62,7 @@ class SetupStoreCreditIncentive extends React.Component {
 
     changeValue(e, index) {
         let giftCards = this.state.giftCards;
-        // let values    = this.state.values;
+        let values    = this.state.values;
         //
         // const indexVal = values.indexOf(e.target.value);
         //
@@ -70,15 +70,32 @@ class SetupStoreCreditIncentive extends React.Component {
         //     values.splice(indexVal, 1);
         // }
 
-        //console.log(values, e.target.value, indexVal);
+        //console.log(index, e.target.value);
+
+        this.state.values.map((item, key) => {
+            //console.log(item);
+            if (item.value == e.target.value) {
+
+                values[key].selected = true;
+                this.setState({
+                    values: values
+                });
+                //console.log(values);
+            }
+        });
+
 
 
         giftCards.map((item, key) => {
             if (item.index == index) {
                 giftCards[key].giftCardValue = e.target.value;
                 giftCards[key].changed = true;
+                giftCards[key].selected = true;
+                //console.log('selected', giftCards[key])
             }
         });
+
+        //console.log(giftCards);
 
         this.setState({
             giftCards: giftCards,
@@ -86,6 +103,33 @@ class SetupStoreCreditIncentive extends React.Component {
         });
 
         this.save();
+    }
+
+    prevValue(e, index) {
+        if (typeof e.target.value != 'undefined') {
+            //console.log(e.target.value, index);
+            let values    = this.state.values;
+            //
+            // const indexVal = values.indexOf(e.target.value);
+            //
+            // if (indexVal > -1) {
+            //     values.splice(indexVal, 1);
+            // }
+
+            console.log(index, e.target.value);
+
+            this.state.values.map((item, key) => {
+                //console.log(item);
+                if (values[key].selected == true && item.value == e.target.value) {
+
+                    values[key].selected = false;
+                    this.setState({
+                        values: values
+                    });
+                    //console.log(values);
+                }
+            });
+        }
     }
 
     changeDiscount(e, index) {
@@ -114,7 +158,7 @@ class SetupStoreCreditIncentive extends React.Component {
             }
         })
             .then(response => {
-                console.log(response);
+                //console.log(response);
 
 
                 const giftCards = [];
@@ -153,7 +197,7 @@ class SetupStoreCreditIncentive extends React.Component {
         let giftCards = this.state.giftCards;
         let giftCardDefaultValue = 0;
         let values = this.state.values;
-        console.log(values);
+        //console.log(values);
 
         this.state.values.map((item, key) => {
             if (item.selected == false) {
@@ -188,7 +232,7 @@ class SetupStoreCreditIncentive extends React.Component {
             //error
             this.setState({
                 alert: {
-                    message: 'no free values',
+                    message: 'Not allow add more gift card incentive',
                     open: true
                 }
             });
@@ -203,7 +247,7 @@ class SetupStoreCreditIncentive extends React.Component {
             }, 3000);
 
         }
-        console.log(this.state);
+        //console.log(this.state);
     }
 
     del(item) {
@@ -270,7 +314,7 @@ class SetupStoreCreditIncentive extends React.Component {
                     giftCardDiscount: item.giftCardDiscount
                 })
                     .then(response => {
-                        console.log(response);
+                        //console.log(response);
                         giftCards[key].id = response.data.giftCardId;
                         this.setState({
                             giftCards: giftCards
@@ -312,6 +356,7 @@ class SetupStoreCreditIncentive extends React.Component {
                                     <Select
                                         value={item.giftCardValue}
                                         onChange={((e, id) => this.changeValue(e, item.index)).bind(this)}
+                                        onFocus={((e, id) => this.prevValue(e, item.index)).bind(this)}
                                         displayEmpty
                                         className={this.props.classes.selectEmpty}
                                         disableUnderline="true"
