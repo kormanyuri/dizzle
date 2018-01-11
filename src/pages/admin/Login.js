@@ -30,11 +30,20 @@ class Login extends Component {
             },
             email: '',
             password: '',
-            baseUrl: config.baseUrl
+            baseUrl: config.baseUrl,
+            token: typeof props.match.params.token != 'undefined' ? props.match.params.token : null
         };
 
-        if (typeof props.match.params.token != 'undefined') {
-            const token = props.match.params.token;
+        this.handleRequestClose = this.handleRequestClose.bind(this);
+        this.handleClick        = this.handleClick.bind(this);
+        this.updateEmail        = this.updateEmail.bind(this);
+        this.updatePassword     = this.updatePassword.bind(this);
+    }
+
+    componentDidMount() {
+        const token = this.state.token;
+
+        if (token) {
             axios.post(this.state.baseUrl + 'shopper-admin/rest/login', {
                 token: token
             })
@@ -43,9 +52,9 @@ class Login extends Component {
 
                     window.localStorage.setItem('shopper_token', response.data.token);
                     window.localStorage.setItem('shopper', JSON.stringify({
-                        id:     response.data.id,
-                        name:   response.data.name,
-                        logo:   response.data.image
+                        id: response.data.id,
+                        name: response.data.name,
+                        logo: response.data.image
                     }));
                     window.location = '/admin/profile';
                 })
@@ -59,11 +68,6 @@ class Login extends Component {
                     });
                 });
         }
-
-        this.handleRequestClose = this.handleRequestClose.bind(this);
-        this.handleClick        = this.handleClick.bind(this);
-        this.updateEmail        = this.updateEmail.bind(this);
-        this.updatePassword     = this.updatePassword.bind(this);
     }
 
     handleRequestClose() {
@@ -131,6 +135,7 @@ class Login extends Component {
                 });
             });
     }
+
 
 
     render() {
