@@ -23,6 +23,33 @@ class Login extends Component {
         super(props);
         const config = new Config();
 
+        if (typeof props.match.params.token != 'undefined') {
+            const token = props.match.params.token;
+            axios.post(this.state.baseUrl + 'shopper-admin/rest/login', {
+                token: token
+            })
+                .then(response => {
+                    console.log(response);
+
+                    window.localStorage.setItem('shopper_token', response.data.token);
+                    window.localStorage.setItem('shopper', JSON.stringify({
+                        id:     response.data.id,
+                        name:   response.data.name,
+                        logo:   response.data.image
+                    }));
+                    window.location = '/admin/profile';
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.setState({
+                        alert: {
+                            open: true,
+                            message: <span id="message-id">Login or password incorrect</span>
+                        }
+                    });
+                });
+        }
+
         this.state = {
             alert: {
                 open: false,

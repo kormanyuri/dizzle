@@ -125,7 +125,23 @@ class SignUp extends Component {
                         showLoading: false,
                         showWarningEmail: false
                     });
-                    window.location = '/admin/login';
+                    //window.location = '/admin/login';
+                    this.setState({
+                        alert: {
+                            open: true,
+                            message: response.data.message
+                        }
+                    });
+
+                    setTimeout(() => {
+                        this.setState({
+                            alert: {
+                                open: false,
+                                message: ''
+                            }
+                        });
+                        window.location = '/admin/login';
+                    }, 3000);
                 })
                 .catch(error => {
                     console.log(error.response.data.message);
@@ -227,7 +243,6 @@ class SignUp extends Component {
                                 </MyLinkStyled>
                             </Grid>
                         </Grid>
-
                     </div>
 
                 </div>
@@ -239,7 +254,7 @@ class SignUp extends Component {
                     SnackbarContentProps={{
                         'aria-describedby': 'message-id',
                     }}
-                    message={<span id="message-id">Error</span>}
+                    message={this.state.alert.message}
                 />
             </div>
         );
