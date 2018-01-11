@@ -10,6 +10,10 @@ let h = Math.max(
     document.body.clientHeight, document.documentElement.clientHeight
 );
 
+const bodyW = 414;
+let windowH = window.innerHeight;
+let windowW = window.innerWidth;
+let k = windowH / bodyW;
 
 const styles = theme => ({
     root: {
@@ -145,9 +149,13 @@ const styles = theme => ({
         }
     },
     message: {
-
+        left: 'auto',
+        right: 'auto',
+        transform: 'none',
+        width: ( windowW > bodyW )? bodyW : '100%',
         '& div': {
-            width: (w > 320) ? '414px' : 'auto'
+            maxWidth: 'none',
+            width: '100%'
         }
     },
     error: {
