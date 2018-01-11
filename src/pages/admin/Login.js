@@ -23,6 +23,16 @@ class Login extends Component {
         super(props);
         const config = new Config();
 
+        this.state = {
+            alert: {
+                open: false,
+                message: <span id="message-id">Error</span>
+            },
+            email: '',
+            password: '',
+            baseUrl: config.baseUrl
+        };
+
         if (typeof props.match.params.token != 'undefined') {
             const token = props.match.params.token;
             axios.post(this.state.baseUrl + 'shopper-admin/rest/login', {
@@ -49,16 +59,6 @@ class Login extends Component {
                     });
                 });
         }
-
-        this.state = {
-            alert: {
-                open: false,
-                message: <span id="message-id">Error</span>
-            },
-            email: '',
-            password: '',
-            baseUrl: config.baseUrl
-        };
 
         this.handleRequestClose = this.handleRequestClose.bind(this);
         this.handleClick        = this.handleClick.bind(this);
