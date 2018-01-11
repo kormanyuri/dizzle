@@ -154,20 +154,34 @@ class Signup extends Component {
                         showLoading: false,
                         showWarningEmail: false
                     });
-                    window.location = '/plugin/login/' + this.state.shopper.id;
+
+                    window.localStorage.setItem('consumer', JSON.stringify({
+                        name: response.data.name,
+                        email: response.data.email
+                    }));
+                    window.localStorage.setItem('token', response.data.token);
+                    window.location = '/plugin/gift-cards-list/' + this.state.shopper.id;
                 })
                 .catch(error => {
-                    console.log(error.response.data.message);
+                    // console.log(error.response.data.message);
+                    // this.setState({
+                    //     showLoading: false,
+                    //     showWarningEmail: true,
+                    //     showWarningToast: true,
+                    //     warningToastMessage: error.response.data.message
+                    // });
                     this.setState({
-                        showLoading: false,
-                        showWarningEmail: true,
-                        showWarningToast: true,
-                        warningToastMessage: error.response.data.message
+                        alert: {
+                            open: true,
+                            message: error.response.data.message
+                        }
                     });
-
                     setTimeout(() => {
                         this.setState({
-                            showWarningToast: false
+                            alert: {
+                                open: false,
+                                message: ''
+                            }
                         });
                     }, 3000);
                 });

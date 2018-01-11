@@ -174,7 +174,7 @@ class Invoice extends React.Component {
                             revenue
                         </div>
                         <div className={this.props.classes.paramValue}>
-                            {this.state.revenue}
+                            ${this.state.revenue}
                         </div>
                     </div>
                     <div className={this.props.classes.dialogRow}>
@@ -182,7 +182,7 @@ class Invoice extends React.Component {
                             Drizzle Commission
                         </div>
                         <div className={this.props.classes.paramValue}>
-                            {this.state.commission}
+                            ${this.state.commission}
                         </div>
                     </div>
                 </div>
@@ -250,7 +250,7 @@ class Invoice extends React.Component {
                                     transaction
                                 </div>
                                 <div className={this.props.classes.paramValue}>
-                                    {this.state.transaction}
+                                    {this.state.transaction == 1 ? 'Refill' : 'Reduce'}
                                 </div>
                             </div>
 
@@ -261,7 +261,7 @@ class Invoice extends React.Component {
                                     Previous Balance
                                 </div>
                                 <div className={this.props.classes.paramValue}>
-                                    {this.state.prevBalance}
+                                    ${this.state.prevBalance}
                                 </div>
                             </div>
                             <div className={this.props.classes.dialogRow}>
@@ -269,7 +269,7 @@ class Invoice extends React.Component {
                                     New Balance
                                 </div>
                                 <div className={this.props.classes.paramValue}>
-                                    {this.state.newBalance}
+                                    ${this.state.newBalance}
                                 </div>
                             </div>
                         </div>
