@@ -4,7 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import withRoot from '../../components/admin/withRoot';
 import MyPaper from '../../components/admin/MyPaper';
 import MyAppBar from '../../components/admin/MyAppBar';
-
+import CopyToClipboard from 'react-copy-to-clipboard';
 import Avatar1 from '../../img/admin/avatar-1.jpg';
 
 import styles from '../../theme/admin/pages/PluginSetup';
@@ -29,6 +29,10 @@ class PluginSetup extends React.Component {
         window.open(window.location.origin + '/plugin/gift-cards-list/' + this.state.shopper.id, '_blank');
     }
 
+    copySourceToClipboard(){
+
+    }
+
     render(){
         let logo = this.state.shopper.logo;
 
@@ -40,14 +44,15 @@ class PluginSetup extends React.Component {
 
         return(
             <div>
-                <MyAppBar
-                    title="plugin setup"
-                />
+                <MyAppBar title="plugin setup" />
                 <MyPaper title={`Namaste, ` + this.state.shopper.name} avatar={logo}>
                     <div className={this.props.classes.titleForm}>How to setup Plugin</div>
                     <div className={this.props.classes.rowStep}>
                         <span className={this.props.classes.numberStep}>1</span>
-                        <span className={this.props.classes.textStep}>Place this code "XXXXXXXX" to your website</span>
+                        <input type="hidden" name="sourceCode" value={`<a href="https://drizzle.jjpanda.com/plugin/gift-cards-list/`+ this.state.shopper.id +`">Drizzle Plugin</a>`}/>
+                        <span className={this.props.classes.textStep}>
+                            Place this code <CopyToClipboard text={this.state.value} onCopy={this.copySourceToClipboard}><button>source code</button></CopyToClipboard> to your website
+                        </span>
                     </div>
                     <div className={this.props.classes.rowStep}>
                         <span className={this.props.classes.numberStep}>2</span>
