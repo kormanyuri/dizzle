@@ -21,6 +21,10 @@ class PluginSetup extends React.Component {
 
         this.state = {
             baseUrl: config.baseUrl,
+            alert: {
+                open: false,
+                message: ''
+            },
             shopper: JSON.parse(window.localStorage.getItem('shopper'))
         }
     }
@@ -29,8 +33,23 @@ class PluginSetup extends React.Component {
         window.open(window.location.origin + '/plugin/gift-cards-list/' + this.state.shopper.id, '_blank');
     }
 
-    copySourceToClipboard(){
+    onCopySourceToClipboard(){
+        //console.log('sdo');
+        this.setState({
+            alert: {
+                open: true,
+                message: 'Source code copy to clipboard'
+            }
+        });
 
+        setTimeout(() => {
+            this.setState({
+                alert: {
+                    open: false,
+                    message: 'Source code copy to clipboard'
+                }
+            });
+        }, 3000)
     }
 
     render(){
@@ -49,9 +68,9 @@ class PluginSetup extends React.Component {
                     <div className={this.props.classes.titleForm}>How to setup Plugin</div>
                     <div className={this.props.classes.rowStep}>
                         <span className={this.props.classes.numberStep}>1</span>
-                        <input type="hidden" name="sourceCode" value={`<a href="https://drizzle.jjpanda.com/plugin/gift-cards-list/`+ this.state.shopper.id +`">Drizzle Plugin</a>`}/>
+                        {/*<input type="hidden" name="sourceCode" value={`<a href="https://drizzle.jjpanda.com/plugin/gift-cards-list/`+ this.state.shopper.id +`">Drizzle Plugin</a>`}/>*/}
                         <span className={this.props.classes.textStep}>
-                            Place this code <CopyToClipboard text={this.state.value} onCopy={this.copySourceToClipboard}><button>source code</button></CopyToClipboard> to your website
+                            Place this code <CopyToClipboard text={`<a href="https://drizzle.jjpanda.com/plugin/gift-cards-list/`+ this.state.shopper.id + `">Drizzle Plugin</a>`} onCopy={this.onCopySourceToClipboard}><button>source code</button></CopyToClipboard> to your website
                         </span>
                     </div>
                     <div className={this.props.classes.rowStep}>
@@ -66,6 +85,16 @@ class PluginSetup extends React.Component {
                         <span className={this.props.classes.textStep}>Click this button. If it direct to your restaurant's Group buy page. You setup successfully.</span>
                     </div>
                 </MyPaper>
+                <Snackbar
+                    className={this.props.classes.message}
+                    anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+                    open={this.state.alert.open}
+                    onRequestClose={this.handleRequestClose}
+                    SnackbarContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={this.state.alert.message}
+                />
             </div>
         );
     }
