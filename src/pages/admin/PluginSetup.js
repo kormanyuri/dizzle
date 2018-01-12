@@ -6,6 +6,7 @@ import MyPaper from '../../components/admin/MyPaper';
 import MyAppBar from '../../components/admin/MyAppBar';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import Avatar1 from '../../img/admin/avatar-1.jpg';
+import Snackbar from 'material-ui/Snackbar';
 
 import styles from '../../theme/admin/pages/PluginSetup';
 
@@ -27,6 +28,8 @@ class PluginSetup extends React.Component {
             },
             shopper: JSON.parse(window.localStorage.getItem('shopper'))
         }
+
+        this.onCopySourceToClipboard = this.onCopySourceToClipboard.bind(this);
     }
 
     goToPlugin(){
