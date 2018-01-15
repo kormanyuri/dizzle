@@ -14,6 +14,7 @@ import MyLinkStyled from '../../components/admin/MyLink';
 import styles from '../../theme/admin/pages/Login'
 
 import axios from 'axios';
+import Core from  '../../utils/Core';
 import Config from '../../Config';
 
 class Login extends Component {

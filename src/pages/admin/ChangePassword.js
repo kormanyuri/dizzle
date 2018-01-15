@@ -8,6 +8,7 @@ import withRoot from '../../components/admin/withRoot';
 import MyPaper from '../../components/admin/MyPaper';
 import MyAppBar from '../../components/admin/MyAppBar';
 import Snackbar from 'material-ui/Snackbar';
+import Shopper from '../../utils/Shopper';
 
 import Avatar1 from '../../img/admin/avatar-1.jpg';
 
@@ -15,9 +16,11 @@ import styles from '../../theme/admin/pages/ChangePassword';
 
 import Auth from '../../components/Auth';
 import Config from '../../Config';
+import Core from  '../../utils/Core';
 import axios from 'axios';
 
 class ChangePassword extends React.Component {
+
     constructor(props){
         super(props);
 
@@ -36,7 +39,10 @@ class ChangePassword extends React.Component {
 
         this.updatePassword = this.updatePassword.bind(this);
         this.updateRetryPassword = this.updateRetryPassword.bind(this);
+        //core.hiddenAlert = core.hiddenAlert.bind(this);
     }
+
+
 
     updatePassword(e){
         this.state.password = e.target.value;
@@ -47,50 +53,27 @@ class ChangePassword extends React.Component {
     }
 
     save(){
-        if (this.state.password == '' || !this.state.password) {
-            this.setState({
-                alert: {
-                    open: true,
-                    message: 'Please fill fields'
-                }
-            });
 
-        } else {
-
-            if (this.state.password == this.state.retryPassword) {
-
-                axios.post(this.state.baseUrl + 'gift-card/rest/shopper/' + this.state.shopper.id, {
-                    password: this.state.password,
-                    retryPassword: this.state.retryPassword
-                })
-                    .then(response => {
-                        //redirect to /#/admin/profile
-                        window.location = '/admin/profile';
-                    })
-                    .catch(error => {
-
+        const shopper = new Shopper(this.state.shopper.id);
+        shopper.changePassword(this.state.password, this.state.retryPassword)
+            .then(
+                () => {
+                    window.location = '/admin/profile';
+                },
+                error => {
+                    this.setState({
+                        alert: {
+                            open: true,
+                            message: error.toString()
+                        }
                     });
+                }
+            );
+    }
 
-            } else {
-                this.setState({
-                    alert: {
-                        open: true,
-                        message: 'Password and Retry Password not equals'
-                    }
-                });
-
-            }
-        }
-
-        if (this.state.alert.open) {
-            setTimeout(() => {
-                this.setState({
-                    alert: {
-                        open: false
-                    }
-                });
-            }, 3000);
-        }
+    componentDidUpdate() {
+        const core = new Core();
+        core.hiddenAlert(this);
     }
 
     render(){

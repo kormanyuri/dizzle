@@ -12,6 +12,7 @@ import styles from '../../theme/admin/pages/PluginSetup';
 
 import Auth from '../../components/Auth';
 import Config from '../../Config';
+import Core from  '../../utils/Core';
 import axios from 'axios';
 
 class PluginSetup extends React.Component {
