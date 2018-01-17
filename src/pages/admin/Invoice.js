@@ -52,22 +52,6 @@ class Invoice extends React.Component {
             showLoading:    false,
             message:        ''
         };
-        // const data = [
-        //     this.createData('2017.07.20', 'Sell $100 Gift Card', '$90', '$9', '$0', '$81'),
-        //     this.createData('2017.07.19', 'Drizzle paid commission $976.00', '$90', '$9', '$976.00', '$0'),
-        //     this.createData('2017.07.18', 'Sell $100 Gift Card', '$160', '$9', '$0', '$151'),
-        //     this.createData('2017.07.17', 'Sell $100 Gift Card', '$90', '$9', '$0', '$81'),
-        //     this.createData('2017.07.16', 'Drizzle paid commission $976.00', '$90', '$9', '$976.00', '$0'),
-        //     this.createData('2017.07.15', 'Sell $100 Gift Card', '$160', '$9', '$0', '$151'),
-        //     this.createData('2017.07.14', 'Sell $100 Gift Card', '$90', '$9', '$0', '$81'),
-        //     this.createData('2017.07.13', 'Drizzle paid commission $976.00', '$90', '$9', '$976.00', '$0'),
-        //     this.createData('2017.07.12', 'Sell $100 Gift Card', '$160', '$9', '$0', '$151'),
-        //     this.createData('2017.07.11', 'Sell $100 Gift Card', '$90', '$9', '$0', '$81'),
-        //     this.createData('2017.07.10', 'Drizzle paid commission $976.00', '$90', '$9', '$976.00', '$0'),
-        //     this.createData('2017.07.09', 'Sell $100 Gift Card', '$160', '$9', '$0', '$151'),
-        // ];
-        // this.state.data=data;
-        // this.createData=this.createData.bind(this);
 
         this.loadList = this.loadList.bind(this);
         this.changeDateFrom = this.changeDateFrom.bind(this);

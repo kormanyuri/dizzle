@@ -48,6 +48,10 @@ import Statement from './pages/admin/Statement';
 import Invoice from './pages/admin/Invoice';
 import StoreCreditList from './pages/admin/StoreCreditList';
 
+import LoginBotAdmin from './pages/bot_admin/Login';
+import SignUpBotAdmin from './pages/bot_admin/SignUp';
+import SettingsBotAdmin from './pages/bot_admin/Settings';
+
 import styles from './theme/admin/pages/Index';
 
 
@@ -120,6 +124,11 @@ export default class Index extends React.Component {
                         <Route exact path="/admin/invoices" component={Invoice}/>
                         <Route exact path="/admin/statement" component={Statement}/>
                         <Route exact path="/admin/store-credit-list" component={StoreCreditList}/>
+
+                        <Route exact path="/bot-admin" component={LoginBotAdmin}/>
+                        <Route exact path="/bot-admin/login" component={LoginBotAdmin}/>
+                        <Route exact path="/bot-admin/sign-up" component={SignUpBotAdmin}/>
+                        <Route exact path="/bot-admin/settings" component={SettingsBotAdmin}/>
                     </div>
                 </Router>
 
