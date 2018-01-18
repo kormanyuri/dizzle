@@ -51,6 +51,7 @@ import StoreCreditList from './pages/admin/StoreCreditList';
 import LoginBotAdmin from './pages/bot_admin/Login';
 import SignUpBotAdmin from './pages/bot_admin/SignUp';
 import SettingsBotAdmin from './pages/bot_admin/Settings';
+import ShareToEmail from './pages/bot_admin/ShareToEmail';
 
 import styles from './theme/admin/pages/Index';
 
@@ -129,6 +130,7 @@ export default class Index extends React.Component {
                         <Route exact path="/bot-admin/login" component={LoginBotAdmin}/>
                         <Route exact path="/bot-admin/sign-up" component={SignUpBotAdmin}/>
                         <Route exact path="/bot-admin/settings" component={SettingsBotAdmin}/>
+                        <Route exact path="/bot-admin/share-to-email" component={ShareToEmail}/>
                     </div>
                 </Router>
 

@@ -22,7 +22,7 @@ import Core from  '../../utils/Core';
 import axios from 'axios';
 
 
-class Settings extends React.Component {
+class ShareToEmail extends React.Component {
 
     constructor(props){
         super(props);
@@ -30,9 +30,7 @@ class Settings extends React.Component {
         const config = new Config();
 
         this.state = {
-            trackUrl: '',
-            ask: '',
-            fbId: '',
+            email: '',
             alert: {
                 open: false,
                 message: ''
@@ -42,8 +40,8 @@ class Settings extends React.Component {
 
         };
 
-        this.changeTrackUrl = this.changeTrackUrl.bind(this);
-        this.changeAsk = this.changeAsk.bind(this);
+        this.changeEmail = this.changeEmail.bind(this);
+
     }
 
     componentWillMount(){
@@ -61,23 +59,12 @@ class Settings extends React.Component {
             });
     }
 
-    changeTrackUrl(e) {
+    changeEmail(e) {
         this.setState({
             trackUrl: e.target.value
         });
     };
 
-    changeAsk(e){
-        this.setState({
-            ask: e.target.value
-        });
-    }
-
-    changeFbId(e) {
-        this.setState({
-            fbId: e.target.value
-        });
-    }
 
     save(){
         console.log(this.state);
@@ -122,39 +109,20 @@ class Settings extends React.Component {
 
         return(
             <div>
-                <MyAppBar title="Bot Settings" />
+                <MyAppBar title="Share to email" />
 
                 <MyPaper title={this.state.shopper.name} avatar={logo}>
-                    <div className={this.props.classes.titleForm}>Bot Settings</div>
+                    <div className={this.props.classes.titleForm}>Share to email</div>
                     <FormControl fullWidth className={this.props.classes.formControl}>
                         <Input
                             id="trackUrl"
                             disableUnderline="true"
-                            placeholder="Track Url"
-                            value={this.state.trackUrl ? this.state.trackUrl : ''}
-                            onChange={e => this.changeTrackUrl(e)}
+                            placeholder="Email"
+                            value={this.state.email ? this.state.email : ''}
+                            onChange={e => this.changeEmail(e)}
                         />
                     </FormControl>
-                    <FormControl fullWidth className={this.props.classes.formControl}>
-                        <Input
-                            id="ask"
-                            disableUnderline="true"
-                            placeholder="Ask to follow bot"
-                            value={this.state.ask ? this.state.ask : ''}
-                            onChange={e => this.changeAsk(e)}
-                        />
-                    </FormControl>
-
-
-                    <Grid container style={{fontSize: 11, marginBottom: 45}}>
-                        <Grid item xs={6}>
-                            <a className={this.props.classes.titleForm} href="https://www.messenger.com/t/227596463974806" target="_blank">Open Messenger</a>
-                        </Grid>
-                        <Grid item xs={6} style={{textAlign: 'right'}}>
-                            <a className={this.props.classes.titleForm} href="/bot-admin/share-to-email">Share</a>
-                        </Grid>
-                    </Grid>
-                    <Button color="primary" className={this.props.classes.fullWidth} onClick={this.save.bind(this)}>Save</Button>
+                    <Button color="primary" className={this.props.classes.fullWidth} onClick={this.save.bind(this)}>Share</Button>
                 </MyPaper>
                 <Snackbar
                     className={this.props.classes.message}
@@ -171,8 +139,8 @@ class Settings extends React.Component {
     }
 }
 
-Settings.propTypes = {
+ShareToEmail.propTypes = {
     classes: PropTypes.object,
 };
 
-export default withRoot(withStyles(styles)(Settings));
+export default withRoot(withStyles(styles)(ShareToEmail));
