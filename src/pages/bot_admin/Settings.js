@@ -143,15 +143,6 @@ class Settings extends React.Component {
                             onChange={e => this.changeAsk(e)}
                         />
                     </FormControl>
-                    <FormControl fullWidth className={this.props.classes.formControl}>
-                        <Input
-                            id="fb_id"
-                            disableUnderline="true"
-                            placeholder="Facebook ID"
-                            value={this.state.fbId ? this.state.fbId : ''}
-                            onChange={e => this.changeFbId(e)}
-                        />
-                    </FormControl>
                     <a className={this.props.classes.titleForm} href="https://www.messenger.com/t/227596463974806">Open Messenger</a>
                     <Button color="primary" className={this.props.classes.fullWidth} onClick={this.save.bind(this)}>Save</Button>
                 </MyPaper>
